@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Compartilhamento">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3A4046"/><stop offset="100%" stop-color="#1C2024"/>
+    </linearGradient>
+    <linearGradient id="dr" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#767E86"/><stop offset="100%" stop-color="#596069"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- perspectiva de corredor -->
+  <g stroke="#767E86" stroke-width="1" opacity=".45" fill="none">
+    <path d="M0 100.8 L360 189 M0 567 L360 466.2"/>
+    <path d="M1200 100.8 L840 189 M1200 567 L840 466.2"/>
+    <rect x="360" y="189" width="480" height="277.2"/>
+  </g>
+  <!-- porta corta-fogo -->
+  <rect x="517.974" y="144.89999999999998" width="164.052" height="390.6" rx="2" fill="url(#dr)"/>
+  <rect x="537.66024" y="183.95999999999998" width="124.67952" height="101.55600000000001" rx="2" fill="#1C2024" opacity=".7"/>
+  <rect x="534.3792000000001" y="348.012" width="131.2416" height="13.671000000000003" rx="3" fill="#F5A623"/>
+  <rect x="512.974" y="144.89999999999998" width="5" height="390.6" fill="#F5A623" opacity=".85"/>
+  <!-- etiqueta -->
+  <text x="600" y="44.1" text-anchor="middle"
+        font-family="Inter, Arial, sans-serif" font-size="15.6"
+        letter-spacing="2.5" fill="rgba(255,255,255,.30)">IMAGEM TEMPORÁRIA — COMPARTILHAMENTO</text>
+</svg>

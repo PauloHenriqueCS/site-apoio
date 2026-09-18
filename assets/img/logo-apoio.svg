@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 88" width="380" height="88" role="img" aria-label="Apoio — Instalação e Manutenção de Porta Corta Fogo">
+  <rect width="380" height="88" fill="none"/>
+  <text x="6" y="17" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600"
+        letter-spacing="1.6" fill="#1A1D21">INSTALAÇÃO &amp; MANUTENÇÃO</text>
+  <g>
+    <polygon points="6,26 356,26 374,47 356,68 6,68" fill="#1A1D21"/>
+    <polygon points="6,26 44,26 26,47 44,68 6,68" fill="#F5A623"/>
+    <text x="64" y="59" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700"
+          letter-spacing="7" fill="#FFFFFF">APOIO</text>
+  </g>
+  <text x="196" y="83" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11"
+        font-weight="600" letter-spacing="5" fill="#1A1D21">PORTA CORTA FOGO</text>
+</svg>

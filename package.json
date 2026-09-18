@@ -1,0 +1,15 @@
+{
+  "name": "site-apoio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site institucional da Apoio Porta Corta Fogo — HTML, CSS e JS puro com GSAP/ScrollTrigger.",
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "placeholders": "node tools/gerar-placeholders.mjs",
+    "vendor": "node tools/atualizar-gsap.mjs"
+  },
+  "devDependencies": {
+    "gsap": "^3.15.0"
+  }
+}
