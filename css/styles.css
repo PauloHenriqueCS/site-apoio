@@ -386,7 +386,8 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   .about .eyebrow{padding-left:2.5rem}
   .about__row{grid-template-columns:1fr;gap:1.75rem}
   .about__pillar{padding-right:0}
-  .about__pillar+.about__pillar,.about .process{border-left:0;padding-left:0;padding-top:1.75rem;border-top:1px solid var(--line)}
+  .about__pillar+.about__pillar{border-left:0;padding-left:0;padding-top:1.75rem;border-top:1px solid var(--line)}
+  .about .process{display:none}   /* "Como funciona" só no desktop */
 }
 @media (max-width:560px){
   .process__line{display:none}
