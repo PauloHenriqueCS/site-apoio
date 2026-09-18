@@ -124,18 +124,18 @@ function bloco(b) {
 
 function corpo(a) {
   const img = a.imagem;
-  const figura = `<figure>
+  const figura = `<figure data-reveal>
   <picture>
     <source srcset="/assets/img/blog/${img.arquivo}.webp" type="image/webp">
     <img src="/assets/img/blog/${img.arquivo}.jpg" alt="${esc(img.alt)}" width="1200" height="900" loading="lazy" decoding="async">
   </picture>
   <figcaption>${esc(img.legenda)}</figcaption>
 </figure>`;
-  const citacao = `<blockquote><p>“${esc(a.citacao)}”</p></blockquote>`;
+  const citacao = `<blockquote data-reveal><p>“${esc(a.citacao)}”</p></blockquote>`;
 
   const partes = [];
   a.secoes.forEach((s, i) => {
-    partes.push(`<h2>${esc(s.h2)}</h2>`);
+    partes.push(`<h2 data-reveal>${esc(s.h2)}</h2>`);
     partes.push(...s.blocos.map(bloco));
     if (i === 0) partes.push(figura);          // depois da primeira seção, como no layout
     if (i === 1) partes.push(citacao);         // depois da segunda
@@ -244,7 +244,7 @@ function paginaLista() {
           { '@type': 'ListItem', position: 2, name: 'Blog', item: url } ] },
     ],
   };
-  const cards = artigos.map(a => `        <a class="card" href="/blog/${a.slug}/">
+  const cards = artigos.map(a => `        <a class="card" data-reveal href="/blog/${a.slug}/">
           <p class="eyebrow">${esc(a.categoria)}</p>
           <h2>${esc(a.titulo)}</h2>
           <p>${esc(a.descricao)}</p>

@@ -182,9 +182,9 @@
   <section class="stats" aria-label="Diferenciais">
     <div class="container">
       <ul class="stats__grid">
-        <li class="stats__item"><strong class="stats__value">Mais de 15 anos</strong> <span class="stats__label">de experiência</span></li>
-        <li class="stats__item"><strong class="stats__value">Visita técnica gratuita</strong> <span class="stats__label">para avaliação</span></li>
-        <li class="stats__item"><strong class="stats__value">6 meses</strong> <span class="stats__label">de garantia nos serviços</span></li>
+        <li class="stats__item" data-reveal><strong class="stats__value">Mais de 15 anos</strong> <span class="stats__label">de experiência</span></li>
+        <li class="stats__item" data-reveal><strong class="stats__value">Visita técnica gratuita</strong> <span class="stats__label">para avaliação</span></li>
+        <li class="stats__item" data-reveal><strong class="stats__value">6 meses</strong> <span class="stats__label">de garantia nos serviços</span></li>
       </ul>
     </div>
   </section>
@@ -193,7 +193,7 @@
   <section class="services rail" id="servicos" aria-labelledby="servicos-title">
     <div class="services__body">
       <ol class="services__index" id="servicesIndex">
-          <li class="services__index-item is-active" data-index="0">
+          <li class="services__index-item is-active" data-index="0" data-reveal>
             <button class="services__index-btn" type="button" aria-controls="panel-0">
               <span class="services__index-num">01</span>
               <span class="services__index-name">Instalação</span>
@@ -201,7 +201,7 @@
               <span class="services__index-desc">Instalação técnica para condomínios, empresas, indústrias e estabelecimentos comerciais, com atenção ao funcionamento, fechamento e segurança da porta.</span>
             </button>
           </li>
-          <li class="services__index-item" data-index="1">
+          <li class="services__index-item" data-index="1" data-reveal>
             <button class="services__index-btn" type="button" aria-controls="panel-1">
               <span class="services__index-num">02</span>
               <span class="services__index-name">Manutenção</span>
@@ -209,7 +209,7 @@
               <span class="services__index-desc">Identificamos falhas, desgastes e componentes danificados para manter a porta abrindo e fechando corretamente.</span>
             </button>
           </li>
-          <li class="services__index-item" data-index="2">
+          <li class="services__index-item" data-index="2" data-reveal>
             <button class="services__index-btn" type="button" aria-controls="panel-2">
               <span class="services__index-num">03</span>
               <span class="services__index-name">Restauração</span>
@@ -217,7 +217,7 @@
               <span class="services__index-desc">Recuperamos portas danificadas pelo uso, pelo tempo ou pela falta de manutenção, evitando substituições desnecessárias quando a restauração é tecnicamente viável.</span>
             </button>
           </li>
-          <li class="services__index-item" data-index="3">
+          <li class="services__index-item" data-index="3" data-reveal>
             <button class="services__index-btn" type="button" aria-controls="panel-3">
               <span class="services__index-num">04</span>
               <span class="services__index-name">Barras antipânico</span>
@@ -227,7 +227,7 @@
           </li>
       </ol>
 
-      <div class="services__copy">
+      <div class="services__copy" data-reveal>
         <p class="eyebrow">Nossos serviços</p>
         <h2 id="servicos-title" class="h-section">Soluções completas para portas corta-fogo.</h2>
         <div class="services__panels">
@@ -252,7 +252,7 @@
       </div>
     </div>
 
-    <div class="services__media" id="servicesMedia" aria-hidden="true">
+    <div class="services__media" id="servicesMedia" aria-hidden="true" data-reveal>
         <img src="/assets/img/servico-01-instalacao.webp" alt="" class="is-active" data-index="0" width="720" height="900" loading="lazy" decoding="async">
         <img src="/assets/img/servico-02-manutencao.svg" alt="" data-index="1" width="720" height="900" loading="lazy" decoding="async">
         <img src="/assets/img/servico-03-restauracao.svg" alt="" data-index="2" width="720" height="900" loading="lazy" decoding="async">
@@ -266,7 +266,7 @@
 técnico</span></aside>
 
     <div class="exploded__stage" id="explodedStage">
-      <div class="exploded__head">
+      <div class="exploded__head" data-reveal>
         <div>
           <p class="eyebrow">Produtos à venda</p>
           <h2 id="produtos-title" class="h-section">Portas corta-fogo, peças e acessórios à venda.</h2>
@@ -337,8 +337,6 @@ técnico</span></aside>
           <li class="porta__label porta__label--dir" style="--y:75%;--ym:68%">Barra antipânico</li>
         </ul>
       </div>
-
-      <p class="exploded__hint"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Role para explorar os componentes</p>
     </div>
   </section>
 
@@ -377,7 +375,7 @@ técnico</span></aside>
   <!-- ============ CLIENTES ============ -->
   <section class="clients" id="clientes" aria-labelledby="clientes-title">
     <div class="container">
-      <div class="clients__head">
+      <div class="clients__head" data-reveal>
         <h2 id="clientes-title" class="clients__title">Experiência comprovada em ambientes exigentes.</h2>
         <div class="clients__nav">
           <button class="clients__btn" type="button" id="clientsPrev" aria-label="Clientes anteriores">
@@ -389,7 +387,7 @@ técnico</span></aside>
           </button>
         </div>
       </div>
-      <div class="clients__viewport">
+      <div class="clients__viewport" data-reveal>
         <div class="clients__track" id="clientsTrack">
           <div class="clients__logo">
             <img src="/assets/img/clientes/03-shopping-patio-paulista.webp" alt="Shopping Pátio Paulista" width="169" height="97" loading="lazy" decoding="async">
@@ -422,14 +420,14 @@ técnico</span></aside>
 
   <!-- ============ CONTATO ============ -->
   <section class="contact" aria-labelledby="contato-title">
-    <div class="contact__media">
+    <div class="contact__media" data-reveal>
       <picture>
         <source srcset="/assets/img/cta-porta-detalhe.webp" type="image/webp">
         <img src="/assets/img/cta-porta-detalhe.jpg" alt="Detalhe de porta corta-fogo instalada" width="1280" height="480" loading="lazy" decoding="async">
       </picture>
     </div>
     <div class="contact__band" aria-hidden="true"></div>
-    <div class="contact__body">
+    <div class="contact__body" data-reveal>
       <p class="eyebrow">Precisa de instalação ou manutenção?</p>
       <h2 id="contato-title" class="h-section">Solicite uma avaliação para suas portas corta-fogo.</h2>
       <p class="lead">Nossa equipe verifica as condições das portas e indica a solução adequada para seu condomínio ou empresa.</p>
@@ -446,13 +444,13 @@ técnico</span></aside>
   <!-- ============ ORÇAMENTO ============ -->
   <section class="quote" id="orcamento" aria-labelledby="orcamento-title">
     <div class="container quote__grid">
-      <div>
+      <div data-reveal>
         <p class="eyebrow">Solicite um orçamento</p>
         <h2 id="orcamento-title" class="h-section">Conte um pouco sobre o que você precisa.</h2>
         <p class="lead">Preencha os dados abaixo e nossa equipe entrará em contato.</p>
       </div>
 
-      <form class="quote__form" id="quoteForm" novalidate>
+      <form class="quote__form" id="quoteForm" novalidate data-reveal>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         <div class="field">
           <label class="visually-hidden" for="nome">Seu nome (obrigatório)</label>

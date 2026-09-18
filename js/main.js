@@ -146,25 +146,23 @@
       var alvo = !mobile && cabeSecao() ? stage : diagrama;
       var pin  = !mobile && (cabeSecao() || cabeDiagrama());
 
-      var tl = gsap.timeline({
+      // Etapa 1 — as peças se aproximam ENQUANTO a seção entra na tela, para a
+      // composição já estar pronta quando ela chega ao topo.
+      var topo = function () { return headerH() + (alvo === stage ? 0 : 24); };
+      var tlPecas = gsap.timeline({
         scrollTrigger: {
           trigger: alvo,
-          // celular: a cena roda enquanto o diagrama sobe da base da tela até o centro
-          start: function () { return pin ? 'top ' + (headerH() + (alvo === stage ? 0 : 24)) : (mobile ? 'top 92%' : 'top 75%'); },
-          end: function () { return pin ? '+=900' : (mobile ? 'center 45%' : 'bottom 60%'); },
-          scrub: 0.8,
-          pin: pin,
-          pinSpacing: true,
-          anticipatePin: 1,
+          start: mobile ? 'top 100%' : 'top 95%',
+          end: function () { return mobile ? 'center 58%' : (pin ? 'top ' + topo() : 'top 40%'); },
+          scrub: 0.6,
           invalidateOnRefresh: true
         }
       });
-
       pecas.forEach(function (peca, i) {
         var img = $('img', peca);
         var dx = parseFloat(peca.getAttribute('data-dx')) || 0;
         var dy = parseFloat(peca.getAttribute('data-dy')) || 0;
-        tl.fromTo(img,
+        tlPecas.fromTo(img,
           { x: function () { return (dx / 100) * largura() * fator; },
             y: function () { return (dy / 100) * altura() * fator; },
             opacity: dx || dy ? 0.85 : 1 },
@@ -173,25 +171,54 @@
         );
       });
 
+      // Etapa 2 — chamadas, linhas e pontos. No desktop a seção fica presa
+      // brevemente enquanto elas entram; no celular seguem a etapa 1.
+      var tl = gsap.timeline({
+        scrollTrigger: mobile ? {
+          trigger: alvo, start: 'center 58%', end: 'center 30%', scrub: 0.6, invalidateOnRefresh: true
+        } : {
+          trigger: alvo,
+          start: function () { return 'top ' + topo(); },
+          end: '+=420',
+          scrub: 0.6,
+          pin: pin,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
       tl.fromTo(chamadas,
         { opacity: 0, x: function (i, el) { return el.classList.contains('porta__label--esq') ? 14 : -14; } },
-        { opacity: 1, x: 0, ease: 'power2.out', duration: 0.45, stagger: 0.07 }, 0.85);
-      tl.fromTo(leaders, { opacity: 0 }, { opacity: 1, duration: 0.35, stagger: 0.07 }, 0.95);
-      tl.fromTo(dots, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, stagger: 0.07, ease: 'back.out(2)' }, 1.0);
+        { opacity: 1, x: 0, ease: 'power2.out', duration: 0.5, stagger: 0.08 }, 0);
+      tl.fromTo(leaders, { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.08 }, 0.1);
+      tl.fromTo(dots, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, stagger: 0.08, ease: 'back.out(2)' }, 0.15);
     };
     var mmCena = gsap.matchMedia();
     mmCena.add('(min-width: 901px)', function () { montarCena(false); });
     mmCena.add('(max-width: 900px)', function () { montarCena(true); });
   }
 
-  /* Reveal on scroll */
-  if (hasGSAP && !reduceMotion) {
-    $$('[data-reveal]').forEach(function (el, i) {
-      gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: (i % 4) * 0.06,
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+  /* ---------------------------------------------------------
+     Revelação ao rolar — sem depender do GSAP, para valer também no blog.
+     Irmãos marcados no mesmo pai entram em cascata (--d).
+     --------------------------------------------------------- */
+  var reveals = $$('[data-reveal]');
+  if (reveals.length && !reduceMotion && 'IntersectionObserver' in window) {
+    reveals.forEach(function (el) {
+      var irmaos = Array.prototype.filter.call(el.parentElement.children, function (c) { return c.hasAttribute('data-reveal'); });
+      var i = irmaos.indexOf(el);
+      if (i > 0) el.style.setProperty('--d', Math.min(i, 6) * 0.09 + 's');
     });
+    var ioReveal = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    reveals.forEach(function (el) { ioReveal.observe(el); });
   } else {
-    $$('[data-reveal]').forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
   }
 
   /* Processo — a linha preenche e os pontos acendem em sequência */
