@@ -131,8 +131,8 @@
      da ALTURA (a cena é ~2× mais larga que alta). Animamos a <img>
      interna: o wrapper carrega o translate(-50%,-50%) do CSS.
 
-     Fixação: a seção inteira, quando cabe abaixo do cabeçalho; senão só o
-     diagrama — assim a cena nunca "rola solta" em telas baixas.
+     Nada é fixado: a cena fica completa quando a seção (ou só o diagrama,
+     em telas baixas) chega ao centro da tela.
      --------------------------------------------------------- */
   var diagrama = $('#portaDiagrama');
   var pecas    = diagrama ? $$('.porta__peca', diagrama) : [];
@@ -148,18 +148,15 @@
       var stage   = $('#explodedStage');
       var livre   = function () { return window.innerHeight - headerH(); };
       var cabeSecao    = function () { return stage.offsetHeight <= livre() - 8; };
-      var cabeDiagrama = function () { return diagrama.offsetHeight <= livre() - 48; };
-      var alvo = !mobile && cabeSecao() ? stage : diagrama;
-      var pin  = !mobile && (cabeSecao() || cabeDiagrama());
+      var alvo = !mobile && cabeSecao() ? stage : diagrama;   // referência: a seção quando cabe na tela; senão só o diagrama
 
-      // Etapa 1 — as peças se aproximam ENQUANTO a seção entra na tela, para a
-      // composição já estar pronta quando ela chega ao topo.
-      var topo = function () { return headerH() + (alvo === stage ? 0 : 24); };
+      // Etapa 1 — as peças se aproximam ENQUANTO a seção sobe pela tela e já
+      // estão montadas um pouco antes de ela chegar ao centro. Sem fixação.
       var tlPecas = gsap.timeline({
         scrollTrigger: {
           trigger: alvo,
           start: mobile ? 'top 100%' : 'top 95%',
-          end: function () { return mobile ? 'top 65%' : (pin ? 'top ' + topo() : 'top 40%'); },
+          end: mobile ? 'top 65%' : 'center 64%',
           scrub: 0.6,
           invalidateOnRefresh: true
         }
@@ -177,19 +174,14 @@
         );
       });
 
-      // Etapa 2 — chamadas, linhas e pontos. No desktop a seção fica presa
-      // brevemente enquanto elas entram; no celular seguem a etapa 1.
+      // Etapa 2 — chamadas, linhas e pontos: entram logo depois e terminam
+      // exatamente quando a seção está centralizada na tela.
       var tl = gsap.timeline({
-        scrollTrigger: mobile ? {
-          trigger: alvo, start: 'top 65%', end: 'top 45%', scrub: 0.6, invalidateOnRefresh: true   // completo antes de o diagrama passar pelo centro
-        } : {
+        scrollTrigger: {
           trigger: alvo,
-          start: function () { return 'top ' + topo(); },
-          end: '+=420',
+          start: mobile ? 'top 65%' : 'center 64%',
+          end: mobile ? 'top 45%' : 'center 50%',
           scrub: 0.6,
-          pin: pin,
-          pinSpacing: true,
-          anticipatePin: 1,
           invalidateOnRefresh: true
         }
       });
