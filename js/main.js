@@ -136,7 +136,7 @@
 
   if (hasGSAP && diagrama && pecas.length && !reduceMotion) {
     var montarCena = function (mobile) {
-      var fator = mobile ? 0.5 : 1;          // no celular as peças partem mais perto
+      var fator = mobile ? 0.7 : 1.7;        // quanto as peças partem afastadas (× data-dx); menos no celular
       var largura = function () { return diagrama.offsetWidth || 1; };
       var altura  = function () { return diagrama.offsetHeight || 1; };
       var stage   = $('#explodedStage');
@@ -164,7 +164,7 @@
         var dy = parseFloat(peca.getAttribute('data-dy')) || 0;
         tlPecas.fromTo(img,
           { x: function () { return (dx / 100) * largura() * fator; },
-            y: function () { return (dy / 100) * altura() * fator; },
+            y: function () { return (dy / 100) * altura() * (mobile ? fator : 1); },
             opacity: dx || dy ? 0.85 : 1 },
           { x: 0, y: 0, opacity: 1, ease: 'power2.inOut', duration: 1 },
           i * 0.04
@@ -207,7 +207,7 @@
     reveals.forEach(function (el) {
       var irmaos = Array.prototype.filter.call(el.parentElement.children, function (c) { return c.hasAttribute('data-reveal'); });
       var i = irmaos.indexOf(el);
-      if (i > 0) el.style.setProperty('--d', Math.min(i, 6) * 0.09 + 's');
+      if (i > 0) el.style.setProperty('--d', Math.min(i, 6) * 0.14 + 's');
     });
     var ioReveal = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (e) {
