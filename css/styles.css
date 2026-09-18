@@ -388,6 +388,15 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   .about__pillar{padding-right:0}
   .about__pillar+.about__pillar{border-left:0;padding-left:0;padding-top:1.75rem;border-top:1px solid var(--line)}
   .about .process{display:none}   /* "Como funciona" só no desktop */
+  /* celular: trilho inteiro com um ponto no título e em cada pilar, como na lista de serviços */
+  .about.rail::before{top:0;bottom:0;height:auto}
+  .about .container{padding-left:calc(var(--rail-x) + 1.75rem)}
+  .about .eyebrow{padding-left:0}
+  .about h2,.about__pillar h3{position:relative}
+  .about h2::before,.about__pillar h3::before{
+    content:"";position:absolute;left:calc(-1.75rem - 6px + var(--rail-w) / 2);top:.5em;
+    width:12px;height:12px;border-radius:50%;background:var(--brand);z-index:3;
+  }
 }
 @media (max-width:560px){
   .process__line{display:none}
