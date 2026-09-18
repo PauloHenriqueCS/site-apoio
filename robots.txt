@@ -8,5 +8,6 @@ Disallow: /conteudo/
 Disallow: /tools/
 Disallow: /node_modules/
 Disallow: /404.html
+Disallow: /api/
 
 Sitemap: https://apoiocortafogo.com/sitemap.xml

@@ -1,0 +1,22 @@
+# Protege o que não deve ser servido pelo navegador. Só enviar-email.php é público.
+Options -Indexes
+
+<FilesMatch "^(config.*\.php|testar-envio\.php|.*\.md|.*\.txt|LICENSE)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Biblioteca vendida (PHPMailer) nunca é acessada direto
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^lib/ - [F,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>

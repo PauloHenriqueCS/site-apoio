@@ -57,8 +57,10 @@ robots.txt, sitemap.xml, site.webmanifest
 
 ## Deploy
 
-Publique a raiz do repositório **exceto** `origem/`, `conteudo/`, `tools/`, `node_modules/`
-e os arquivos de projeto (`package*.json`, `README.md`). O `robots.txt` já bloqueia essas
+Publique a raiz do repositório (**incluindo `api/` e `api/.htaccess`**) **exceto** `origem/`,
+`conteudo/`, `tools/`, `node_modules/` e os arquivos de projeto (`package*.json`, `README.md`).
+O formulário precisa de PHP 7.4+ e do arquivo de credenciais fora de `public_html` (ver
+`api/LEIA-ME.md`). O `robots.txt` já bloqueia essas
 pastas caso venham junto, mas o ideal é não enviá-las (só `origem/` tem 15 MB). Configure
 no host: redirecionamento `http → https` e `www → sem www` (ou o inverso; o canonical usa
 `https://apoiocortafogo.com/` sem www), e a página `404.html` como resposta de "não encontrado".
@@ -82,7 +84,7 @@ no `dataLayer`. Componentes só informam eventos de negócio; nenhum conhece IDs
 | `service_view` | um serviço fica ativo na seção de serviços (1× cada, nunca no carregamento) | `service_id`, `service_name`, `origem` |
 | `form_submit_whatsapp` | formulário encaminhado ao WhatsApp (sem endpoint) | `form_name` |
 | `form_submit_success` | **só após resposta 2xx do endpoint**, 1× por submissão | `form_name`, bloco `user_data` |
-| `form_submit_error` | endpoint respondeu erro | `form_name` |
+| `form_submit_error` | endpoint respondeu erro ou rede falhou | `form_name`, `status` (HTTP; 0 = rede) |
 
 Todo evento leva `page_path`, `page_title` e a atribuição mais recente como chaves planas
 (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `gbraid`,
@@ -110,18 +112,18 @@ console como `[Analytics] nome {...}`, sem o bloco `user_data`. Em produção, n
 
 ## Formulário
 
-Dois modos, decididos pelo atributo `data-endpoint` do `<form>`:
+O `<form>` envia `POST` em JSON para `data-endpoint="/api/enviar-email.php"`, um PHP com
+PHPMailer (SMTP autenticado da HostGator). Sucesso só com `200 {"success":true}`, e só
+então o site confirma, limpa o formulário e dispara `form_submit_success` (que no GTM
+aciona a conversão do Google Ads). Erro mantém os dados, mostra a mensagem com o WhatsApp
+como alternativa e permite tentar de novo. Uma submissão por vez (`data-enviando`).
 
-- **Vazio (hoje)**: ao enviar, abre o WhatsApp da empresa com a mensagem montada (nome,
-  e-mail, assunto, mensagem). Não é confirmação de envio, então `form_submit_success`
-  não dispara — dispara `form_submit_whatsapp`.
-- **Com URL**: `POST` com `FormData` (campos + parâmetros de campanha). Sucesso só com
-  resposta 2xx; erro mostra mensagem com o WhatsApp como alternativa. Uma submissão por
-  vez (`data-enviando`): três cliques rápidos geram um envio e uma conversão.
+**As credenciais SMTP ficam fora do repositório** — o que falta e onde preencher está em
+[`api/LEIA-ME.md`](api/LEIA-ME.md). Enquanto não forem preenchidas, o endpoint responde
+500 e o visitante vê a mensagem de erro amigável.
 
-Já existem validação em português, `aria-invalid`, mensagens por campo e um campo
-honeypot anti-spam. Não há backend neste repositório: a escolha do serviço (formulário
-de terceiros, função serverless, e-mail) é a próxima decisão.
+Se `data-endpoint` ficar vazio, o formulário volta ao modo anterior: abre o WhatsApp da
+empresa com a mensagem pronta (`form_submit_whatsapp`, sem conversão).
 
 ## Por que sem framework
 
@@ -167,7 +169,7 @@ completo (`streetAddress`, `postalCode`), horário de atendimento, CNPJ/razão s
 2. **Endereço completo** no JSON-LD (`streetAddress`, `postalCode`) — hoje só
    constam cidade e estado.
 3. **CNPJ / razão social** no rodapé, se aplicável.
-4. **Endpoint do formulário** (ver "Formulário").
+4. **Credenciais SMTP do formulário** no servidor (ver `api/LEIA-ME.md`).
 5. Cadastrar o site no Google Search Console e enviar o `sitemap.xml`.
 6. Confirmar a data em `<lastmod>` no `sitemap.xml` a cada publicação relevante.
 
@@ -183,18 +185,6 @@ antes de publicar.
   na posição final
 - Sem JavaScript o conteúdo continua todo legível
 - Os serviços também navegam por clique, não só por scroll
-
-## Formulário
-
-Hoje o envio é apenas simulado no cliente (`js/main.js`, busque por `ETAPA 2`).
-Para funcionar de verdade, aponte para um endpoint e trate a resposta:
-
-```js
-const r = await fetch('/api/orcamento', { method: 'POST', body: new FormData(form) });
-```
-
-Já existem validação em português, marcação `aria-invalid` e um campo honeypot
-anti-spam.
 
 ## Imagens
 

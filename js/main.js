@@ -288,6 +288,7 @@
   var form = $('#quoteForm');
   if (form) {
     var status = $('#formStatus');
+    var carregadoEm = Date.now();   // base do tempo de preenchimento enviado ao servidor
     var rules = {
       nome:    function (v) { return v.trim().length >= 2 || 'Informe seu nome.'; },
       email:   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Informe um e-mail válido.'; },
@@ -362,17 +363,51 @@
         email: form.elements.email.value.trim().toLowerCase(),
         address: { first_name: nomeCompleto[0] || '', last_name: nomeCompleto.slice(1).join(' ') }
       };
-      fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r; })
+      // JSON com os campos do formulário (nome, e-mail, assunto, mensagem, honeypot,
+      // parâmetros de campanha) + tempo de preenchimento, que o servidor usa como
+      // filtro simples contra robôs. O endpoint só responde 200 depois do envio real.
+      var payload = {};
+      Array.prototype.forEach.call(form.elements, function (el) {
+        if (el.name && el.type !== 'submit' && el.type !== 'button') payload[el.name] = el.value;
+      });
+      payload.tempo_preenchimento = Date.now() - carregadoEm;
+      var mensagemErro = 'Não foi possível enviar agora. Tente de novo ou fale conosco pelo WhatsApp: (11) 99196-1322.';
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (data) {
+            if (r.ok && data && data.success === true) return data;
+            var err = new Error('HTTP ' + r.status);
+            err.data = data || {};
+            err.status = r.status;
+            throw err;
+          });
+        })
         .then(function () {
+          // Conversão do Google Ads (AW-1001597529 / wKKxCPe8w_wcENnUzN0D): a tag no GTM
+          // dispara neste evento — nunca no clique, só depois do success:true do servidor.
           track('form_submit_success', { form_name: 'orcamento' }, { user_data: userData });
           showStatus('ok', 'Solicitação recebida! Nossa equipe entra em contato em breve.');
           form.reset();
           Object.keys(rules).forEach(function (name) { var f = form.elements[name]; if (f) f.removeAttribute('aria-invalid'); });
         })
-        .catch(function () {
-          track('form_submit_error', { form_name: 'orcamento' });
-          showStatus('error', 'Não foi possível enviar agora. Tente de novo ou fale conosco pelo WhatsApp: (11) 99196-1322.');
+        .catch(function (err) {
+          track('form_submit_error', { form_name: 'orcamento', status: err && err.status ? err.status : 0 });
+          var data = (err && err.data) || {};
+          // erros de campo apontados pelo servidor (mesmas regras do cliente)
+          if (data.errors) {
+            Object.keys(data.errors).forEach(function (name) {
+              var f = form.elements[name], e = document.getElementById('erro-' + name);
+              if (f) f.setAttribute('aria-invalid', 'true');
+              if (e) e.textContent = data.errors[name];
+            });
+          }
+          // 4xx traz uma mensagem própria (campos, muitas tentativas); 5xx/rede usa a genérica
+          var propria = err && err.status && err.status < 500 && typeof data.message === 'string' && data.message;
+          showStatus('error', propria ? data.message + ' Se preferir, fale conosco pelo WhatsApp: (11) 99196-1322.' : mensagemErro);
         })
         .finally(function () { form.dataset.enviando = ''; if (botao) { botao.disabled = false; botao.removeAttribute('aria-busy'); } });
     });

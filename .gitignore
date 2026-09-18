@@ -4,3 +4,6 @@ dist/
 *.log
 .vscode/
 .idea/
+api/config.php
+api/config.local.php
+apoio-config/

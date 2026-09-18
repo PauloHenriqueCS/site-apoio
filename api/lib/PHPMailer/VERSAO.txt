@@ -1,0 +1,3 @@
+PHPMailer v7.1.1 (https://github.com/PHPMailer/PHPMailer), tag v7.1.1.
+Copiados apenas src/PHPMailer.php, src/SMTP.php, src/Exception.php e LICENSE (LGPL 2.1).
+Para atualizar: baixe a release no GitHub e substitua estes três arquivos.
