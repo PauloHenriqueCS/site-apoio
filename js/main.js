@@ -292,7 +292,7 @@
      etapa, mude os números abaixo. As regiões do projeto (o que cada cópia
      "desenha") estão no HTML, em data-clip-from/data-clip-to.
      --------------------------------------------------------- */
-  var DURACAO_HERO = 8;         // segundos da animação inteira
+  var DURACAO_HERO = 7;         // segundos da animação inteira
   var ATRASO_HERO  = 0;         // segundos depois do carregamento (0 = começa assim que a página carrega)
   var FASES_HERO = {
     cotas:       [0.10, 0.08],   // cotas e linhas de referência do topo (esquerda → direita)

@@ -22,7 +22,7 @@ O hero é a seção `.hero--c`, com a altura da tela menos o cabeçalho. Uma tim
 GSAP desenha o projeto técnico, materializa a porta e revela as chamadas. Ela roda sozinha assim
 que a página carrega, e não depende do scroll.
 
-- **Velocidade**: `DURACAO_HERO` (segundos da animação inteira, hoje 8) e `ATRASO_HERO`
+- **Velocidade**: `DURACAO_HERO` (segundos da animação inteira, hoje 7) e `ATRASO_HERO`
   (segundos após o carregamento, hoje 0) em `js/main.js`.
 - **Fases**: objeto `FASES_HERO` em `js/main.js`, cada uma `[início, duração]` em fração de
   0 a 1 da duração total (cotas, estrutura, secundárias, detalhe, porta, residual,
