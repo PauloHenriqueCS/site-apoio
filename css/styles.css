@@ -327,7 +327,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .porta{
   position:relative;aspect-ratio:1.95;
   /* nunca mais alto que o que sobra da tela abaixo do cabeçalho e do título */
-  width:min(100%,calc((100svh - var(--header-h) - 400px) * 1.95));
+  width:min(100%,calc((100svh - var(--header-h) - 120px) * 1.95));
 }
 .porta__cena{position:absolute;inset:0}
 .porta__peca{position:absolute;left:var(--x);top:var(--y);height:var(--h);aspect-ratio:var(--r);transform:translate(-50%,-50%);z-index:var(--z,1)}
