@@ -162,7 +162,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   content:"";position:absolute;inset:0;
   background:linear-gradient(95deg,rgba(14,18,22,.78) 0%,rgba(14,18,22,.58) 36%,rgba(14,18,22,.18) 62%,rgba(14,18,22,0) 100%);
 }
-.hero__inner{display:flex;flex-direction:column;justify-content:center;padding-block:3rem 2rem}
+.hero__inner{display:flex;flex-direction:column;justify-content:center;padding-block:2rem 5rem}
 .hero__content{max-width:600px;margin-left:clamp(1.5rem,4vw,3.5rem)}
 .hero h1{color:#fff;margin-bottom:1.25rem;text-wrap:balance}
 .hero .lead{margin-bottom:2rem;max-width:40ch;font-size:clamp(1.05rem,1.45vw,1.3rem)}
@@ -174,8 +174,8 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 }
 .hero__phone:hover{color:var(--brand)}
 .hero__scroll{
-  display:inline-flex;align-items:center;gap:.75rem;margin-top:auto;padding-top:3rem;
-  margin-left:clamp(1.5rem,4vw,3.5rem);color:#fff;font-size:.9rem;
+  position:absolute;bottom:2.25rem;left:calc(var(--rail-x) + clamp(1.5rem,4vw,3.5rem));
+  display:inline-flex;align-items:center;gap:.75rem;margin:0;color:#fff;font-size:.9rem;
 }
 .hero__scroll svg{animation:nudge 2.2s ease-in-out infinite}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
@@ -184,7 +184,8 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   .hero{height:auto;min-height:calc(100svh - var(--header-h))}
   .hero__media img{object-position:70% center}
   .hero__media::after{background:linear-gradient(180deg,rgba(14,18,22,.15) 0%,rgba(14,18,22,.7) 45%,rgba(14,18,22,.85) 100%)}
-  .hero__inner{justify-content:flex-end;padding-top:40vh}
+  .hero__inner{justify-content:flex-end;padding-top:40vh;padding-bottom:2rem}
+  .hero__scroll{position:static;margin:2rem 0 0 clamp(1.5rem,4vw,3.5rem)}
   .hero__actions{flex-direction:column;align-items:stretch}
   .hero__actions .btn{width:100%}
   .hero__phone{padding-left:0;border-left:0;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.25)}
