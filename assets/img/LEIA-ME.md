@@ -7,7 +7,7 @@
 
 ```bash
 npm run imagens        # processa origem/ → assets/img/ (redimensiona, gera WebP)
-npm run placeholders   # regera só os marcadores das fotos que ainda faltam
+npm run placeholders   # regera o favicon e o ícone do site
 ```
 
 Para trocar uma foto: substitua o arquivo em `origem/` e rode `npm run imagens`.
@@ -16,13 +16,10 @@ Para trocar uma foto: substitua o arquivo em `origem/` e rode `npm run imagens`.
 
 | Slot | Arquivo atual | O que precisa |
 |---|---|---|
-| Serviço 02 — Manutenção | `servico-02-manutencao.svg` | foto 720×900 (retrato 4:5) |
-| Serviço 03 — Restauração | `servico-03-restauracao.svg` | foto 720×900 |
-| Serviço 04 — Barras antipânico | `servico-04-barras.svg` | foto 720×900 |
+| Serviço 02 — Manutenção | `servico-02-manutencao.webp` (provisório: foto da porta instalada) | foto própria de manutenção, retrato ou paisagem, mínimo ~1100 px de altura |
 
-Esses três aparecem no site com a etiqueta "FOTO PENDENTE". Ao enviá-las, coloque em
-`origem/` e acrescente as linhas correspondentes em `tools/processar-imagens.mjs`
-(o serviço 01 já está lá e serve de modelo).
+Ao enviá-la, coloque em `origem/` e troque a origem da linha `servico-02-manutencao` em
+`tools/processar-imagens.mjs`.
 
 Opcional: `apple-touch-icon.png` (180×180) para o atalho no iOS.
 
@@ -34,7 +31,10 @@ Opcional: `apple-touch-icon.png` (180×180) para o atalho no iOS.
 |---|---|---|
 | Hero (desktop) | `01-hero-desktop.png` | `hero-desktop.webp` + `@1200` |
 | Hero (celular) | `02-hero-mobile.png` | `hero-mobile.webp` + `@768` |
-| Serviço 01 | `03-porta-instalada.png` | `servico-01-instalacao.webp` |
+| Serviço 01 — Instalação | `06-servico-instalacao.png` | `servico-01-instalacao.webp` |
+| Serviço 02 — Manutenção (provisório) | `03-porta-instalada.png` | `servico-02-manutencao.webp` |
+| Serviço 03 — Restauração | `07-servico-restauracao.png` | `servico-03-restauracao.webp` |
+| Serviço 04 — Barras antipânico | `08-servico-barra-antipanico.png` | `servico-04-barras.webp` |
 | CTA de contato | `04-porta-cta-detalhe.png` | `cta-porta-detalhe.webp` |
 | Compartilhamento | `01-hero-desktop.png` | `og-apoio-porta-corta-fogo.jpg` (1200×630) |
 

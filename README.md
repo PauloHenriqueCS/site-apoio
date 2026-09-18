@@ -50,7 +50,7 @@ assets/img/                imagens servidas (derivadas) — ver assets/img/LEIA-
 origem/                    imagens originais, intocadas
 tools/processar-imagens.mjs    origem/ → assets/img/ (resize, WebP, logo claro)
 tools/gerar-blog.mjs           conteudo/blog/artigos.json → blog/ + sitemap.xml
-tools/gerar-placeholders.mjs   marcadores das fotos que ainda faltam
+tools/gerar-placeholders.mjs   favicon e ícones do site
 tools/atualizar-gsap.mjs       recopia o GSAP de node_modules para assets/vendor
 robots.txt, sitemap.xml, site.webmanifest
 ```
@@ -164,8 +164,8 @@ completo (`streetAddress`, `postalCode`), horário de atendimento, CNPJ/razão s
 
 ### Pendências antes de publicar
 
-1. **Três fotos de serviço** (Manutenção, Restauração, Barras antipânico) — ver
-   `assets/img/LEIA-ME.md`. Hoje esses slots mostram "FOTO PENDENTE".
+1. **Foto de Manutenção** (serviço 02) — ver `assets/img/LEIA-ME.md`. Hoje o slot usa,
+   provisoriamente, a foto da porta instalada.
 2. **Endereço completo** no JSON-LD (`streetAddress`, `postalCode`) — hoje só
    constam cidade e estado.
 3. **CNPJ / razão social** no rodapé, se aplicável.

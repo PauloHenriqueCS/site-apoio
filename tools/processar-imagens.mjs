@@ -42,8 +42,11 @@ await photo(src('01-hero-desktop.png'), 'hero-desktop@1200', 1200, { quality: 76
 await photo(src('02-hero-mobile.png'), 'hero-mobile', 1024, { quality: 76 });
 await photo(src('02-hero-mobile.png'), 'hero-mobile@768', 768, { quality: 76 });
 
-/* Serviços: retrato 4:5. */
-await photo(src('03-porta-instalada.png'), 'servico-01-instalacao', 720, { height: 900, fit: 'cover', position: 'centre' });
+/* Serviços: retrato 4:5, recortado das fotos horizontais (position = onde está o assunto). */
+await photo(src('06-servico-instalacao.png'),      'servico-01-instalacao', 720, { height: 900, fit: 'cover', position: 'centre' });
+await photo(src('03-porta-instalada.png'),         'servico-02-manutencao', 720, { height: 900, fit: 'cover', position: 'centre' }); // provisório: ainda não veio foto de manutenção
+await photo(src('07-servico-restauracao.png'),     'servico-03-restauracao', 720, { height: 900, fit: 'cover', position: 'right' });
+await photo(src('08-servico-barra-antipanico.png'), 'servico-04-barras', 720, { height: 900, fit: 'cover', position: 'centre' });
 
 /* CTA: panorâmica escura. */
 await photo(src('04-porta-cta-detalhe.png'), 'cta-porta-detalhe', 1280, { quality: 76 });

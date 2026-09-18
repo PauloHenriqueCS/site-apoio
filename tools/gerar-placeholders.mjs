@@ -60,8 +60,5 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" wid
 </svg>`;
 
 console.log('Gerando marcadores das imagens que ainda faltam…');
-write('assets/img/servico-02-manutencao.svg', scene({ w: 720, h: 900, label: 'Manutenção' }));
-write('assets/img/servico-03-restauracao.svg', scene({ w: 720, h: 900, label: 'Restauração' }));
-write('assets/img/servico-04-barras.svg', scene({ w: 720, h: 900, label: 'Barras antipânico' }));
 write('assets/img/favicon.svg', favicon);
 console.log('\nPronto. O que falta está em assets/img/LEIA-ME.md.');
