@@ -62,7 +62,7 @@ async function camada(input, name, widths) {
   }
 }
 await camada('hero-c/derivados/hero-bg.png',        'hero-c/fundo',    [1024, 768]);
-await camada('hero-c/derivados/hero-blueprint.png', 'hero-c/projeto',  [1024, 768]);
+await camada('hero-c/derivados/hero-blueprint.png', 'hero-c/projeto',  [1024]);          // só um tamanho: reduzir gera mais ruído de alpha
 await camada('hero-c/derivados/hero-door.png',      'hero-c/porta',    [687, 480]);
 
 console.log('\nDiagrama da porta');

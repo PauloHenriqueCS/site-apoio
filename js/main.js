@@ -300,7 +300,7 @@
     detalhe:     [0.28, 0.16],   // corte construtivo à direita (cima → baixo)
                                  // 0.44–0.52: pausa com o projeto completo
     porta:       [0.52, 0.26],   // porta real surge de baixo para cima
-    residual:    [0.60, 0.20],   // projeto cai para 35% de opacidade
+    residual:    [0.60, 0.20],   // projeto cai para 55% de opacidade
     pontos:      [0.90, 0.04],   // chamadas: pontos laranja
     linhas:      [0.92, 0.05],   // ... linhas traçadas
     textos:      [0.94, 0.05],   // ... rótulos
@@ -349,7 +349,7 @@
         { clipPath: 'inset(100% 0% 0% 0%)', scale: 0.985, y: 12, transformOrigin: '50% 100%' },
         { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, y: 0, duration: F.porta[1], ease: 'power1.inOut' }, F.porta[0]);
       // 3) projeto vira referência residual (35%), mas continua ao redor
-      tlHero.fromTo(bpWrap, { opacity: 1 }, { opacity: 0.35, duration: F.residual[1], ease: 'power1.inOut' }, F.residual[0]);
+      tlHero.fromTo(bpWrap, { opacity: 1 }, { opacity: 0.55, duration: F.residual[1], ease: 'power1.inOut' }, F.residual[0]);
       // 4) chamadas: pontos → linhas traçadas → rótulos → sentido de fuga
       tlHero.fromTo(pontos, { opacity: 0, scale: 0.4, transformOrigin: '50% 50%' },
         { opacity: 1, scale: 1, duration: F.pontos[1], stagger: F.pontos[1] * 0.3, ease: 'back.out(2)' }, F.pontos[0]);

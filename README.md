@@ -38,7 +38,7 @@ volta a animação.
 - **Fallback**: sem GSAP, sem JS ou com `prefers-reduced-motion`, a classe `hero--static`
   (ou `.no-js`) mostra o estado final direto, sem scroll longo.
 - **Performance**: só `transform`, `opacity` e `clip-path` animados; `will-change` apenas
-  nas camadas animadas; sem filtros; imagens WebP (fundo 34 kB, projeto 57 kB, porta 50 kB).
+  nas camadas animadas; sem filtros; imagens WebP (fundo 34 kB, projeto 90 kB, porta 50 kB).
 
 ## Blog
 

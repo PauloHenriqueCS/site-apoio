@@ -28,8 +28,8 @@ H, W, _ = fundo.shape
 lum = fundo[:, :, 0] * .299 + fundo[:, :, 1] * .587 + fundo[:, :, 2] * .114
 base = ndimage.median_filter(lum, size=15)              # fundo local sem as linhas finas
 diff = lum - base
-alpha = np.clip((diff - 12) / 100, 0, 1)
-alpha[alpha < 0.12] = 0                                 # tira o ruído fino (pesa no WebP)
+alpha = np.clip((diff - 8) / 70, 0, 1) ** 0.8            # linhas mais marcadas
+alpha[alpha < 0.1] = 0                                  # tira o ruído fino (pesa no WebP)
 alpha[1205:1228, :] = 0                                 # aresta do piso fica no fundo
 mask = alpha > 0.02
 base_rgb = ndimage.median_filter(fundo, size=(15, 15, 1))
@@ -44,7 +44,7 @@ Image.fromarray(bg.clip(0, 255).astype(np.uint8)).save(OUT / 'hero-bg.png', opti
 # linhas: cor "desmisturada" do fundo
 a = alpha[:, :, None]
 cor = np.where(a > 0, base_rgb + (fundo - base_rgb) / np.maximum(a, 1e-3), 0)
-cor = np.clip(cor, 0, 255)
+cor = np.clip(cor * 1.12 + 18, 0, 255)                  # traço um pouco mais claro
 bp = np.dstack([cor, alpha * 255]).astype(np.uint8)
 Image.fromarray(bp, 'RGBA').save(OUT / 'hero-blueprint.png', optimize=True)
 
