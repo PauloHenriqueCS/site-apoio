@@ -524,13 +524,13 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .wa-float{
   position:fixed;right:clamp(1rem,3vw,1.75rem);bottom:clamp(1rem,3vw,1.75rem);z-index:90;
   display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.35rem;border-radius:999px;
-  background:var(--brand);color:var(--ink-900);font-weight:500;font-size:.9rem;
-  box-shadow:0 10px 30px -8px rgba(245,162,30,.6);
+  background:#25D366;color:#fff;font-weight:500;font-size:.9rem;   /* verde do WhatsApp */
+  box-shadow:0 10px 30px -8px rgba(37,211,102,.55);
   transform:translateY(120%);opacity:0;
   transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s,background var(--t-fast);
 }
 .wa-float.is-visible{transform:translateY(0);opacity:1}
-.wa-float:hover{background:var(--brand-600)}
+.wa-float:hover{background:#1EBE5A}
 @media (max-width:420px){.wa-float span{display:none}.wa-float{padding:.9rem;border-radius:50%}}
 
 /* =========================================================
