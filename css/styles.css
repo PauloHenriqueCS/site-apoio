@@ -523,15 +523,17 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 /* Botão flutuante do WhatsApp */
 .wa-float{
   position:fixed;right:clamp(1rem,3vw,1.75rem);bottom:clamp(1rem,3vw,1.75rem);z-index:90;
-  display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.35rem;border-radius:999px;
-  background:#25D366;color:#fff;font-weight:500;font-size:.9rem;   /* verde do WhatsApp */
+  display:inline-flex;align-items:center;gap:.7rem;padding:1.02rem 1.62rem;border-radius:999px;   /* 20% maior */
+  background:#25D366;color:#fff;font-weight:500;font-size:1.08rem;   /* verde do WhatsApp */
   box-shadow:0 10px 30px -8px rgba(37,211,102,.55);
   transform:translateY(120%);opacity:0;
   transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s,background var(--t-fast);
 }
 .wa-float.is-visible{transform:translateY(0);opacity:1}
 .wa-float:hover{background:#1EBE5A}
-@media (max-width:420px){.wa-float span{display:none}.wa-float{padding:.9rem;border-radius:50%}}
+.wa-float svg{width:24px;height:24px;flex:none}
+@media (max-width:760px){.wa-float{right:1.5rem;bottom:1.5rem}}          /* margem maior no celular */
+@media (max-width:420px){.wa-float span{display:none}.wa-float{padding:1.08rem;border-radius:50%}}
 
 /* =========================================================
    Reveal / movimento reduzido
