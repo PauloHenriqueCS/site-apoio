@@ -56,7 +56,6 @@ const og = await sharp(src('01-hero-desktop.png'))
 log('og-apoio-porta-corta-fogo.jpg', og);
 
 console.log('\nDiagrama da porta');
-await part(src('05-porta-explodida-completa.png'), 'porta/explodida-completa', 1400);
 const PECAS = [
   ['componentes/01-folha-da-porta.png',   'porta/folha',    620],
   ['componentes/02-batente.png',          'porta/batente',  620],

@@ -74,9 +74,10 @@ const footer = () => `<footer class="footer rail">
   <span>Solicitar orçamento</span>
 </a>
 
+<script src="/js/tracking.js" defer></script>
 <script src="/js/main.js" defer></script>`;
 
-const head = ({ titulo, descricao, url, tipo, jsonld, extra = '' }) => `<!DOCTYPE html>
+const head = ({ titulo, descricao, url, tipo, jsonld, extra = '', robots }) => `<!DOCTYPE html>
 <html lang="pt-BR" class="no-js">
 <head>
 <meta charset="utf-8">
@@ -84,7 +85,7 @@ const head = ({ titulo, descricao, url, tipo, jsonld, extra = '' }) => `<!DOCTYP
 <title>${esc(titulo)}</title>
 <meta name="description" content="${esc(descricao)}">
 <link rel="canonical" href="${url}">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="robots" content="${robots || 'index,follow,max-image-preview:large,max-snippet:-1'}">
 <meta name="theme-color" content="#1A1D21">
 <meta property="og:type" content="${tipo}">
 <meta property="og:locale" content="pt_BR">
@@ -100,10 +101,10 @@ ${extra}<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:description" content="${esc(descricao)}">
 <meta name="twitter:image" content="${SITE}/assets/img/blog/og-blog.jpg">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/figtree-latin-400-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/figtree-latin-500-normal.woff2" crossorigin>
 <link rel="stylesheet" href="/css/styles.css">
 <link rel="stylesheet" href="/css/blog.css">
 <script>document.documentElement.classList.remove('no-js');</script>
@@ -184,7 +185,7 @@ function paginaArtigo(a) {
   };
 
   return head({
-    titulo: `${a.titulo} | ${MARCA}`, descricao: a.descricao, url, tipo: 'article', jsonld,
+    titulo: a.titulo, descricao: a.descricao, url, tipo: 'article', jsonld,   // o "Título SEO" do briefing já é o <title>; a marca vai no og:site_name
     extra: `<meta property="article:published_time" content="${a.data}">\n<meta property="article:modified_time" content="${a.atualizado}">\n`,
   }) + `
 ${header()}
@@ -283,12 +284,43 @@ ${footer()}
 `;
 }
 
+/* ---------- 404 ---------- */
+function pagina404() {
+  return head({
+    titulo: `Página não encontrada | ${MARCA}`, descricao: 'A página que você procura não existe ou mudou de endereço.',
+    url: SITE + '/404.html', tipo: 'website', robots: 'noindex,follow',
+    jsonld: { '@context': 'https://schema.org', '@type': 'WebPage', name: 'Página não encontrada', inLanguage: 'pt-BR' },
+  }) + `
+${header()}
+
+<main id="main" class="page-top">
+  <section class="blog-hero rail" aria-labelledby="erro-title">
+    <div class="blog-hero__inner">
+      <p class="eyebrow">Erro 404</p>
+      <h1 id="erro-title">Essa página não existe.</h1>
+      <p class="lead">O endereço pode ter mudado ou ter sido digitado errado. Você pode voltar para a página inicial, ver os artigos do blog ou falar com a equipe.</p>
+      <p style="display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;margin-top:1.5rem">
+        <a class="btn btn--primary btn--sm" href="/">Página inicial ${ARROW}</a>
+        <a class="link-arrow" href="/blog/">Ver o blog ${ARROW}</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+${footer()}
+</body>
+</html>
+`;
+}
+
 /* ---------- Escrita ---------- */
 const outDir = resolve(ROOT, 'blog');
 rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 writeFileSync(resolve(outDir, 'index.html'), paginaLista());
 console.log('  ✓ blog/index.html');
+writeFileSync(resolve(ROOT, '404.html'), pagina404());
+console.log('  ✓ 404.html');
 for (const a of artigos) {
   mkdirSync(resolve(outDir, a.slug), { recursive: true });
   writeFileSync(resolve(outDir, a.slug, 'index.html'), paginaArtigo(a));

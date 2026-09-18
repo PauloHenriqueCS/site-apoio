@@ -9,9 +9,11 @@
     "placeholders": "node tools/gerar-placeholders.mjs",
     "vendor": "node tools/atualizar-gsap.mjs",
     "imagens": "node tools/processar-imagens.mjs",
-    "blog": "node tools/gerar-blog.mjs"
+    "blog": "node tools/gerar-blog.mjs",
+    "check": "node tools/verificar.mjs"
   },
   "devDependencies": {
+    "@fontsource/figtree": "^5.3.0",
     "gsap": "^3.15.0",
     "sharp": "^0.35.4"
   }

@@ -35,7 +35,9 @@
 }
 .post h3{font-size:1.1rem;font-weight:500;margin-top:1.5rem;margin-bottom:.4rem}
 .post p{color:var(--text);font-size:1.05rem;line-height:1.7;max-width:80ch}
-.post a{color:var(--brand-600);text-decoration:underline;text-underline-offset:2px}
+/* links no texto: cor com contraste AA, sublinhado na cor da marca */
+.post a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--brand);text-decoration-thickness:2px;text-underline-offset:3px}
+.post a:hover{text-decoration-color:var(--ink)}
 .post ul,.post ol{padding-left:1.4rem;color:var(--text);max-width:80ch}
 .post li+li{margin-top:.35rem}
 

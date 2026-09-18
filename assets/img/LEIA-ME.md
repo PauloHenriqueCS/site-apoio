@@ -77,8 +77,8 @@ As chamadas (`.porta__label`), os pontos (`.porta__dot`) e as linhas (`<polyline
 `.porta__leaders`) usam o mesmo sistema de coordenadas em % do container — para mover uma
 chamada, ajuste os três no `index.html`.
 
-`explodida-completa.webp` é a composição já montada, usada no celular: uma requisição
-em vez de seis, e legível numa tela estreita.
+No celular o mesmo diagrama é usado, com uma segunda coordenada por peça (`--xm/--ym/--hm`),
+pontos e chamadas (`--xm/--ym`) e um conjunto próprio de linhas (`<g class="l-mob">`).
 
 ## Blog — `blog/`
 

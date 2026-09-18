@@ -79,7 +79,13 @@
   var servicesImgs   = $$('#servicesMedia img');
   var servicesCurrent = 0;
 
-  function setService(index) {
+  var servicosVistos = {};
+  function setService(index, origem) {
+    if (origem !== 'init' && !servicosVistos[index] && window.apoioTrack) {
+      servicosVistos[index] = true;
+      var nome = servicesItems[index] && $('.services__index-name', servicesItems[index]);
+      window.apoioTrack('service_view', { service_id: index + 1, service_name: nome ? nome.textContent.trim() : '', origem: origem || 'scroll' });
+    }
     servicesCurrent = index;
     servicesItems.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
     servicesPanels.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
@@ -87,13 +93,13 @@
   }
 
   if (servicesItems.length) {
-    setService(0);
+    setService(0, 'init');
     servicesItems.forEach(function (item, i) {
       var btn = $('.services__index-btn', item);
-      if (btn) btn.addEventListener('click', function () { setService(i); });
+      if (btn) btn.addEventListener('click', function () { setService(i, 'clique'); });
     });
     var next = $('#servicesNext');
-    if (next) next.addEventListener('click', function () { setService((servicesCurrent + 1) % servicesItems.length); });
+    if (next) next.addEventListener('click', function () { setService((servicesCurrent + 1) % servicesItems.length, 'seta'); });
 
     if (hasGSAP && !reduceMotion) {
       gsap.matchMedia().add('(min-width: 901px) and (min-height: 640px)', function () {
@@ -319,11 +325,47 @@
         if (firstInvalid) firstInvalid.focus();
         return;
       }
-      /* ETAPA 2 — trocar pelo endpoint real:
-         fetch('/api/orcamento', { method:'POST', body:new FormData(form) }) */
-      showStatus('ok', 'Solicitação recebida! Nossa equipe entra em contato em breve.');
-      form.reset();
-      Object.keys(rules).forEach(function (name) { var f = form.elements[name]; if (f) f.removeAttribute('aria-invalid'); });
+      var track = window.apoioTrack || function () {};
+      var endpoint = (form.getAttribute('data-endpoint') || '').trim();
+      var botao = form.querySelector('button[type="submit"]');
+
+      if (!endpoint) {
+        /* Sem endpoint configurado: o pedido vai para o WhatsApp da empresa com
+           a mensagem pronta. Não é confirmação de envio — form_submit_success
+           só dispara na resposta do endpoint. */
+        var numero = form.getAttribute('data-whatsapp') || '5511991961322';
+        var texto = 'Olá! Solicitação pelo site.\n' +
+          'Nome: ' + form.elements.nome.value.trim() + '\n' +
+          'E-mail: ' + form.elements.email.value.trim() + '\n' +
+          'Assunto: ' + form.elements.assunto.value.trim() +
+          (form.elements.mensagem.value.trim() ? '\nMensagem: ' + form.elements.mensagem.value.trim() : '');
+        var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
+        track('form_submit_whatsapp', { assunto: form.elements.assunto.value.trim().slice(0, 80) });
+        // sem a feature 'noopener' de propósito: com ela o navegador devolve null mesmo
+        // quando abre a aba, e não dá para saber se o popup foi bloqueado.
+        var aberto = window.open(url, '_blank');
+        if (aberto) { try { aberto.opener = null; } catch (e) {} }
+        showStatus('ok', aberto
+          ? 'Abrimos o WhatsApp com a sua solicitação pronta. É só enviar.'
+          : 'Não conseguimos abrir o WhatsApp automaticamente. Use o botão "Falar com um especialista" ou ligue para (11) 99196-1322.');
+        if (!aberto) { var l = document.createElement('a'); l.href = url; l.target = '_blank'; l.rel = 'noopener'; l.textContent = 'Abrir WhatsApp'; l.style.marginLeft = '.5rem'; status.appendChild(l); }
+        return;
+      }
+
+      if (botao) { botao.disabled = true; botao.setAttribute('aria-busy', 'true'); }
+      fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r; })
+        .then(function () {
+          track('form_submit_success', { assunto: form.elements.assunto.value.trim().slice(0, 80) });
+          showStatus('ok', 'Solicitação recebida! Nossa equipe entra em contato em breve.');
+          form.reset();
+          Object.keys(rules).forEach(function (name) { var f = form.elements[name]; if (f) f.removeAttribute('aria-invalid'); });
+        })
+        .catch(function () {
+          track('form_submit_error', {});
+          showStatus('error', 'Não foi possível enviar agora. Tente de novo ou fale conosco pelo WhatsApp: (11) 99196-1322.');
+        })
+        .finally(function () { if (botao) { botao.disabled = false; botao.removeAttribute('aria-busy'); } });
     });
   }
 
