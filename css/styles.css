@@ -497,8 +497,14 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .footer__nav a:hover{color:var(--brand-600)}
 .footer__legal{font-size:.9rem;color:var(--muted);text-align:right;line-height:1.6}
 @media (max-width:900px){
-  .footer__inner{flex-direction:column;align-items:flex-start;gap:1.5rem}
-  .footer__legal{text-align:left}
+  .footer{padding-block:2rem 2.5rem}
+  /* o trecho do trilho acompanha o logo (no topo), não o meio do rodapé */
+  .footer.rail::before{top:2rem;transform:none;height:48px}
+  .footer .logo{margin-left:1.25rem}
+  .footer__inner{flex-direction:column;align-items:center;gap:1.75rem}
+  .footer__inner .logo{align-self:flex-start}
+  .footer__nav{justify-content:center;gap:1.25rem 1.5rem}
+  .footer__legal{text-align:center}
 }
 
 /* Botão flutuante do WhatsApp */
