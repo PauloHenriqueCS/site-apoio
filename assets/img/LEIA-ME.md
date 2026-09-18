@@ -53,8 +53,10 @@ vetoriais com os clientes, elas entram no lugar sem nenhuma mudança de código.
 
 ## Diagrama da porta — `porta/`
 
-Seis peças em WebP transparente, recortadas dos PNGs de `origem/componentes/`
-(o processamento apara a moldura vazia de cada uma).
+Sete peças em WebP transparente, recortadas dos PNGs de `origem/componentes/`
+(o processamento apara a moldura vazia de cada uma). A sétima, `lateral.webp`, são as
+duas tiras verticais que o mockup chama de "Batente": não vieram como PNG próprio, foram
+extraídas da composição completa (`origem/componentes/07-batente-lateral.png`).
 
 O posicionamento vive no HTML, em variáveis CSS por peça:
 
@@ -68,8 +70,12 @@ O posicionamento vive no HTML, em variáveis CSS por peça:
   (vinda de `medidas.json`). Dimensionar pela altura garante que nada estoure a cena.
 - `--z` — ordem de empilhamento
 - `data-dx` / `data-dy` — de onde a peça **parte** na animação, apontando para a porta
-  montada. `dx` é % da largura, `dy` é % da altura (a cena é 2,2× mais larga que alta,
+  montada. `dx` é % da largura, `dy` é % da altura (a cena é ~2× mais larga que alta,
   então um mesmo valor nos dois eixos jogaria as peças para fora).
+
+As chamadas (`.porta__label`), os pontos (`.porta__dot`) e as linhas (`<polyline>` no SVG
+`.porta__leaders`) usam o mesmo sistema de coordenadas em % do container — para mover uma
+chamada, ajuste os três no `index.html`.
 
 `explodida-completa.webp` é a composição já montada, usada no celular: uma requisição
 em vez de seis, e legível numa tela estreita.

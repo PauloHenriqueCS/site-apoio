@@ -13,34 +13,24 @@
 
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var headerH = function () { return ($('#header') || {}).offsetHeight || 84; };
 
-  /* ---------------------------------------------------------
-     Ano no rodapé
-     --------------------------------------------------------- */
   var year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
 
   /* ---------------------------------------------------------
-     Header — fundo sólido ao sair do hero
+     Cabeçalho — sombra ao rolar
      --------------------------------------------------------- */
   var header = $('#header');
-  var hero = $('.hero');
-
-  function syncHeader() {
-    if (!header) return;
-    var threshold = hero ? hero.offsetHeight - header.offsetHeight - 40 : 80;
-    header.classList.toggle('is-stuck', window.scrollY > Math.max(threshold, 80));
-  }
+  function syncHeader() { if (header) header.classList.toggle('is-stuck', window.scrollY > 8); }
   syncHeader();
   window.addEventListener('scroll', syncHeader, { passive: true });
-  window.addEventListener('resize', syncHeader);
 
   /* ---------------------------------------------------------
      Menu mobile
      --------------------------------------------------------- */
   var navToggle = $('#navToggle');
   var nav = $('#nav');
-
   if (navToggle && nav) {
     var setNav = function (open) {
       nav.classList.toggle('is-open', open);
@@ -48,50 +38,30 @@
       navToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
       document.body.style.overflow = open ? 'hidden' : '';
     };
-
-    navToggle.addEventListener('click', function () {
-      setNav(navToggle.getAttribute('aria-expanded') !== 'true');
-    });
-
-    $$('a', nav).forEach(function (link) {
-      link.addEventListener('click', function () { setNav(false); });
-    });
-
+    navToggle.addEventListener('click', function () { setNav(navToggle.getAttribute('aria-expanded') !== 'true'); });
+    $$('a', nav).forEach(function (l) { l.addEventListener('click', function () { setNav(false); }); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-        setNav(false);
-        navToggle.focus();
-      }
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) { setNav(false); navToggle.focus(); }
     });
-
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 1000) setNav(false);
-    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1000) setNav(false); });
   }
 
   /* ---------------------------------------------------------
      Link ativo conforme a seção visível
      --------------------------------------------------------- */
   var navLinks = $$('.nav__link');
-  var sections = navLinks
-    .map(function (l) { return document.getElementById(l.getAttribute('href').slice(1)); })
-    .filter(Boolean);
-
+  var sections = navLinks.map(function (l) { return document.getElementById(l.getAttribute('href').slice(1)); }).filter(Boolean);
   if (sections.length && 'IntersectionObserver' in window) {
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        navLinks.forEach(function (l) {
-          l.setAttribute('aria-current', String(l.getAttribute('href') === '#' + entry.target.id));
-        });
+        navLinks.forEach(function (l) { l.setAttribute('aria-current', String(l.getAttribute('href') === '#' + entry.target.id)); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach(function (s) { spy.observe(s); });
   }
 
-  /* ---------------------------------------------------------
-     Botão flutuante do WhatsApp
-     --------------------------------------------------------- */
+  /* Botão flutuante do WhatsApp */
   var waFloat = $('#waFloat');
   if (waFloat) {
     var toggleWa = function () { waFloat.classList.toggle('is-visible', window.scrollY > 600); };
@@ -101,56 +71,44 @@
 
   /* ---------------------------------------------------------
      SERVIÇOS — scrollytelling
-     Desktop: seção fixada, índice/painel/imagem trocam com o scroll.
-     Mobile: lista estática (CSS), nenhum JS de cena.
+     Desktop: seção fixada abaixo do cabeçalho; o scroll (ou a
+     seta) percorre os quatro serviços. Mobile: lista estática.
      --------------------------------------------------------- */
   var servicesItems  = $$('.services__index-item');
   var servicesPanels = $$('.services__panel');
   var servicesImgs   = $$('#servicesMedia img');
-  var servicesMarker = $('#servicesMarker');
+  var servicesCurrent = 0;
 
   function setService(index) {
+    servicesCurrent = index;
     servicesItems.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
     servicesPanels.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
     servicesImgs.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
-
-    var active = servicesItems[index];
-    if (servicesMarker && active) {
-      servicesMarker.style.height = active.offsetHeight + 'px';
-      servicesMarker.style.transform = 'translateY(' + active.offsetTop + 'px)';
-    }
   }
 
   if (servicesItems.length) {
     setService(0);
-    window.addEventListener('resize', function () {
-      var current = servicesItems.findIndex(function (el) { return el.classList.contains('is-active'); });
-      setService(current < 0 ? 0 : current);
-    });
-
-    // Clique também navega, para quem não usa o scroll
     servicesItems.forEach(function (item, i) {
       var btn = $('.services__index-btn', item);
       if (btn) btn.addEventListener('click', function () { setService(i); });
     });
+    var next = $('#servicesNext');
+    if (next) next.addEventListener('click', function () { setService((servicesCurrent + 1) % servicesItems.length); });
 
-    // Cena fixada: cada trecho do scroll ativa um serviço
     if (hasGSAP && !reduceMotion) {
-      gsap.matchMedia().add('(min-width: 901px) and (min-height: 700px)', function () {
+      gsap.matchMedia().add('(min-width: 901px) and (min-height: 640px)', function () {
         var steps = servicesItems.length;
         ScrollTrigger.create({
-          trigger: '#servicesScrolly',
-          start: 'center center',
-          end: '+=' + (steps * 420),
+          trigger: '#servicos',
+          start: function () { return 'top ' + headerH(); },
+          end: '+=' + (steps * 380),
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
           onUpdate: function (self) {
             var i = Math.min(steps - 1, Math.floor(self.progress * steps));
-            var current = servicesItems.findIndex(function (el) { return el.classList.contains('is-active'); });
-            if (i !== current) setService(i);
-          },
-          onRefresh: function () { setService(0); }
+            if (i !== servicesCurrent) setService(i);
+          }
         });
       });
     }
@@ -158,35 +116,39 @@
 
   /* ---------------------------------------------------------
      PORTA EXPLODIDA — scrollytelling
-     As peças nascem agrupadas sobre a porta e se afastam com o scroll;
-     as chamadas entram em seguida.
+     As peças nascem agrupadas sobre a porta montada e se afastam
+     com o scroll; depois entram as chamadas, as linhas e os pontos.
 
-     data-dx/data-dy são o deslocamento DE PARTIDA da peça, medido a partir da
-     posição final: apontam para a porta montada, de onde a peça se afasta.
-     dx está em % da largura do container e dy em % da ALTURA — a cena é 2,2×
-     mais larga que alta, e um mesmo percentual nos dois eixos jogaria as peças
-     para fora pelo topo. Animamos a <img> interna: o wrapper carrega o
-     translate(-50%,-50%) do CSS, que o GSAP sobrescreveria.
+     data-dx/data-dy: deslocamento DE PARTIDA da peça, a partir da
+     posição final, apontando para a porta montada. dx em % da largura
+     do container, dy em % da ALTURA (a cena é ~2× mais larga que alta).
+     Animamos a <img> interna: o wrapper carrega o translate(-50%,-50%)
+     do CSS, que o GSAP sobrescreveria.
      --------------------------------------------------------- */
   var diagrama = $('#portaDiagrama');
-  var pecas = $$('.porta__peca', diagrama || document);
-  var chamadas = $$('.porta__label', diagrama || document);
+  var pecas    = diagrama ? $$('.porta__peca', diagrama) : [];
+  var chamadas = diagrama ? $$('.porta__label', diagrama) : [];
+  var leaders  = diagrama ? $$('.porta__leaders polyline', diagrama) : [];
+  var dots     = diagrama ? $$('.porta__dot', diagrama) : [];
 
   if (hasGSAP && diagrama && pecas.length && !reduceMotion) {
     gsap.matchMedia().add('(min-width: 901px)', function () {
       var largura = function () { return diagrama.offsetWidth || 1; };
       var altura  = function () { return diagrama.offsetHeight || 1; };
+      var stage   = $('#explodedStage');
+      // só fixa a cena quando ela cabe inteira abaixo do cabeçalho
+      var cabe = function () { return stage.offsetHeight <= window.innerHeight - headerH() - 8; };
 
       var tl = gsap.timeline({
         scrollTrigger: {
-          trigger: '#explodedStage',
-          start: 'center center',
-          end: '+=1200',
+          trigger: stage,
+          start: function () { return cabe() ? 'top ' + headerH() : 'top 70%'; },
+          end: function () { return cabe() ? '+=1200' : 'bottom 55%'; },
           scrub: 0.8,
-          pin: true,
+          pin: cabe(),
           pinSpacing: true,
           anticipatePin: 1,
-          invalidateOnRefresh: true   // recalcula os deslocamentos ao redimensionar
+          invalidateOnRefresh: true
         }
       });
 
@@ -194,55 +156,44 @@
         var img = $('img', peca);
         var dx = parseFloat(peca.getAttribute('data-dx')) || 0;
         var dy = parseFloat(peca.getAttribute('data-dy')) || 0;
-        var parada = dx === 0 && dy === 0;   // a folha da porta é a âncora
-
+        var ancora = dx === 0 && dy === 0;
         tl.fromTo(img,
-          {
-            x: function () { return (dx / 100) * largura(); },
+          { x: function () { return (dx / 100) * largura(); },
             y: function () { return (dy / 100) * altura(); },
-            opacity: parada ? 1 : 0.35,
-            scale: parada ? 1 : 0.94
-          },
+            opacity: ancora ? 1 : 0.35, scale: ancora ? 1 : 0.94 },
           { x: 0, y: 0, opacity: 1, scale: 1, ease: 'power2.out', duration: 1 },
-          i * 0.07
+          i * 0.06
         );
       });
 
+      // chamadas, linhas e pontos chegam quando as peças já assentaram
       tl.fromTo(chamadas,
-        { opacity: 0, x: function (i, el) { return el.classList.contains('porta__label--esq') ? 20 : -20; } },
-        { opacity: 1, x: 0, ease: 'power2.out', duration: 0.5, stagger: 0.1 },
-        0.6
-      );
+        { opacity: 0, x: function (i, el) { return el.classList.contains('porta__label--esq') ? 16 : -16; } },
+        { opacity: 1, x: 0, ease: 'power2.out', duration: 0.5, stagger: 0.08 }, 0.7);
+      tl.fromTo(leaders, { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.08 }, 0.8);
+      tl.fromTo(dots, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, stagger: 0.08, ease: 'back.out(2)' }, 0.85);
     });
   }
 
-  /* ---------------------------------------------------------
-     Reveal on scroll
-     --------------------------------------------------------- */
+  /* Reveal on scroll */
   if (hasGSAP && !reduceMotion) {
     $$('[data-reveal]').forEach(function (el, i) {
-      gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: (i % 4) * 0.06,
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
-      });
+      gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: (i % 4) * 0.06,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
   } else {
     $$('[data-reveal]').forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
   }
 
-  /* ---------------------------------------------------------
-     Processo — barra preenche conforme o scroll
-     --------------------------------------------------------- */
+  /* Processo — a linha preenche e os pontos acendem em sequência */
   var processTrack = $('#processTrack');
   if (processTrack && 'IntersectionObserver' in window) {
     var steps = $$('.process__step', processTrack);
     var io = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        processTrack.querySelector('.process__line').style.setProperty('--p', '100%');
-        steps.forEach(function (step, i) {
-          setTimeout(function () { step.classList.add('is-on'); }, i * 160);
-        });
+        $('.process__line', processTrack).style.setProperty('--p', '100%');
+        steps.forEach(function (step, i) { setTimeout(function () { step.classList.add('is-on'); }, i * 160); });
         obs.unobserve(entry.target);
       });
     }, { threshold: 0.4 });
@@ -250,35 +201,39 @@
   }
 
   /* ---------------------------------------------------------
-     Carrossel de clientes
+     Clientes — trilho contínuo, N logos por tela (--per-view no CSS),
+     avança uma tela por clique sem deixar buraco na última.
      --------------------------------------------------------- */
   var track = $('#clientsTrack');
   if (track) {
-    var slides = $$('.clients__slide', track);
-    var prev = $('#clientsPrev');
-    var next = $('#clientsNext');
-    var count = $('#clientsCount');
-    var idx = 0;
+    var viewport = track.parentElement;
+    var logos = $$('.clients__logo', track);
+    var prev = $('#clientsPrev'), next2 = $('#clientsNext'), count = $('#clientsCount');
+    var page = 0;
+
+    var perView = function () { return parseInt(getComputedStyle(viewport).getPropertyValue('--per-view'), 10) || 6; };
+    var pages   = function () { return Math.max(1, Math.ceil(logos.length / perView())); };
 
     var render = function () {
-      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-      if (count) count.textContent = (idx + 1) + ' / ' + slides.length;
-      if (prev) prev.disabled = idx === 0;
-      if (next) next.disabled = idx === slides.length - 1;
-      slides.forEach(function (s, i) { s.setAttribute('aria-hidden', String(i !== idx)); });
+      var n = perView(), total = pages();
+      page = Math.max(0, Math.min(total - 1, page));
+      var offset = Math.min(page * n, Math.max(0, logos.length - n));   // última tela sempre cheia
+      track.style.transform = 'translateX(-' + (offset * (100 / n)) + '%)';
+      if (count) count.textContent = (page + 1) + ' / ' + total;
+      if (prev) prev.disabled = page === 0;
+      if (next2) next2.disabled = page >= total - 1;
     };
 
-    var go = function (n) { idx = Math.max(0, Math.min(slides.length - 1, n)); render(); };
-    if (prev) prev.addEventListener('click', function () { go(idx - 1); });
-    if (next) next.addEventListener('click', function () { go(idx + 1); });
+    if (prev) prev.addEventListener('click', function () { page--; render(); });
+    if (next2) next2.addEventListener('click', function () { page++; render(); });
+    window.addEventListener('resize', render);
 
-    // arrastar / swipe
     var startX = null;
     track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
     track.addEventListener('touchend', function (e) {
       if (startX === null) return;
-      var delta = e.changedTouches[0].clientX - startX;
-      if (Math.abs(delta) > 50) go(idx + (delta < 0 ? 1 : -1));
+      var d = e.changedTouches[0].clientX - startX;
+      if (Math.abs(d) > 50) { page += d < 0 ? 1 : -1; render(); }
       startX = null;
     }, { passive: true });
 
@@ -296,70 +251,45 @@
       email:   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Informe um e-mail válido.'; },
       assunto: function (v) { return v.trim().length >= 3 || 'Informe o assunto.'; }
     };
-
     var validateField = function (field) {
-      var rule = rules[field.name];
-      if (!rule) return true;
-      var result = rule(field.value);
-      var errorEl = document.getElementById('erro-' + field.name);
-      var ok = result === true;
+      var rule = rules[field.name]; if (!rule) return true;
+      var result = rule(field.value), ok = result === true;
       field.setAttribute('aria-invalid', String(!ok));
+      var errorEl = document.getElementById('erro-' + field.name);
       if (errorEl) errorEl.textContent = ok ? '' : result;
       return ok;
     };
-
     Object.keys(rules).forEach(function (name) {
-      var field = form.elements[name];
-      if (!field) return;
+      var field = form.elements[name]; if (!field) return;
       field.addEventListener('blur', function () { validateField(field); });
-      field.addEventListener('input', function () {
-        if (field.getAttribute('aria-invalid') === 'true') validateField(field);
-      });
+      field.addEventListener('input', function () { if (field.getAttribute('aria-invalid') === 'true') validateField(field); });
     });
-
     var showStatus = function (state, message) {
       if (!status) return;
-      status.dataset.state = state;
-      status.textContent = message;
-      status.classList.add('is-visible');
+      status.dataset.state = state; status.textContent = message; status.classList.add('is-visible');
     };
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      // honeypot: bot preencheu campo escondido
-      if (form.elements['empresa_hp'] && form.elements['empresa_hp'].value) return;
-
-      // map, não every: every para na primeira falha e deixaria
-      // os campos seguintes sem marcação de erro.
+      if (form.elements['empresa_hp'] && form.elements['empresa_hp'].value) return;   // honeypot
+      // map, não every: every para na primeira falha e deixaria os demais sem marcação
       var firstInvalid = null;
       var results = Object.keys(rules).map(function (name) {
-        var field = form.elements[name];
-        var ok = validateField(field);
+        var field = form.elements[name], ok = validateField(field);
         if (!ok && !firstInvalid) firstInvalid = field;
         return ok;
       });
-      var valid = results.every(Boolean);
-
-      if (!valid) {
+      if (!results.every(Boolean)) {
         showStatus('error', 'Revise os campos destacados para continuar.');
         if (firstInvalid) firstInvalid.focus();
         return;
       }
-
       /* ETAPA 2 — trocar pelo endpoint real:
          fetch('/api/orcamento', { method:'POST', body:new FormData(form) }) */
       showStatus('ok', 'Solicitação recebida! Nossa equipe entra em contato em breve.');
       form.reset();
-      Object.keys(rules).forEach(function (name) {
-        var field = form.elements[name];
-        if (field) field.removeAttribute('aria-invalid');
-      });
+      Object.keys(rules).forEach(function (name) { var f = form.elements[name]; if (f) f.removeAttribute('aria-invalid'); });
     });
   }
 
-  /* Recalcula as cenas depois que fontes/imagens assentam */
-  if (hasGSAP) {
-    window.addEventListener('load', function () { ScrollTrigger.refresh(); });
-  }
+  if (hasGSAP) window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 })();

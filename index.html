@@ -38,9 +38,9 @@
 <!-- Fontes -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap"></noscript>
 
 <link rel="stylesheet" href="/css/styles.css">
 <!-- imagesrcset/imagesizes iguais aos do <picture>: sem isso o preload escolhe
@@ -121,17 +121,13 @@
 <body>
 <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-<!-- ============ HEADER ============ -->
-<header class="header" id="header">
+<!-- ============ CABEÇALHO ============ -->
+<header class="header rail" id="header">
   <div class="container header__inner">
     <a class="logo" href="/" aria-label="Apoio Porta Corta Fogo — página inicial">
-      <picture class="logo__dark">
+      <picture>
         <source srcset="/assets/img/logo-apoio.webp" type="image/webp">
         <img src="/assets/img/logo-apoio.png" alt="Apoio — Instalação e Manutenção de Porta Corta Fogo" width="291" height="117">
-      </picture>
-      <picture class="logo__light">
-        <source srcset="/assets/img/logo-apoio-branco.webp" type="image/webp">
-        <img src="/assets/img/logo-apoio-branco.png" alt="" aria-hidden="true" width="291" height="117">
       </picture>
     </a>
 
@@ -140,37 +136,25 @@
       <a class="nav__link" href="#produtos">Produtos</a>
       <a class="nav__link" href="#empresa">A empresa</a>
       <a class="nav__link" href="#clientes">Clientes</a>
-      <a class="btn btn--primary btn--sm" href="#orcamento">
-        Solicitar avaliação
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <a class="btn btn--primary btn--sm" href="#orcamento">Solicitar avaliação <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </nav>
 
-    <a class="btn btn--primary btn--sm header__cta" href="#orcamento">
-      Solicitar avaliação
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+    <a class="btn btn--primary btn--sm header__cta" href="#orcamento">Solicitar avaliação <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
-      <span></span>
-    </button>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu"><span></span></button>
   </div>
 </header>
 
 <main id="main">
 
   <!-- ============ HERO ============ -->
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero rail" aria-labelledby="hero-title">
     <div class="hero__media">
       <picture>
-        <source media="(max-width:760px)" type="image/webp"
-                srcset="/assets/img/hero-mobile@768.webp 768w, /assets/img/hero-mobile.webp 1024w" sizes="100vw">
-        <source media="(max-width:760px)" type="image/jpeg"
-                srcset="/assets/img/hero-mobile@768.jpg 768w, /assets/img/hero-mobile.jpg 1024w" sizes="100vw">
-        <source type="image/webp"
-                srcset="/assets/img/hero-desktop@1200.webp 1200w, /assets/img/hero-desktop.webp 1672w" sizes="100vw">
-        <img src="/assets/img/hero-desktop.jpg"
-             srcset="/assets/img/hero-desktop@1200.jpg 1200w, /assets/img/hero-desktop.jpg 1672w" sizes="100vw"
+        <source media="(max-width:760px)" type="image/webp" srcset="/assets/img/hero-mobile@768.webp 768w, /assets/img/hero-mobile.webp 1024w" sizes="100vw">
+        <source media="(max-width:760px)" type="image/jpeg" srcset="/assets/img/hero-mobile@768.jpg 768w, /assets/img/hero-mobile.jpg 1024w" sizes="100vw">
+        <source type="image/webp" srcset="/assets/img/hero-desktop@1200.webp 1200w, /assets/img/hero-desktop.webp 1672w" sizes="100vw">
+        <img src="/assets/img/hero-desktop.jpg" srcset="/assets/img/hero-desktop@1200.jpg 1200w, /assets/img/hero-desktop.jpg 1672w" sizes="100vw"
              alt="Técnico da Apoio ajustando a barra antipânico de uma porta corta-fogo em corredor corporativo"
              width="1672" height="941" fetchpriority="high" decoding="async">
       </picture>
@@ -181,23 +165,12 @@
         <p class="eyebrow eyebrow--light">Especialistas em portas corta-fogo</p>
         <h1 id="hero-title" class="h-display">Segurança precisa funcionar. <span class="accent">Sempre.</span></h1>
         <p class="lead lead--light">Instalação, manutenção e restauração para condomínios, empresas, shoppings e indústrias.</p>
-
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#orcamento">
-            Solicitar avaliação
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="hero__phone" href="tel:+551149631153">
-            <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M17.5 14.1v2.4a1.6 1.6 0 0 1-1.8 1.6 15.9 15.9 0 0 1-6.9-2.5 15.6 15.6 0 0 1-4.8-4.8A15.9 15.9 0 0 1 1.5 3.8 1.6 1.6 0 0 1 3.1 2h2.4a1.6 1.6 0 0 1 1.6 1.4c.1.8.3 1.5.6 2.2a1.6 1.6 0 0 1-.4 1.7l-1 1a12.8 12.8 0 0 0 4.8 4.8l1-1a1.6 1.6 0 0 1 1.7-.4c.7.3 1.4.5 2.2.6a1.6 1.6 0 0 1 1.5 1.8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            (11) 4963-1153
-          </a>
+          <a class="btn btn--primary" href="#orcamento">Solicitar avaliação <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="hero__phone" href="tel:+551149631153">(11) 4963-1153</a>
         </div>
-
-        <p class="hero__scroll">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Role para abrir
-        </p>
       </div>
+      <p class="hero__scroll"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Role para abrir</p>
     </div>
   </section>
 
@@ -213,11 +186,9 @@
   </section>
 
   <!-- ============ SERVIÇOS ============ -->
-  <section class="services" id="servicos" aria-labelledby="servicos-title">
-    <div class="container">
-      <div class="services__layout" id="servicesScrolly">
-
-        <ol class="services__index" id="servicesIndex">
+  <section class="services rail" id="servicos" aria-labelledby="servicos-title">
+    <div class="services__body">
+      <ol class="services__index" id="servicesIndex">
           <li class="services__index-item is-active" data-index="0">
             <button class="services__index-btn" type="button" aria-controls="panel-0">
               <span class="services__index-num">01</span>
@@ -246,14 +217,12 @@
               <span class="services__index-desc">Instalação e manutenção de barras, fechaduras e acessórios para rotas de fuga.</span>
             </button>
           </li>
-          <span class="services__index-marker" id="servicesMarker" aria-hidden="true"></span>
-        </ol>
+      </ol>
 
-        <div class="services__copy">
-          <p class="eyebrow">Nossos serviços</p>
-          <h2 id="servicos-title" class="h-section">Tudo o que sua porta precisa.</h2>
-
-          <div class="services__panels">
+      <div class="services__copy">
+        <p class="eyebrow">Nossos serviços</p>
+        <h2 id="servicos-title" class="h-section">Tudo o que sua porta precisa.</h2>
+        <div class="services__panels">
             <article class="services__panel is-active" id="panel-0" data-index="0">
               <h3 class="visually-hidden">Instalação</h3>
               <p>Instalação de portas corta-fogo para condomínios, empresas, shoppings e indústrias.</p>
@@ -270,122 +239,117 @@
               <h3 class="visually-hidden">Barras antipânico</h3>
               <p>Instalação e manutenção de barras, fechaduras e acessórios para rotas de fuga.</p>
             </article>
-          </div>
         </div>
-
-        <div class="services__footer">
-          <a class="link-arrow" href="#orcamento">
-            Conhecer todos os serviços
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-
-        <div class="services__media" id="servicesMedia" aria-hidden="true">
-          <img src="/assets/img/servico-01-instalacao.webp" alt="" class="is-active" data-index="0" width="720" height="900" loading="lazy" decoding="async">
-          <img src="/assets/img/servico-02-manutencao.svg" alt="" data-index="1" width="720" height="900" loading="lazy" decoding="async">
-          <img src="/assets/img/servico-03-restauracao.svg" alt="" data-index="2" width="720" height="900" loading="lazy" decoding="async">
-          <img src="/assets/img/servico-04-barras.svg" alt="" data-index="3" width="720" height="900" loading="lazy" decoding="async">
-        </div>
-
+        <button class="services__next" id="servicesNext" type="button" aria-label="Próximo serviço"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
+      <a class="link-arrow services__all" href="#orcamento">Conhecer todos os serviços <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+
+    <div class="services__media" id="servicesMedia" aria-hidden="true">
+        <img src="/assets/img/servico-01-instalacao.webp" alt="" class="is-active" data-index="0" width="720" height="900" loading="lazy" decoding="async">
+        <img src="/assets/img/servico-02-manutencao.svg" alt="" data-index="1" width="720" height="900" loading="lazy" decoding="async">
+        <img src="/assets/img/servico-03-restauracao.svg" alt="" data-index="2" width="720" height="900" loading="lazy" decoding="async">
+        <img src="/assets/img/servico-04-barras.svg" alt="" data-index="3" width="720" height="900" loading="lazy" decoding="async">
     </div>
   </section>
 
   <!-- ============ PRODUTOS — PORTA EXPLODIDA ============ -->
-  <section class="exploded" id="produtos" aria-labelledby="produtos-title">
-    <div class="exploded__rail" aria-hidden="true"><span>Trilho técnico</span></div>
+  <section class="exploded rail" id="produtos" aria-labelledby="produtos-title">
+    <aside class="exploded__panel" aria-hidden="true"><span>Trilho
+técnico</span></aside>
 
-    <div class="container exploded__stage" id="explodedStage">
+    <div class="exploded__stage" id="explodedStage">
       <div class="exploded__head">
         <div>
-          <p class="eyebrow eyebrow--light">Nossos produtos</p>
+          <p class="eyebrow">Nossos produtos</p>
           <h2 id="produtos-title" class="h-section">Por dentro da segurança.</h2>
           <p class="lead">Cada componente trabalha em conjunto para garantir fechamento, resistência e uma rota de fuga segura.</p>
         </div>
-        <a class="link-arrow" href="#orcamento">
-          Conhecer todos os produtos
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <a class="link-arrow" href="#orcamento">Conhecer todos os produtos <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
 
       <div class="porta" id="portaDiagrama">
-
-        <!-- Desktop: peças reais posicionadas e animadas uma a uma -->
         <div class="porta__cena" aria-hidden="true">
-          <div class="porta__peca" style="--x:41%;--y:50%;--h:88%;--r:620/1214;--z:1" data-dx="-4" data-dy="0">
+          <div class="porta__peca" style="--x:49%;--y:52%;--h:92%;--r:620/1214;--z:1" data-dx="-5" data-dy="0">
             <img src="/assets/img/porta/batente.webp" alt="" width="620" height="1214" loading="lazy" decoding="async">
           </div>
-          <div class="porta__peca" style="--x:35%;--y:51%;--h:80%;--r:543/1337;--z:2" data-dx="0" data-dy="0">
+          <div class="porta__peca" style="--x:22%;--y:55%;--h:68%;--r:72/557;--z:2" data-dx="12" data-dy="0">
+            <img src="/assets/img/porta/lateral.webp" alt="" width="72" height="557" loading="lazy" decoding="async">
+          </div>
+          <div class="porta__peca" style="--x:44%;--y:52%;--h:96%;--r:543/1337;--z:3" data-dx="0" data-dy="0">
             <img src="/assets/img/porta/folha.webp" alt="" width="543" height="1337" loading="lazy" decoding="async">
           </div>
-          <div class="porta__peca" style="--x:20%;--y:19%;--h:26%;--r:520/572;--z:3" data-dx="12" data-dy="20">
+          <div class="porta__peca" style="--x:27%;--y:12%;--h:20%;--r:520/572;--z:4" data-dx="10" data-dy="25">
             <img src="/assets/img/porta/mola.webp" alt="" width="520" height="572" loading="lazy" decoding="async">
           </div>
-          <div class="porta__peca" style="--x:57%;--y:26%;--h:30%;--r:360/566;--z:3" data-dx="-13" data-dy="5">
+          <div class="porta__peca" style="--x:68%;--y:22%;--h:24%;--r:360/566;--z:4" data-dx="-16" data-dy="8">
             <img src="/assets/img/porta/dobradica.webp" alt="" width="360" height="566" loading="lazy" decoding="async">
           </div>
-          <div class="porta__peca" style="--x:57%;--y:55%;--h:34%;--r:300/734;--z:3" data-dx="-14" data-dy="0">
+          <div class="porta__peca" style="--x:69%;--y:52%;--h:30%;--r:300/734;--z:4" data-dx="-17" data-dy="0">
             <img src="/assets/img/porta/fechadura.webp" alt="" width="300" height="734" loading="lazy" decoding="async">
           </div>
-          <div class="porta__peca" style="--x:60%;--y:82%;--h:13%;--r:560/197;--z:3" data-dx="-15" data-dy="-25">
+          <div class="porta__peca" style="--x:76%;--y:79%;--h:15%;--r:560/197;--z:4" data-dx="-20" data-dy="-22">
             <img src="/assets/img/porta/barra.webp" alt="" width="560" height="197" loading="lazy" decoding="async">
           </div>
         </div>
 
-        <!-- Mobile: a composição já montada, mais leve que seis requisições -->
-        <img class="porta__completa"
-             src="/assets/img/porta/explodida-completa.webp"
+        <svg class="porta__leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <polyline points="14,14 23,14"/>
+          <polyline points="14,42 21,42"/>
+          <polyline points="14,72 36,72"/>
+          <polyline points="84.5,18 78,18 71,26"/>
+          <polyline points="84.5,50 78,50 71.5,58"/>
+          <polyline points="84.5,74 83,74 81,79"/>
+        </svg>
+        <span class="porta__dot" style="--x:23%;--y:14%" aria-hidden="true"></span>
+        <span class="porta__dot" style="--x:21%;--y:42%" aria-hidden="true"></span>
+        <span class="porta__dot" style="--x:36%;--y:72%" aria-hidden="true"></span>
+        <span class="porta__dot" style="--x:71%;--y:26%" aria-hidden="true"></span>
+        <span class="porta__dot" style="--x:71.5%;--y:58%" aria-hidden="true"></span>
+        <span class="porta__dot" style="--x:81%;--y:79%" aria-hidden="true"></span>
+
+        <img class="porta__completa" src="/assets/img/porta/explodida-completa.webp"
              alt="Vista explodida de uma porta corta-fogo mostrando mola aérea, batente, folha da porta, dobradiças, fechadura e barra antipânico"
              width="1241" height="957" loading="lazy" decoding="async">
 
-        <!-- Chamadas: posicionadas no desktop, lista no mobile -->
         <ul class="porta__chamadas">
-          <li class="porta__label porta__label--esq" style="--y:16%">Mola aérea</li>
-          <li class="porta__label porta__label--esq" style="--y:46%">Batente</li>
-          <li class="porta__label porta__label--esq" style="--y:76%">Folha da porta</li>
-          <li class="porta__label porta__label--dir" style="--y:26%">Dobradiças</li>
-          <li class="porta__label porta__label--dir" style="--y:55%">Fechadura</li>
-          <li class="porta__label porta__label--dir" style="--y:82%">Barra antipânico</li>
+          <li class="porta__label porta__label--esq" style="--y:14%">Mola aérea</li>
+          <li class="porta__label porta__label--esq" style="--y:42%">Batente</li>
+          <li class="porta__label porta__label--esq" style="--y:72%">Folha da porta</li>
+          <li class="porta__label porta__label--dir" style="--y:18%">Dobradiças</li>
+          <li class="porta__label porta__label--dir" style="--y:50%">Fechadura</li>
+          <li class="porta__label porta__label--dir" style="--y:74%">Barra antipânico</li>
         </ul>
       </div>
 
-      <p class="exploded__hint">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Role para explorar os componentes
-      </p>
+      <p class="exploded__hint"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Role para explorar os componentes</p>
     </div>
   </section>
 
   <!-- ============ A EMPRESA ============ -->
-  <section class="about" id="empresa" aria-labelledby="empresa-title">
+  <section class="about rail" id="empresa" aria-labelledby="empresa-title">
     <div class="container">
-      <p class="eyebrow" data-reveal>A empresa</p>
-      <div class="about__grid">
-        <div>
-          <h2 id="empresa-title" class="h-section" data-reveal>Há mais de 15 anos, fazemos portas funcionarem como devem.</h2>
-          <p class="lead" data-reveal style="margin-top:1.25rem">Compromisso com a segurança em cada projeto.</p>
+      <p class="eyebrow">A empresa</p>
+      <h2 id="empresa-title" class="h-section" data-reveal>Há mais de 15 anos,<br class="br-wide"> fazemos portas funcionarem<br class="br-wide"> como devem.</h2>
 
-          <div class="about__pillars">
-            <div class="about__pillar" data-reveal>
-              <h3>Experiência técnica</h3>
-              <p>Diagnóstico responsável e execução especializada.</p>
-            </div>
-            <div class="about__pillar" data-reveal>
-              <h3>Atendimento próximo</h3>
-              <p>Orientação transparente do primeiro contato à garantia.</p>
-            </div>
-          </div>
+      <div class="about__row">
+        <div class="about__pillar" data-reveal>
+          <h3>Experiência técnica</h3>
+          <p>Diagnóstico responsável e execução especializada.</p>
         </div>
-
+        <div class="about__pillar" data-reveal>
+          <h3>Atendimento próximo</h3>
+          <p>Orientação transparente do primeiro contato à garantia.</p>
+        </div>
         <div class="process" data-reveal>
           <p class="eyebrow">Nosso processo</p>
           <div class="process__track" id="processTrack">
             <div class="process__line" aria-hidden="true"></div>
             <ol class="process__steps">
-              <li class="process__step is-on"><span>Diagnóstico</span></li>
-              <li class="process__step"><span>Proposta</span></li>
-              <li class="process__step"><span>Execução</span></li>
-              <li class="process__step"><span>Garantia</span></li>
+              <li class="process__step is-on">Diagnóstico</li>
+              <li class="process__step">Proposta</li>
+              <li class="process__step">Execução</li>
+              <li class="process__step">Garantia</li>
             </ol>
           </div>
         </div>
@@ -400,44 +364,39 @@
         <h2 id="clientes-title" class="clients__title">Confiança construída em ambientes exigentes.</h2>
         <div class="clients__nav">
           <button class="clients__btn" type="button" id="clientsPrev" aria-label="Clientes anteriores">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 8h-11m0 0L6.5 4m-4 4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m0 0 6-6m-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <span class="clients__count" id="clientsCount" aria-live="polite">1 / 2</span>
           <button class="clients__btn" type="button" id="clientsNext" aria-label="Próximos clientes">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </div>
-
       <div class="clients__viewport">
         <div class="clients__track" id="clientsTrack">
-          <div class="clients__slide" role="group" aria-label="Clientes 1 de 2">
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/01-masotti.webp" alt="Masotti" width="169" height="97" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/02-tv-med.webp" alt="TV Med" width="169" height="97" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/03-shopping-patio-paulista.webp" alt="Shopping Pátio Paulista" width="169" height="97" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/04-adbens-condominios.webp" alt="Adbens Condomínios" width="169" height="97" loading="lazy" decoding="async">
-            </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/03-shopping-patio-paulista.webp" alt="Shopping Pátio Paulista" width="169" height="97" loading="lazy" decoding="async">
           </div>
-          <div class="clients__slide" role="group" aria-label="Clientes 2 de 2" aria-hidden="true">
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/05-prevent-senior.webp" alt="Prevent Senior" width="169" height="97" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/06-itau-cultural-e-itau.webp" alt="Itaú Cultural e Itaú" width="169" height="97" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/07-metodo.webp" alt="Método" width="169" height="97" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/08-mercure.webp" alt="Mercure" width="169" height="97" loading="lazy" decoding="async">
-            </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/06-itau-cultural-e-itau.webp" alt="Itaú Cultural e Itaú" width="169" height="97" loading="lazy" decoding="async">
+          </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/05-prevent-senior.webp" alt="Prevent Senior" width="169" height="97" loading="lazy" decoding="async">
+          </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/07-metodo.webp" alt="Método" width="169" height="97" loading="lazy" decoding="async">
+          </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/02-tv-med.webp" alt="TV Med" width="169" height="97" loading="lazy" decoding="async">
+          </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/08-mercure.webp" alt="Mercure" width="169" height="97" loading="lazy" decoding="async">
+          </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/01-masotti.webp" alt="Masotti" width="169" height="97" loading="lazy" decoding="async">
+          </div>
+          <div class="clients__logo">
+            <img src="/assets/img/clientes/04-adbens-condominios.webp" alt="Adbens Condomínios" width="169" height="97" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -449,28 +408,19 @@
     <div class="contact__media">
       <picture>
         <source srcset="/assets/img/cta-porta-detalhe.webp" type="image/webp">
-        <img src="/assets/img/cta-porta-detalhe.jpg" alt="Detalhe de maçaneta e batente de porta corta-fogo instalada" width="1280" height="480" loading="lazy" decoding="async">
+        <img src="/assets/img/cta-porta-detalhe.jpg" alt="Detalhe de porta corta-fogo instalada" width="1280" height="480" loading="lazy" decoding="async">
       </picture>
     </div>
+    <div class="contact__band" aria-hidden="true"></div>
     <div class="contact__body">
       <p class="eyebrow">Vamos conversar?</p>
       <h2 id="contato-title" class="h-section">Conte o que suas portas precisam.</h2>
       <p class="lead">Nossa equipe avalia o cenário e orienta a solução certa para o seu projeto.</p>
-
       <div class="contact__actions">
-        <a class="btn btn--wa" href="https://wa.me/5511991961322?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20sobre%20portas%20corta-fogo." target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 5.82 2.41 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06 0 1.22.89 2.39 1.01 2.56.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-          Falar no WhatsApp
-        </a>
+        <a class="btn btn--primary" href="https://wa.me/5511991961322?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20sobre%20portas%20corta-fogo." target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 5.82 2.41 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06 0 1.22.89 2.39 1.01 2.56.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg> Falar no WhatsApp</a>
         <div class="contact__details">
-          <a class="contact__detail" href="tel:+5511991961322">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M17.5 14.1v2.4a1.6 1.6 0 0 1-1.8 1.6 15.9 15.9 0 0 1-6.9-2.5 15.6 15.6 0 0 1-4.8-4.8A15.9 15.9 0 0 1 1.5 3.8 1.6 1.6 0 0 1 3.1 2h2.4a1.6 1.6 0 0 1 1.6 1.4c.1.8.3 1.5.6 2.2a1.6 1.6 0 0 1-.4 1.7l-1 1a12.8 12.8 0 0 0 4.8 4.8l1-1a1.6 1.6 0 0 1 1.7-.4c.7.3 1.4.5 2.2.6a1.6 1.6 0 0 1 1.5 1.8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            (11) 99196-1322
-          </a>
-          <a class="contact__detail" href="mailto:contato@apoiocortafogo.com">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m2.5 5.5 7.5 5 7.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            contato@apoiocortafogo.com
-          </a>
+          <a class="contact__detail" href="tel:+5511991961322"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M17.5 14.1v2.4a1.6 1.6 0 0 1-1.8 1.6 15.9 15.9 0 0 1-6.9-2.5 15.6 15.6 0 0 1-4.8-4.8A15.9 15.9 0 0 1 1.5 3.8 1.6 1.6 0 0 1 3.1 2h2.4a1.6 1.6 0 0 1 1.6 1.4c.1.8.3 1.5.6 2.2a1.6 1.6 0 0 1-.4 1.7l-1 1a12.8 12.8 0 0 0 4.8 4.8l1-1a1.6 1.6 0 0 1 1.7-.4c.7.3 1.4.5 2.2.6a1.6 1.6 0 0 1 1.5 1.8Z"/></svg> (11) 99196-1322</a>
+          <a class="contact__detail" href="mailto:contato@apoiocortafogo.com"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 4h14a1 1 0 0 1 1 1v.4l-8 5-8-5V5a1 1 0 0 1 1-1Zm-1 3.7 8 5 8-5V15a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.7Z"/></svg> contato@apoiocortafogo.com</a>
         </div>
       </div>
     </div>
@@ -478,66 +428,51 @@
 
   <!-- ============ ORÇAMENTO ============ -->
   <section class="quote" id="orcamento" aria-labelledby="orcamento-title">
-    <div class="container">
-      <div class="quote__grid">
-        <div>
-          <p class="eyebrow">Solicite um orçamento</p>
-          <h2 id="orcamento-title" class="h-section">Conte um pouco sobre o que você precisa.</h2>
-          <p class="lead" style="margin-top:1.25rem">Preencha os dados abaixo e nossa equipe entrará em contato.</p>
-        </div>
-
-        <form class="quote__form" id="quoteForm" novalidate>
-          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-
-          <div class="field field--full">
-            <label class="visually-hidden" for="nome">Seu nome (obrigatório)</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu Nome (Obrigatório)" required autocomplete="name" aria-describedby="erro-nome">
-            <span class="field__error" id="erro-nome"></span>
-          </div>
-
-          <div class="field field--full">
-            <label class="visually-hidden" for="email">Seu e-mail (obrigatório)</label>
-            <input type="email" id="email" name="email" placeholder="Seu Email (Obrigatório)" required autocomplete="email" aria-describedby="erro-email">
-            <span class="field__error" id="erro-email"></span>
-          </div>
-
-          <div class="field field--full">
-            <label class="visually-hidden" for="assunto">Assunto (obrigatório)</label>
-            <input type="text" id="assunto" name="assunto" placeholder="Assunto (Obrigatório)" required aria-describedby="erro-assunto">
-            <span class="field__error" id="erro-assunto"></span>
-          </div>
-
-          <div class="field field--full">
-            <label class="visually-hidden" for="mensagem">Sua mensagem</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Sua Mensagem" rows="5" aria-describedby="erro-mensagem"></textarea>
-            <span class="field__error" id="erro-mensagem"></span>
-          </div>
-
-          <!-- honeypot anti-spam -->
-          <div class="field" hidden aria-hidden="true">
-            <label for="empresa-hp">Não preencha este campo</label>
-            <input type="text" id="empresa-hp" name="empresa_hp" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="quote__footer">
-            <span class="quote__note">
-              <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5 3.5 5v5c0 4 2.8 6.9 6.5 7.9 3.7-1 6.5-3.9 6.5-7.9V5L10 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-              Seus dados serão usados apenas para retornar o contato.
-            </span>
-            <button class="btn btn--primary" type="submit">
-              Enviar solicitação
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-        </form>
+    <div class="container quote__grid">
+      <div>
+        <p class="eyebrow">Solicite um orçamento</p>
+        <h2 id="orcamento-title" class="h-section">Conte um pouco sobre o que você precisa.</h2>
+        <p class="lead">Preencha os dados abaixo e nossa equipe entrará em contato.</p>
       </div>
+
+      <form class="quote__form" id="quoteForm" novalidate>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <div class="field">
+          <label class="visually-hidden" for="nome">Seu nome (obrigatório)</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu Nome (Obrigatório)" required autocomplete="name" aria-describedby="erro-nome">
+          <span class="field__error" id="erro-nome"></span>
+        </div>
+        <div class="field">
+          <label class="visually-hidden" for="email">Seu e-mail (obrigatório)</label>
+          <input type="email" id="email" name="email" placeholder="Seu Email (Obrigatório)" required autocomplete="email" aria-describedby="erro-email">
+          <span class="field__error" id="erro-email"></span>
+        </div>
+        <div class="field field--full">
+          <label class="visually-hidden" for="assunto">Assunto (obrigatório)</label>
+          <input type="text" id="assunto" name="assunto" placeholder="Assunto (Obrigatório)" required aria-describedby="erro-assunto">
+          <span class="field__error" id="erro-assunto"></span>
+        </div>
+        <div class="field field--full">
+          <label class="visually-hidden" for="mensagem">Sua mensagem</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Sua Mensagem" rows="5" aria-describedby="erro-mensagem"></textarea>
+          <span class="field__error" id="erro-mensagem"></span>
+        </div>
+        <div class="field" hidden aria-hidden="true">
+          <label for="empresa-hp">Não preencha este campo</label>
+          <input type="text" id="empresa-hp" name="empresa_hp" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="quote__footer">
+          <span class="quote__note"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5 3.5 5v5c0 4 2.8 6.9 6.5 7.9 3.7-1 6.5-3.9 6.5-7.9V5L10 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Seus dados serão usados apenas para retornar o contato.</span>
+          <button class="btn btn--primary" type="submit">Enviar solicitação <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </form>
     </div>
   </section>
 
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
+<!-- ============ RODAPÉ ============ -->
+<footer class="footer rail">
   <div class="container footer__inner">
     <a class="logo" href="/" aria-label="Apoio Porta Corta Fogo — página inicial">
       <picture>

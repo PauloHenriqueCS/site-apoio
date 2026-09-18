@@ -64,6 +64,9 @@ const PECAS = [
   ['componentes/04-dobradica.png',        'porta/dobradica', 360],
   ['componentes/05-fechadura.png',        'porta/fechadura', 300],
   ['componentes/06-barra-antipanico.png', 'porta/barra',    560],
+  // as duas tiras verticais que o mockup chama de "Batente": não vieram como
+  // PNG próprio, foram extraídas da composição completa (05-porta-explodida-completa)
+  ['componentes/07-batente-lateral.png',  'porta/lateral',  160],
 ];
 const medidas = {};
 for (const [file, name, w] of PECAS) {

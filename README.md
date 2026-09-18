@@ -41,6 +41,7 @@ animações vivem isoladas em `js/main.js` (bastaria movê-las para um `useEffec
 ## SEO
 
 - HTML semântico, um único `<h1>`, hierarquia de headings correta
+- Fonte Figtree via Google Fonts, com `display=swap` e pilha de fallback do sistema
 - `<title>` (64 caracteres) e meta description (213 caracteres)
 - JSON-LD com `LocalBusiness` + `ProfessionalService`, catálogo de serviços,
   telefone, e-mail, horário e área de atendimento
