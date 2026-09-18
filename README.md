@@ -9,20 +9,43 @@ scrollytelling em GSAP/ScrollTrigger.
 npm install
 npm run dev        # http://localhost:3000
 npm run imagens    # reprocessa origem/ → assets/img/ (após trocar alguma foto)
+npm run blog       # regera as páginas do blog e o sitemap a partir do JSON
 ```
+
+## Blog
+
+As páginas em `blog/` são **geradas** por `tools/gerar-blog.mjs` a partir de
+`conteudo/blog/artigos.json` e commitadas — o deploy continua sem build. Para
+alterar um texto, edite o JSON e rode `npm run blog`; para um artigo novo, acrescente
+um objeto ao JSON seguindo os existentes (`slug`, `titulo`, `descricao`, `secoes`,
+`faq`, `cta`, `citacao`, `referencias`, `data`).
+
+Cada artigo é publicado em `/blog/<slug>/` com título SEO, meta description,
+canonical, Open Graph, `BlogPosting` + `FAQPage` + `BreadcrumbList` em JSON-LD, e
+entra no `sitemap.xml`. A imagem de abertura (desenho técnico) e a figura (porta
+instalada) são as duas do layout aprovado, compartilhadas por todos os artigos; para
+dar uma foto própria a um artigo, troque `imagem.arquivo` no JSON e coloque a foto
+processada em `assets/img/blog/`.
+
+A citação em destaque de cada artigo é uma frase do próprio texto (`citacao` no JSON) —
+pode ser trocada livremente.
 
 Não há etapa de build: o que está no repositório é exatamente o que vai para o ar.
 
 ## Estrutura
 
 ```
-index.html                 página inteira (conteúdo + SVG do diagrama da porta)
-css/styles.css             design system e todos os estilos
+index.html                 página inicial
+blog/                      listagem e um diretório por artigo (gerados — não edite à mão)
+conteudo/blog/artigos.json os 12 artigos: texto, metadados de SEO, FAQ, referências
+css/styles.css             design system e estilos da home
+css/blog.css               estilos do blog (carrega depois de styles.css)
 js/main.js                 header, menu, scrollytelling, carrossel, formulário
 assets/vendor/             GSAP 3.15 + ScrollTrigger (cópia local, sem CDN)
 assets/img/                imagens servidas (derivadas) — ver assets/img/LEIA-ME.md
 origem/                    imagens originais, intocadas
 tools/processar-imagens.mjs    origem/ → assets/img/ (resize, WebP, logo claro)
+tools/gerar-blog.mjs           conteudo/blog/artigos.json → blog/ + sitemap.xml
 tools/gerar-placeholders.mjs   marcadores das fotos que ainda faltam
 tools/atualizar-gsap.mjs       recopia o GSAP de node_modules para assets/vendor
 robots.txt, sitemap.xml, site.webmanifest
@@ -40,7 +63,7 @@ animações vivem isoladas em `js/main.js` (bastaria movê-las para um `useEffec
 
 ## SEO
 
-- HTML semântico, um único `<h1>`, hierarquia de headings correta
+- HTML semântico, um único `<h1>` por página, hierarquia de headings correta
 - Fonte Figtree via Google Fonts, com `display=swap` e pilha de fallback do sistema
 - `<title>` (64 caracteres) e meta description (213 caracteres)
 - JSON-LD com `LocalBusiness` + `ProfessionalService`, catálogo de serviços,

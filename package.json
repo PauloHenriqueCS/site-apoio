@@ -8,7 +8,8 @@
     "dev": "npx --yes serve . -l 3000",
     "placeholders": "node tools/gerar-placeholders.mjs",
     "vendor": "node tools/atualizar-gsap.mjs",
-    "imagens": "node tools/processar-imagens.mjs"
+    "imagens": "node tools/processar-imagens.mjs",
+    "blog": "node tools/gerar-blog.mjs"
   },
   "devDependencies": {
     "gsap": "^3.15.0",

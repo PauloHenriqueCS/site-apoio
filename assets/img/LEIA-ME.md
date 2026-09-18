@@ -79,3 +79,13 @@ chamada, ajuste os três no `index.html`.
 
 `explodida-completa.webp` é a composição já montada, usada no celular: uma requisição
 em vez de seis, e legível numa tela estreita.
+
+## Blog — `blog/`
+
+| Arquivo | Uso |
+|---|---|
+| `desenho-tecnico-porta.webp` | Desenho técnico da abertura de cada artigo (transparente, esmaecido à direita) |
+| `porta-instalada.webp` / `.jpg` | Figura dentro do artigo, com legenda |
+| `og-blog.jpg` | Compartilhamento dos artigos (1200×630) |
+
+Originais em `origem/blog/`. As duas imagens são compartilhadas pelos 12 artigos; ver README para dar uma foto própria a um artigo.
