@@ -413,12 +413,13 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 
 .clients__viewport{overflow:hidden;background:var(--paper);--per-view:6}
 .clients__track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1)}
-.clients__logo{flex:0 0 calc(100% / var(--per-view));min-width:0;display:grid;place-items:center;height:clamp(84px,7.6vw,112px);padding:.75rem clamp(.75rem,2vw,1.75rem)}
-.clients__logo img{max-width:169px;max-height:97px;width:100%;height:auto;object-fit:contain}
+.clients__logo{flex:0 0 calc(100% / var(--per-view));min-width:0;display:grid;place-items:center;height:clamp(96px,8vw,120px);padding:1rem clamp(1rem,2.5vw,2rem)}
+/* o logo cabe na caixa nos dois eixos: nunca estica além do tamanho natural nem corta */
+.clients__logo img{max-width:min(100%,169px);max-height:100%;width:auto;height:auto;object-fit:contain}
 
 @media (max-width:1100px){.clients__viewport{--per-view:4}}
 @media (max-width:760px){.clients__viewport{--per-view:3}.clients__count{display:inline}.clients__title{font-size:.7rem;letter-spacing:.14em}.clients__nav{gap:.75rem;flex:none}}
-@media (max-width:520px){.clients__viewport{--per-view:2}}
+@media (max-width:520px){.clients__viewport{--per-view:2}.clients__logo{height:120px;padding:1.25rem 1.5rem}}
 
 /* =========================================================
    Contato — foto escura, faixa laranja larga, texto
