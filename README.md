@@ -6,7 +6,9 @@ scrollytelling em GSAP/ScrollTrigger.
 ## Rodar localmente
 
 ```bash
-npm run dev      # http://localhost:3000
+npm install
+npm run dev        # http://localhost:3000
+npm run imagens    # reprocessa origem/ → assets/img/ (após trocar alguma foto)
 ```
 
 Não há etapa de build: o que está no repositório é exatamente o que vai para o ar.
@@ -18,8 +20,10 @@ index.html                 página inteira (conteúdo + SVG do diagrama da porta
 css/styles.css             design system e todos os estilos
 js/main.js                 header, menu, scrollytelling, carrossel, formulário
 assets/vendor/             GSAP 3.15 + ScrollTrigger (cópia local, sem CDN)
-assets/img/                imagens — ver assets/img/LEIA-ME.md
-tools/gerar-placeholders.mjs   gera as imagens temporárias
+assets/img/                imagens servidas (derivadas) — ver assets/img/LEIA-ME.md
+origem/                    imagens originais, intocadas
+tools/processar-imagens.mjs    origem/ → assets/img/ (resize, WebP, logo claro)
+tools/gerar-placeholders.mjs   marcadores das fotos que ainda faltam
 tools/atualizar-gsap.mjs       recopia o GSAP de node_modules para assets/vendor
 robots.txt, sitemap.xml, site.webmanifest
 ```
@@ -45,17 +49,24 @@ animações vivem isoladas em `js/main.js` (bastaria movê-las para um `useEffec
 - `alt` em todas as imagens, `lang="pt-BR"`
 - `width`/`height` em todas as imagens (evita layout shift), `loading="lazy"`
   fora da primeira dobra, `fetchpriority="high"` + `preload` no hero
+- WebP com fallback JPEG via `<picture>`; hero com foto própria para cada orientação
+  de tela (horizontal no desktop, vertical no celular) e `srcset` por largura
 
-### Pendências de SEO antes de publicar
+### Pendências antes de publicar
 
-1. **Imagem de compartilhamento**: `og-apoio-porta-corta-fogo` precisa virar
-   **JPG ou PNG 1200×630** — redes sociais não renderizam SVG. Atualize também a
-   extensão nas metatags `og:image` e `twitter:image`.
+1. **Três fotos de serviço** (Manutenção, Restauração, Barras antipânico) — ver
+   `assets/img/LEIA-ME.md`. Hoje esses slots mostram "FOTO PENDENTE".
 2. **Endereço completo** no JSON-LD (`streetAddress`, `postalCode`) — hoje só
    constam cidade e estado.
 3. **CNPJ / razão social** no rodapé, se aplicável.
-4. Cadastrar o site no Google Search Console e enviar o `sitemap.xml`.
-5. Confirmar a data em `<lastmod>` no `sitemap.xml` a cada publicação relevante.
+4. **Endpoint do formulário** (ver abaixo).
+5. Cadastrar o site no Google Search Console e enviar o `sitemap.xml`.
+6. Confirmar a data em `<lastmod>` no `sitemap.xml` a cada publicação relevante.
+
+### Direitos de uso
+
+Os 8 logos de clientes vieram do site atual. Confirme a autorização de cada um
+antes de publicar.
 
 ## Acessibilidade
 

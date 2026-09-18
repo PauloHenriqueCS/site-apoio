@@ -1,0 +1,27 @@
+LOGOS EXTRAÍDOS DO SITE APOIO CORTA FOGO
+
+Fonte: https://apoiocortafogo.com/
+Página de clientes: https://apoiocortafogo.com/clientes/
+Data da extração: 18/09/2026
+
+ARQUIVOS
+
+logo-apoio-porta-corta-fogo.png
+- Logo principal da Apoio
+- Tamanho original publicado: 291 × 117 px
+- Possui transparência
+
+clientes/01-masotti.jpg
+clientes/02-tv-med.jpg
+clientes/03-shopping-patio-paulista.jpg
+clientes/04-adbens-condominios.png
+clientes/05-prevent-senior.png
+clientes/06-itau-cultural-e-itau.jpg
+clientes/07-metodo.jpg
+clientes/08-mercure.jpg
+
+IMPORTANTE PARA A IMPLEMENTAÇÃO
+
+Os oito logos dos clientes estão publicados no WordPress em 169 × 97 px. Use-os em uma faixa de logos com dimensões próximas às originais e object-fit: contain. Não amplie excessivamente, pois o site antigo não disponibiliza versões maiores nesses arquivos.
+
+Os arquivos deste pacote foram preservados nos formatos e proporções encontrados no site; não foram redesenhados, recortados nem alterados.

@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://apoiocortafogo.com/">
 <meta property="og:title" content="Portas Corta-Fogo em São Paulo | Instalação e Manutenção | Apoio">
 <meta property="og:description" content="Instalação, manutenção e restauração de portas corta-fogo e barras antipânico. +15 anos de experiência, visita técnica gratuita e 6 meses de garantia.">
-<meta property="og:image" content="https://apoiocortafogo.com/assets/img/og-apoio-porta-corta-fogo.svg">
+<meta property="og:image" content="https://apoiocortafogo.com/assets/img/og-apoio-porta-corta-fogo.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Técnico da Apoio instalando uma porta corta-fogo com barra antipânico">
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portas Corta-Fogo em São Paulo | Apoio">
 <meta name="twitter:description" content="Instalação, manutenção e restauração de portas corta-fogo e barras antipânico. Visita técnica gratuita.">
-<meta name="twitter:image" content="https://apoiocortafogo.com/assets/img/og-apoio-porta-corta-fogo.svg">
+<meta name="twitter:image" content="https://apoiocortafogo.com/assets/img/og-apoio-porta-corta-fogo.jpg">
 
 <!-- Ícones -->
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
@@ -43,7 +43,12 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
 <link rel="stylesheet" href="/css/styles.css">
-<link rel="preload" as="image" href="/assets/img/hero-porta-corta-fogo.svg" fetchpriority="high">
+<!-- imagesrcset/imagesizes iguais aos do <picture>: sem isso o preload escolhe
+     uma largura e o srcset outra, e o hero é baixado duas vezes. -->
+<link rel="preload" as="image" type="image/webp" media="(min-width:761px)" fetchpriority="high"
+      imagesrcset="/assets/img/hero-desktop@1200.webp 1200w, /assets/img/hero-desktop.webp 1672w" imagesizes="100vw">
+<link rel="preload" as="image" type="image/webp" media="(max-width:760px)" fetchpriority="high"
+      imagesrcset="/assets/img/hero-mobile@768.webp 768w, /assets/img/hero-mobile.webp 1024w" imagesizes="100vw">
 
 <script>document.documentElement.classList.remove('no-js');</script>
 
@@ -60,8 +65,8 @@
       "url":"https://apoiocortafogo.com/",
       "telephone":"+551149631153",
       "email":"contato@apoiocortafogo.com",
-      "image":"https://apoiocortafogo.com/assets/img/og-apoio-porta-corta-fogo.svg",
-      "logo":"https://apoiocortafogo.com/assets/img/logo-apoio.svg",
+      "image":"https://apoiocortafogo.com/assets/img/og-apoio-porta-corta-fogo.jpg",
+      "logo":"https://apoiocortafogo.com/assets/img/logo-apoio.png",
       "priceRange":"$$",
       "foundingDate":"2010",
       "address":{
@@ -120,8 +125,14 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="logo" href="/" aria-label="Apoio Porta Corta Fogo — página inicial">
-      <img class="logo__dark" src="/assets/img/logo-apoio.svg" alt="Apoio — Instalação e Manutenção de Porta Corta Fogo" width="190" height="44">
-      <img class="logo__light" src="/assets/img/logo-apoio-branco.svg" alt="" aria-hidden="true" width="190" height="44">
+      <picture class="logo__dark">
+        <source srcset="/assets/img/logo-apoio.webp" type="image/webp">
+        <img src="/assets/img/logo-apoio.png" alt="Apoio — Instalação e Manutenção de Porta Corta Fogo" width="291" height="117">
+      </picture>
+      <picture class="logo__light">
+        <source srcset="/assets/img/logo-apoio-branco.webp" type="image/webp">
+        <img src="/assets/img/logo-apoio-branco.png" alt="" aria-hidden="true" width="291" height="117">
+      </picture>
     </a>
 
     <nav class="nav" id="nav" aria-label="Navegação principal">
@@ -151,9 +162,18 @@
   <!-- ============ HERO ============ -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__media">
-      <img src="/assets/img/hero-porta-corta-fogo.svg"
-           alt="Técnico da Apoio ajustando a barra antipânico de uma porta corta-fogo em corredor corporativo"
-           width="1600" height="900" fetchpriority="high" decoding="async">
+      <picture>
+        <source media="(max-width:760px)" type="image/webp"
+                srcset="/assets/img/hero-mobile@768.webp 768w, /assets/img/hero-mobile.webp 1024w" sizes="100vw">
+        <source media="(max-width:760px)" type="image/jpeg"
+                srcset="/assets/img/hero-mobile@768.jpg 768w, /assets/img/hero-mobile.jpg 1024w" sizes="100vw">
+        <source type="image/webp"
+                srcset="/assets/img/hero-desktop@1200.webp 1200w, /assets/img/hero-desktop.webp 1672w" sizes="100vw">
+        <img src="/assets/img/hero-desktop.jpg"
+             srcset="/assets/img/hero-desktop@1200.jpg 1200w, /assets/img/hero-desktop.jpg 1672w" sizes="100vw"
+             alt="Técnico da Apoio ajustando a barra antipânico de uma porta corta-fogo em corredor corporativo"
+             width="1672" height="941" fetchpriority="high" decoding="async">
+      </picture>
     </div>
 
     <div class="container hero__inner">
@@ -261,10 +281,10 @@
         </div>
 
         <div class="services__media" id="servicesMedia" aria-hidden="true">
-          <img src="/assets/img/servico-01-instalacao.svg" alt="" class="is-active" data-index="0" width="640" height="800" loading="lazy" decoding="async">
-          <img src="/assets/img/servico-02-manutencao.svg" alt="" data-index="1" width="640" height="800" loading="lazy" decoding="async">
-          <img src="/assets/img/servico-03-restauracao.svg" alt="" data-index="2" width="640" height="800" loading="lazy" decoding="async">
-          <img src="/assets/img/servico-04-barras.svg" alt="" data-index="3" width="640" height="800" loading="lazy" decoding="async">
+          <img src="/assets/img/servico-01-instalacao.webp" alt="" class="is-active" data-index="0" width="720" height="900" loading="lazy" decoding="async">
+          <img src="/assets/img/servico-02-manutencao.svg" alt="" data-index="1" width="720" height="900" loading="lazy" decoding="async">
+          <img src="/assets/img/servico-03-restauracao.svg" alt="" data-index="2" width="720" height="900" loading="lazy" decoding="async">
+          <img src="/assets/img/servico-04-barras.svg" alt="" data-index="3" width="720" height="900" loading="lazy" decoding="async">
         </div>
 
       </div>
@@ -288,125 +308,45 @@
         </a>
       </div>
 
-      <div class="exploded__canvas" id="explodedCanvas">
-        <svg viewBox="0 0 1180 700" role="img" aria-labelledby="diagrama-title diagrama-desc" id="explodedSvg">
-          <title id="diagrama-title">Vista explodida de uma porta corta-fogo</title>
-          <desc id="diagrama-desc">Diagrama técnico mostrando os componentes de uma porta corta-fogo: mola aérea, batente, folha da porta, dobradiças, fechadura e barra antipânico.</desc>
+      <div class="porta" id="portaDiagrama">
 
-          <defs>
-            <linearGradient id="gMetal" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#F2F3F4"/><stop offset="45%" stop-color="#CED3D8"/><stop offset="100%" stop-color="#A7AEB5"/>
-            </linearGradient>
-            <linearGradient id="gLeaf" x1="0" y1="0" x2="1" y2="0.2">
-              <stop offset="0%" stop-color="#E7E9EB"/><stop offset="55%" stop-color="#C6CBD0"/><stop offset="100%" stop-color="#9BA3AB"/>
-            </linearGradient>
-            <linearGradient id="gDark" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#9AA1A8"/><stop offset="100%" stop-color="#6E767E"/>
-            </linearGradient>
-          </defs>
+        <!-- Desktop: peças reais posicionadas e animadas uma a uma -->
+        <div class="porta__cena" aria-hidden="true">
+          <div class="porta__peca" style="--x:41%;--y:50%;--h:88%;--r:620/1214;--z:1" data-dx="-4" data-dy="0">
+            <img src="/assets/img/porta/batente.webp" alt="" width="620" height="1214" loading="lazy" decoding="async">
+          </div>
+          <div class="porta__peca" style="--x:35%;--y:51%;--h:80%;--r:543/1337;--z:2" data-dx="0" data-dy="0">
+            <img src="/assets/img/porta/folha.webp" alt="" width="543" height="1337" loading="lazy" decoding="async">
+          </div>
+          <div class="porta__peca" style="--x:20%;--y:19%;--h:26%;--r:520/572;--z:3" data-dx="12" data-dy="20">
+            <img src="/assets/img/porta/mola.webp" alt="" width="520" height="572" loading="lazy" decoding="async">
+          </div>
+          <div class="porta__peca" style="--x:57%;--y:26%;--h:30%;--r:360/566;--z:3" data-dx="-13" data-dy="5">
+            <img src="/assets/img/porta/dobradica.webp" alt="" width="360" height="566" loading="lazy" decoding="async">
+          </div>
+          <div class="porta__peca" style="--x:57%;--y:55%;--h:34%;--r:300/734;--z:3" data-dx="-14" data-dy="0">
+            <img src="/assets/img/porta/fechadura.webp" alt="" width="300" height="734" loading="lazy" decoding="async">
+          </div>
+          <div class="porta__peca" style="--x:60%;--y:82%;--h:13%;--r:560/197;--z:3" data-dx="-15" data-dy="-25">
+            <img src="/assets/img/porta/barra.webp" alt="" width="560" height="197" loading="lazy" decoding="async">
+          </div>
+        </div>
 
-          <!-- ---------- PEÇAS ---------- -->
-          <g id="parts" stroke="#5F676E" stroke-width="1.4" stroke-linejoin="round">
+        <!-- Mobile: a composição já montada, mais leve que seis requisições -->
+        <img class="porta__completa"
+             src="/assets/img/porta/explodida-completa.webp"
+             alt="Vista explodida de uma porta corta-fogo mostrando mola aérea, batente, folha da porta, dobradiças, fechadura e barra antipânico"
+             width="1241" height="957" loading="lazy" decoding="async">
 
-            <!-- Mola aérea -->
-            <g class="part" id="part-closer" data-dx="130" data-dy="60">
-              <rect x="336" y="116" width="150" height="38" rx="4" fill="url(#gMetal)"/>
-              <rect x="352" y="126" width="26" height="18" rx="2" fill="#8E969E" stroke="none"/>
-              <rect x="486" y="126" width="86" height="12" rx="3" fill="url(#gDark)"/>
-              <rect x="566" y="120" width="14" height="24" rx="3" fill="#8E969E"/>
-              <circle cx="480" cy="135" r="5" fill="#7C848C" stroke="none"/>
-            </g>
-
-            <!-- Batente -->
-            <g class="part" id="part-frame" data-dx="72" data-dy="0">
-              <rect x="424" y="150" width="30" height="470" fill="url(#gMetal)"/>
-              <rect x="424" y="150" width="11" height="470" fill="#B4BAC0" stroke="none"/>
-              <rect x="430" y="300" width="18" height="44" rx="2" fill="#8E969E"/>
-            </g>
-
-            <!-- Folha da porta -->
-            <g class="part" id="part-leaf" data-dx="0" data-dy="0">
-              <rect x="498" y="150" width="232" height="470" rx="2" fill="url(#gLeaf)"/>
-              <rect x="512" y="164" width="204" height="442" rx="1" fill="none" stroke="#AEB5BC" stroke-width="1"/>
-              <rect x="556" y="212" width="116" height="152" rx="2" fill="#EDF1F4"/>
-              <rect x="556" y="212" width="116" height="152" rx="2" fill="none" stroke="#7C848C" stroke-width="2"/>
-              <line x1="556" y1="250" x2="672" y2="232" stroke="#FFFFFF" stroke-width="6" opacity=".55"/>
-            </g>
-
-            <!-- Dobradiças -->
-            <g class="part" id="part-hinges" data-dx="-300" data-dy="-40">
-              <g>
-                <rect x="784" y="192" width="64" height="52" rx="3" fill="url(#gMetal)"/>
-                <line x1="816" y1="192" x2="816" y2="244" stroke="#7C848C" stroke-width="2"/>
-                <rect x="808" y="186" width="16" height="64" rx="8" fill="url(#gDark)"/>
-                <circle cx="798" cy="206" r="3.5" fill="#7C848C" stroke="none"/>
-                <circle cx="798" cy="230" r="3.5" fill="#7C848C" stroke="none"/>
-                <circle cx="836" cy="206" r="3.5" fill="#7C848C" stroke="none"/>
-                <circle cx="836" cy="230" r="3.5" fill="#7C848C" stroke="none"/>
-              </g>
-              <g>
-                <rect x="784" y="278" width="64" height="52" rx="3" fill="url(#gMetal)"/>
-                <line x1="816" y1="278" x2="816" y2="330" stroke="#7C848C" stroke-width="2"/>
-                <rect x="808" y="272" width="16" height="64" rx="8" fill="url(#gDark)"/>
-                <circle cx="798" cy="292" r="3.5" fill="#7C848C" stroke="none"/>
-                <circle cx="798" cy="316" r="3.5" fill="#7C848C" stroke="none"/>
-                <circle cx="836" cy="292" r="3.5" fill="#7C848C" stroke="none"/>
-                <circle cx="836" cy="316" r="3.5" fill="#7C848C" stroke="none"/>
-              </g>
-            </g>
-
-            <!-- Fechadura -->
-            <g class="part" id="part-lock" data-dx="-86" data-dy="-16">
-              <rect x="782" y="376" width="72" height="96" rx="4" fill="url(#gMetal)"/>
-              <rect x="796" y="394" width="44" height="26" rx="3" fill="#8E969E"/>
-              <circle cx="818" cy="444" r="12" fill="#EDF1F4"/>
-              <path d="M818 438v12" stroke="#5F676E" stroke-width="3" stroke-linecap="round"/>
-              <rect x="854" y="404" width="20" height="22" rx="2" fill="url(#gDark)"/>
-            </g>
-
-            <!-- Barra antipânico -->
-            <g class="part" id="part-panic" data-dx="-176" data-dy="-58">
-              <rect x="742" y="518" width="184" height="26" rx="6" fill="url(#gMetal)"/>
-              <rect x="742" y="518" width="184" height="9" rx="4" fill="#E2E6E9" stroke="none"/>
-              <rect x="752" y="500" width="26" height="62" rx="4" fill="url(#gDark)"/>
-              <rect x="890" y="500" width="26" height="62" rx="4" fill="url(#gDark)"/>
-            </g>
-          </g>
-
-          <!-- ---------- CHAMADAS ---------- -->
-          <g id="labels">
-            <g class="part-label" data-side="left">
-              <text x="246" y="129" text-anchor="end">Mola aérea</text>
-              <line x1="258" y1="135" x2="336" y2="135"/>
-              <circle cx="336" cy="135" r="3.5"/>
-            </g>
-            <g class="part-label" data-side="left">
-              <text x="246" y="354" text-anchor="end">Batente</text>
-              <line x1="258" y1="360" x2="424" y2="360"/>
-              <circle cx="424" cy="360" r="3.5"/>
-            </g>
-            <g class="part-label" data-side="left">
-              <text x="246" y="554" text-anchor="end">Folha da porta</text>
-              <line x1="258" y1="560" x2="498" y2="560"/>
-              <circle cx="498" cy="560" r="3.5"/>
-            </g>
-            <g class="part-label" data-side="right">
-              <text x="988" y="212" text-anchor="start">Dobradiças</text>
-              <line x1="848" y1="218" x2="976" y2="218"/>
-              <circle cx="848" cy="218" r="3.5"/>
-            </g>
-            <g class="part-label" data-side="right">
-              <text x="988" y="418" text-anchor="start">Fechadura</text>
-              <line x1="874" y1="424" x2="976" y2="424"/>
-              <circle cx="874" cy="424" r="3.5"/>
-            </g>
-            <g class="part-label" data-side="right">
-              <text x="988" y="525" text-anchor="start">Barra antipânico</text>
-              <line x1="920" y1="531" x2="976" y2="531"/>
-              <circle cx="920" cy="531" r="3.5"/>
-            </g>
-          </g>
-        </svg>
+        <!-- Chamadas: posicionadas no desktop, lista no mobile -->
+        <ul class="porta__chamadas">
+          <li class="porta__label porta__label--esq" style="--y:16%">Mola aérea</li>
+          <li class="porta__label porta__label--esq" style="--y:46%">Batente</li>
+          <li class="porta__label porta__label--esq" style="--y:76%">Folha da porta</li>
+          <li class="porta__label porta__label--dir" style="--y:26%">Dobradiças</li>
+          <li class="porta__label porta__label--dir" style="--y:55%">Fechadura</li>
+          <li class="porta__label porta__label--dir" style="--y:82%">Barra antipânico</li>
+        </ul>
       </div>
 
       <p class="exploded__hint">
@@ -462,7 +402,7 @@
           <button class="clients__btn" type="button" id="clientsPrev" aria-label="Clientes anteriores">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 8h-11m0 0L6.5 4m-4 4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <span class="clients__count" id="clientsCount" aria-live="polite">1 / 3</span>
+          <span class="clients__count" id="clientsCount" aria-live="polite">1 / 2</span>
           <button class="clients__btn" type="button" id="clientsNext" aria-label="Próximos clientes">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
@@ -471,64 +411,32 @@
 
       <div class="clients__viewport">
         <div class="clients__track" id="clientsTrack">
-          <div class="clients__slide" role="group" aria-label="Clientes 1 de 3">
+          <div class="clients__slide" role="group" aria-label="Clientes 1 de 2">
             <div class="clients__logo">
-              <img src="/assets/img/clientes/01-shopping-patio-paulista.svg" alt="Shopping Pátio Paulista" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/01-masotti.webp" alt="Masotti" width="169" height="97" loading="lazy" decoding="async">
             </div>
             <div class="clients__logo">
-              <img src="/assets/img/clientes/02-itau-cultural.svg" alt="Itaú Cultural" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/02-tv-med.webp" alt="TV Med" width="169" height="97" loading="lazy" decoding="async">
             </div>
             <div class="clients__logo">
-              <img src="/assets/img/clientes/03-prevent-senior.svg" alt="Prevent Senior" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/03-shopping-patio-paulista.webp" alt="Shopping Pátio Paulista" width="169" height="97" loading="lazy" decoding="async">
             </div>
             <div class="clients__logo">
-              <img src="/assets/img/clientes/04-metodo.svg" alt="Método" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/05-tv-med.svg" alt="TV Med" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/06-mercure.svg" alt="Mercure" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/04-adbens-condominios.webp" alt="Adbens Condomínios" width="169" height="97" loading="lazy" decoding="async">
             </div>
           </div>
-          <div class="clients__slide" role="group" aria-label="Clientes 2 de 3" aria-hidden="true">
+          <div class="clients__slide" role="group" aria-label="Clientes 2 de 2" aria-hidden="true">
             <div class="clients__logo">
-              <img src="/assets/img/clientes/07-cliente-07.svg" alt="Cliente 07" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/05-prevent-senior.webp" alt="Prevent Senior" width="169" height="97" loading="lazy" decoding="async">
             </div>
             <div class="clients__logo">
-              <img src="/assets/img/clientes/08-cliente-08.svg" alt="Cliente 08" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/06-itau-cultural-e-itau.webp" alt="Itaú Cultural e Itaú" width="169" height="97" loading="lazy" decoding="async">
             </div>
             <div class="clients__logo">
-              <img src="/assets/img/clientes/09-cliente-09.svg" alt="Cliente 09" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/07-metodo.webp" alt="Método" width="169" height="97" loading="lazy" decoding="async">
             </div>
             <div class="clients__logo">
-              <img src="/assets/img/clientes/10-cliente-10.svg" alt="Cliente 10" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/11-cliente-11.svg" alt="Cliente 11" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/12-cliente-12.svg" alt="Cliente 12" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-          </div>
-          <div class="clients__slide" role="group" aria-label="Clientes 3 de 3" aria-hidden="true">
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/13-cliente-13.svg" alt="Cliente 13" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/14-cliente-14.svg" alt="Cliente 14" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/15-cliente-15.svg" alt="Cliente 15" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/16-cliente-16.svg" alt="Cliente 16" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/17-cliente-17.svg" alt="Cliente 17" width="220" height="76" loading="lazy" decoding="async">
-            </div>
-            <div class="clients__logo">
-              <img src="/assets/img/clientes/18-cliente-18.svg" alt="Cliente 18" width="220" height="76" loading="lazy" decoding="async">
+              <img src="/assets/img/clientes/08-mercure.webp" alt="Mercure" width="169" height="97" loading="lazy" decoding="async">
             </div>
           </div>
         </div>
@@ -539,7 +447,10 @@
   <!-- ============ CONTATO ============ -->
   <section class="contact" aria-labelledby="contato-title">
     <div class="contact__media">
-      <img src="/assets/img/cta-porta-detalhe.svg" alt="Detalhe de maçaneta e batente de porta corta-fogo instalada" width="720" height="620" loading="lazy" decoding="async">
+      <picture>
+        <source srcset="/assets/img/cta-porta-detalhe.webp" type="image/webp">
+        <img src="/assets/img/cta-porta-detalhe.jpg" alt="Detalhe de maçaneta e batente de porta corta-fogo instalada" width="1280" height="480" loading="lazy" decoding="async">
+      </picture>
     </div>
     <div class="contact__body">
       <p class="eyebrow">Vamos conversar?</p>
@@ -629,7 +540,10 @@
 <footer class="footer">
   <div class="container footer__inner">
     <a class="logo" href="/" aria-label="Apoio Porta Corta Fogo — página inicial">
-      <img src="/assets/img/logo-apoio.svg" alt="Apoio — Instalação e Manutenção de Porta Corta Fogo" width="190" height="44" loading="lazy">
+      <picture>
+        <source srcset="/assets/img/logo-apoio.webp" type="image/webp">
+        <img src="/assets/img/logo-apoio.png" alt="Apoio — Instalação e Manutenção de Porta Corta Fogo" width="291" height="117" loading="lazy">
+      </picture>
     </a>
     <nav class="footer__nav" aria-label="Navegação do rodapé">
       <a href="#servicos">Serviços</a>

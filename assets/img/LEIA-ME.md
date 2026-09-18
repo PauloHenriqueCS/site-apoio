@@ -1,59 +1,75 @@
-# Imagens — o que substituir
+# Imagens
 
-Todos os arquivos abaixo são **temporários** (SVG gerado por `npm run placeholders`).
-Ao trocar por uma imagem real, **mantenha o mesmo nome de arquivo** e apenas ajuste a
-extensão no `index.html` — nada mais precisa mudar.
+## Como funciona
 
-## Fotos
+`origem/` guarda os arquivos que você enviou, sem nenhuma alteração.
+`assets/img/` é **derivado** — tudo ali é gerado e pode ser refeito a qualquer momento:
 
-| Arquivo | Onde aparece | Tamanho sugerido | Observação |
-|---|---|---|---|
-| `hero-porta-corta-fogo.*` | Topo da página | 1600×900 | Foto escura; o texto fica sobre a metade esquerda — deixe o assunto à direita |
-| `servico-01-instalacao.*` | Serviços — Instalação | 640×800 (retrato 4:5) | |
-| `servico-02-manutencao.*` | Serviços — Manutenção | 640×800 | |
-| `servico-03-restauracao.*` | Serviços — Restauração | 640×800 | |
-| `servico-04-barras.*` | Serviços — Barras antipânico | 640×800 | |
-| `cta-porta-detalhe.*` | Bloco "Conte o que suas portas precisam" | 720×620 | |
-| `og-apoio-porta-corta-fogo.*` | Compartilhamento (WhatsApp, LinkedIn, Facebook) | **1200×630** | **Precisa ser JPG ou PNG** — redes sociais não renderizam SVG |
-
-Formato recomendado: **WebP** com JPG de fallback. Exceto o `og-`, que deve ser JPG ou PNG.
-
-## Marca
-
-| Arquivo | Uso |
-|---|---|
-| `logo-apoio.svg` | Cabeçalho e rodapé. O CSS inverte a cor no topo do hero (`filter: brightness(0) invert(1)`), então o SVG precisa funcionar em versão monocromática |
-| `favicon.svg` | Aba do navegador |
-
-Opcional: adicionar `apple-touch-icon.png` (180×180) e referenciá-lo no `<head>`.
-
-## Logos de clientes — `clientes/`
-
-18 arquivos, exibidos em 3 telas de 6 no carrossel. O CSS aplica `grayscale(1)` e
-tira na interação, então logos em versão monocromática escura funcionam melhor.
-Tamanho sugerido: 220×76, SVG de preferência.
-
-Os 6 primeiros já estão nomeados com os clientes reais; os demais (`07`…`18`) são
-genéricos. Se você tiver menos de 18 logos, apague os arquivos sobrando e remova os
-`<div class="clients__logo">` correspondentes no `index.html` — o carrossel se ajusta sozinho.
-
-> **Direitos de uso:** confirme a autorização de cada cliente antes de publicar a logo dele.
-
-## Peças da porta (seção "Por dentro da segurança")
-
-O diagrama explodido hoje é **SVG inline**, dentro do `index.html` (bloco `<g id="parts">`).
-Cada peça é um `<g>` com `id` próprio e os atributos `data-dx` / `data-dy`, que definem
-o quanto ela se afasta durante a animação.
-
-Para trocar pelos PNGs transparentes em camadas, substitua o conteúdo de cada `<g>`
-por um `<image>` — os `id` e os `data-*` continuam valendo e o GSAP segue funcionando:
-
-```html
-<g class="part" id="part-panic" data-dx="-176" data-dy="-58">
-  <image href="/assets/img/pecas/barra-antipanico.png" x="742" y="500" width="184" height="62"/>
-</g>
+```bash
+npm run imagens        # processa origem/ → assets/img/ (redimensiona, gera WebP)
+npm run placeholders   # regera só os marcadores das fotos que ainda faltam
 ```
 
-Peças existentes: `part-closer` (mola aérea), `part-frame` (batente), `part-leaf`
-(folha da porta), `part-hinges` (dobradiças), `part-lock` (fechadura), `part-panic`
-(barra antipânico).
+Para trocar uma foto: substitua o arquivo em `origem/` e rode `npm run imagens`.
+
+## O que ainda falta
+
+| Slot | Arquivo atual | O que precisa |
+|---|---|---|
+| Serviço 02 — Manutenção | `servico-02-manutencao.svg` | foto 720×900 (retrato 4:5) |
+| Serviço 03 — Restauração | `servico-03-restauracao.svg` | foto 720×900 |
+| Serviço 04 — Barras antipânico | `servico-04-barras.svg` | foto 720×900 |
+
+Esses três aparecem no site com a etiqueta "FOTO PENDENTE". Ao enviá-las, coloque em
+`origem/` e acrescente as linhas correspondentes em `tools/processar-imagens.mjs`
+(o serviço 01 já está lá e serve de modelo).
+
+Opcional: `apple-touch-icon.png` (180×180) para o atalho no iOS.
+
+## O que já está definitivo
+
+**Fotos** — WebP servido, JPEG de fallback, via `<picture>`:
+
+| Uso | Origem | Saída |
+|---|---|---|
+| Hero (desktop) | `01-hero-desktop.png` | `hero-desktop.webp` + `@1200` |
+| Hero (celular) | `02-hero-mobile.png` | `hero-mobile.webp` + `@768` |
+| Serviço 01 | `03-porta-instalada.png` | `servico-01-instalacao.webp` |
+| CTA de contato | `04-porta-cta-detalhe.png` | `cta-porta-detalhe.webp` |
+| Compartilhamento | `01-hero-desktop.png` | `og-apoio-porta-corta-fogo.jpg` (1200×630) |
+
+O hero usa **duas fotos diferentes**, não a mesma recortada: a horizontal no desktop e
+a vertical no celular, trocadas por `<picture media="...">`.
+
+**Marca** — `logo-apoio` (original) e `logo-apoio-branco` (variante clara). A segunda é
+gerada automaticamente invertendo só os pixels neutros do logotipo, preservando o laranja
+da marca; sem ela o logo sumiria sobre o hero escuro. O cabeçalho troca de uma para a
+outra conforme sai do topo.
+
+**Clientes** — 8 logos em `clientes/`, exibidos 4 por tela em 2 telas do carrossel.
+Estão em 169×97, o tamanho publicado no site antigo; o processamento não amplia, porque
+esticar esses arquivos só deixaria o resultado borrado. Se conseguir versões maiores ou
+vetoriais com os clientes, elas entram no lugar sem nenhuma mudança de código.
+
+## Diagrama da porta — `porta/`
+
+Seis peças em WebP transparente, recortadas dos PNGs de `origem/componentes/`
+(o processamento apara a moldura vazia de cada uma).
+
+O posicionamento vive no HTML, em variáveis CSS por peça:
+
+```html
+<div class="porta__peca" style="--x:41%;--y:50%;--h:88%;--r:620/1214;--z:1"
+     data-dx="-4" data-dy="0">
+```
+
+- `--x` / `--y` — centro da peça, em % do container
+- `--h` — altura em % do container; a largura sai de `--r`, a proporção real da peça
+  (vinda de `medidas.json`). Dimensionar pela altura garante que nada estoure a cena.
+- `--z` — ordem de empilhamento
+- `data-dx` / `data-dy` — de onde a peça **parte** na animação, apontando para a porta
+  montada. `dx` é % da largura, `dy` é % da altura (a cena é 2,2× mais larga que alta,
+  então um mesmo valor nos dois eixos jogaria as peças para fora).
+
+`explodida-completa.webp` é a composição já montada, usada no celular: uma requisição
+em vez de seis, e legível numa tela estreita.

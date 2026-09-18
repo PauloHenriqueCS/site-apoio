@@ -191,7 +191,8 @@ h1,h2,h3{line-height:var(--lh-tight);letter-spacing:-.022em;font-weight:600}
   background:var(--ink-900);overflow:hidden;isolation:isolate;
 }
 .hero__media{position:absolute;inset:0;z-index:-2}
-.hero__media img{width:100%;height:100%;object-fit:cover}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:center}
+@media (max-width:760px){.hero__media img{object-position:72% center}}
 .hero__media::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(100deg,rgba(18,21,24,.94) 0%,rgba(18,21,24,.82) 38%,rgba(18,21,24,.35) 68%,rgba(18,21,24,.25) 100%);
@@ -329,13 +330,50 @@ h1,h2,h3{line-height:var(--lh-tight);letter-spacing:-.022em;font-weight:600}
 .exploded__head .lead{color:rgba(255,255,255,.7)}
 .exploded__head .link-arrow{color:var(--brand)}
 
-.exploded__canvas{position:relative;width:100%}
-.exploded__canvas svg{width:100%;height:auto;overflow:visible}
+/* ---- Diagrama da porta ----
+   A arte ocupa a faixa central (68% da largura); as chamadas ficam nas bordas.
+   A proporção 2.2 vem de 1.5 (proporção da arte) ÷ 0.68 (fatia que ela ocupa). */
+.porta{position:relative;width:100%;aspect-ratio:2.2;margin-inline:auto}
+.porta__cena{position:absolute;inset:0}
+/* Altura em % do container e largura derivada da proporção real da peça
+   (--r vem de assets/img/porta/medidas.json): assim nenhuma peça estoura
+   a cena, seja qual for a largura da tela. */
+.porta__peca{
+  position:absolute;left:var(--x);top:var(--y);
+  height:var(--h);aspect-ratio:var(--r);
+  transform:translate(-50%,-50%);z-index:var(--z,1);
+}
+.porta__peca img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))}
+.porta__completa{display:none}
 
-.part-label text{font-family:var(--font);font-size:15px;font-weight:500;fill:#fff}
-.part-label line{stroke:var(--brand);stroke-width:1.25}
-.part-label circle{fill:var(--brand)}
-.part-label rect{fill:none;stroke:rgba(245,166,35,.55);stroke-width:1}
+.porta__chamadas{list-style:none;margin:0;padding:0}
+.porta__label{
+  position:absolute;top:var(--y);transform:translateY(-50%);
+  font-size:.95rem;font-weight:500;color:#fff;white-space:nowrap;z-index:6;
+}
+.porta__label::after{
+  content:"";position:absolute;top:50%;width:clamp(28px,4vw,56px);height:1px;
+  background:linear-gradient(90deg,var(--brand),rgba(245,166,35,.25));
+}
+.porta__label--esq{left:.5%;text-align:left}
+.porta__label--esq::after{left:100%;margin-left:.6rem}
+.porta__label--dir{right:.5%;text-align:right}
+.porta__label--dir::after{right:100%;margin-right:.6rem;background:linear-gradient(270deg,var(--brand),rgba(245,166,35,.25))}
+
+/* Mobile: uma imagem já montada em vez de seis peças, e as chamadas viram lista */
+@media (max-width:900px){
+  .porta{aspect-ratio:auto}
+  .porta__cena{display:none}
+  .porta__completa{display:block;width:100%;height:auto}
+  .porta__chamadas{
+    display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1.25rem;
+    margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--line-dark);
+  }
+  .porta__label{position:static;transform:none;font-size:.9rem;color:rgba(255,255,255,.82);display:flex;align-items:center;gap:.55rem}
+  .porta__label::after{display:none}
+  .porta__label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand);flex:none}
+}
+@media (max-width:420px){.porta__chamadas{grid-template-columns:1fr}}
 
 .exploded__hint{
   display:flex;align-items:center;justify-content:center;gap:.65rem;
@@ -346,7 +384,6 @@ h1,h2,h3{line-height:var(--lh-tight);letter-spacing:-.022em;font-weight:600}
 @media (max-width:900px){
   .exploded__head{display:block}
   .exploded__head .link-arrow{margin-top:1.5rem}
-  .part-label text{font-size:26px}
 }
 
 /* =========================================================
@@ -402,13 +439,13 @@ h1,h2,h3{line-height:var(--lh-tight);letter-spacing:-.022em;font-weight:600}
 .clients__track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1)}
 /* O padding fica no slide: em .clients__viewport o overflow cortaria
    na borda do padding e deixaria o slide seguinte aparecer. */
-.clients__slide{flex:0 0 100%;min-width:0;padding:clamp(1.25rem,3vw,2rem);display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(1rem,3vw,2.5rem);align-items:center}
-.clients__logo{display:grid;place-items:center;height:64px;padding:.5rem}
-.clients__logo img{max-height:100%;width:auto;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter var(--t),opacity var(--t)}
+.clients__slide{flex:0 0 100%;min-width:0;padding:clamp(1.25rem,3vw,2rem);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,3vw,2.5rem);align-items:center}
+.clients__logo{display:grid;place-items:center;min-height:97px;padding:.5rem}
+.clients__logo img{max-width:169px;max-height:97px;width:100%;height:auto;object-fit:contain;filter:grayscale(1);opacity:.8;transition:filter var(--t),opacity var(--t)}
 .clients__logo:hover img{filter:grayscale(0);opacity:1}
 
-@media (max-width:900px){.clients__slide{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
-@media (max-width:520px){.clients__slide{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){.clients__slide{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
+
 
 /* =========================================================
    CTA contato

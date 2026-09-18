@@ -158,49 +158,62 @@
 
   /* ---------------------------------------------------------
      PORTA EXPLODIDA — scrollytelling
-     As peças nascem montadas e se afastam conforme o scroll;
-     as chamadas aparecem em sequência.
+     As peças nascem agrupadas sobre a porta e se afastam com o scroll;
+     as chamadas entram em seguida.
+
+     data-dx/data-dy são o deslocamento DE PARTIDA da peça, medido a partir da
+     posição final: apontam para a porta montada, de onde a peça se afasta.
+     dx está em % da largura do container e dy em % da ALTURA — a cena é 2,2×
+     mais larga que alta, e um mesmo percentual nos dois eixos jogaria as peças
+     para fora pelo topo. Animamos a <img> interna: o wrapper carrega o
+     translate(-50%,-50%) do CSS, que o GSAP sobrescreveria.
      --------------------------------------------------------- */
-  var parts  = $$('#parts .part');
-  var labels = $$('#labels .part-label');
+  var diagrama = $('#portaDiagrama');
+  var pecas = $$('.porta__peca', diagrama || document);
+  var chamadas = $$('.porta__label', diagrama || document);
 
-  function buildExploded(pin) {
-    var tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#explodedStage',
-        start: pin ? 'center center' : 'top 75%',
-        end: pin ? '+=1100' : 'bottom 60%',
-        scrub: 0.8,
-        pin: pin,
-        pinSpacing: pin,
-        anticipatePin: pin ? 1 : 0
-      }
-    });
+  if (hasGSAP && diagrama && pecas.length && !reduceMotion) {
+    gsap.matchMedia().add('(min-width: 901px)', function () {
+      var largura = function () { return diagrama.offsetWidth || 1; };
+      var altura  = function () { return diagrama.offsetHeight || 1; };
 
-    parts.forEach(function (part, i) {
-      var dx = parseFloat(part.getAttribute('data-dx')) || 0;
-      var dy = parseFloat(part.getAttribute('data-dy')) || 0;
-      tl.fromTo(part,
-        { x: -dx, y: -dy, opacity: dx || dy ? 0.55 : 1 },
-        { x: 0, y: 0, opacity: 1, ease: 'power2.out', duration: 1 },
-        i * 0.08
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#explodedStage',
+          start: 'center center',
+          end: '+=1200',
+          scrub: 0.8,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true   // recalcula os deslocamentos ao redimensionar
+        }
+      });
+
+      pecas.forEach(function (peca, i) {
+        var img = $('img', peca);
+        var dx = parseFloat(peca.getAttribute('data-dx')) || 0;
+        var dy = parseFloat(peca.getAttribute('data-dy')) || 0;
+        var parada = dx === 0 && dy === 0;   // a folha da porta é a âncora
+
+        tl.fromTo(img,
+          {
+            x: function () { return (dx / 100) * largura(); },
+            y: function () { return (dy / 100) * altura(); },
+            opacity: parada ? 1 : 0.35,
+            scale: parada ? 1 : 0.94
+          },
+          { x: 0, y: 0, opacity: 1, scale: 1, ease: 'power2.out', duration: 1 },
+          i * 0.07
+        );
+      });
+
+      tl.fromTo(chamadas,
+        { opacity: 0, x: function (i, el) { return el.classList.contains('porta__label--esq') ? 20 : -20; } },
+        { opacity: 1, x: 0, ease: 'power2.out', duration: 0.5, stagger: 0.1 },
+        0.6
       );
     });
-
-    tl.fromTo(labels,
-      { opacity: 0, x: function (i, el) { return el.getAttribute('data-side') === 'left' ? 24 : -24; } },
-      { opacity: 1, x: 0, ease: 'power2.out', duration: 0.6, stagger: 0.12 },
-      0.55
-    );
-
-    return tl;
-  }
-
-  if (hasGSAP && parts.length && !reduceMotion) {
-    var mm = gsap.matchMedia();
-    // Só fixa a cena onde há altura sobrando; no mobile a animação roda sem pin.
-    mm.add('(min-width: 901px) and (min-height: 700px)', function () { buildExploded(true); });
-    mm.add('(max-width: 900px), (max-height: 699px)',    function () { buildExploded(false); });
   }
 
   /* ---------------------------------------------------------

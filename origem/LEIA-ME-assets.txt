@@ -1,0 +1,33 @@
+ASSETS — APOIO PORTA CORTA FOGO
+
+Imagens principais
+
+01-hero-desktop.png
+Hero horizontal para computadores (1672 × 941 px).
+
+02-hero-mobile.png
+Hero vertical próprio para celulares (1024 × 1536 px).
+
+03-porta-instalada.png
+Foto da porta corta-fogo instalada para seções de serviço ou produto (1448 × 1086 px).
+
+04-porta-cta-detalhe.png
+Imagem panorâmica escura para a chamada de contato/orçamento (2048 × 768 px).
+
+05-porta-explodida-completa.png
+Composição técnica completa da porta e seus acessórios, com fundo transparente (1536 × 1024 px).
+
+Pasta componentes
+
+Contém os seis elementos em PNG transparente e separados para montar a animação de rolagem:
+
+01-folha-da-porta.png
+02-batente.png
+03-mola-aerea.png
+04-dobradica.png
+05-fechadura.png
+06-barra-antipanico.png
+
+Nota para implementação
+
+Use <picture> para alternar entre os dois heros conforme o tamanho da tela. Preserve os PNGs transparentes dos componentes como arquivos separados. Para produção, Claude pode gerar versões WebP/AVIF das fotografias sem apagar estes PNGs originais.
