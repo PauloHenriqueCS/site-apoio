@@ -563,7 +563,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 }
 
 /* =========================================================
-   HERO C — projeto técnico desenhado → porta real (animação automática, 1 s após o carregamento)
+   HERO C — projeto técnico desenhado → porta real (animação automática ao carregar)
    Estrutura: .hero--c (100svh - cabeçalho) > .hero__sticky (bloco da cena; o nome ficou da
    versão presa ao scroll) > .hero__media (cena) + .hero__inner (texto, inalterado).
    Cena: caixa 2:3 (canvas 1024×1536) à direita no desktop, embaixo do texto no celular.
