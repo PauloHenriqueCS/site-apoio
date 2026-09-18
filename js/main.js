@@ -153,7 +153,7 @@
         scrollTrigger: {
           trigger: alvo,
           start: mobile ? 'top 100%' : 'top 95%',
-          end: function () { return mobile ? 'center 58%' : (pin ? 'top ' + topo() : 'top 40%'); },
+          end: function () { return mobile ? 'top 65%' : (pin ? 'top ' + topo() : 'top 40%'); },
           scrub: 0.6,
           invalidateOnRefresh: true
         }
@@ -175,7 +175,7 @@
       // brevemente enquanto elas entram; no celular seguem a etapa 1.
       var tl = gsap.timeline({
         scrollTrigger: mobile ? {
-          trigger: alvo, start: 'center 58%', end: 'center 30%', scrub: 0.6, invalidateOnRefresh: true
+          trigger: alvo, start: 'top 65%', end: 'top 45%', scrub: 0.6, invalidateOnRefresh: true   // completo antes de o diagrama passar pelo centro
         } : {
           trigger: alvo,
           start: function () { return 'top ' + topo(); },
