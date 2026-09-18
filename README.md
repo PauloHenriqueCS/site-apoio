@@ -63,30 +63,50 @@ pastas caso venham junto, mas o ideal é não enviá-las (só `origem/` tem 15 M
 no host: redirecionamento `http → https` e `www → sem www` (ou o inverso; o canonical usa
 `https://apoiocortafogo.com/` sem www), e a página `404.html` como resposta de "não encontrado".
 
-## Medição (preparado, sem nada instalado)
+## Medição
 
-`js/tracking.js` expõe `window.apoioTrack(nome, dados)`. Ele empilha o evento em
-`window.dataLayer` (a convenção que o Google Tag Manager e o GA4 leem) e dispara um
-`CustomEvent` `apoio:track`. **Nenhuma ferramenta está instalada**: o `dataLayer` é só um
-array na página até o GTM/GA4 entrar.
+**Google Tag Manager `GTM-K8R63HL`** é a única tag no código, instalada pelo snippet oficial
+no `<head>` (após o `consent default`) e o `<noscript>` logo após `<body>` — em `index.html` e
+no `head()`/template de `tools/gerar-blog.mjs` (que gera blog, artigos e 404). GA4
+(`G-QSJY2H8W7Z`) e Google Ads (`AW-1001597529`) **não** estão no código: são configurados
+dentro do GTM, lendo o `dataLayer`. Não há gtag.js direto, pixel ou outro GTM.
 
-| Evento | Quando dispara |
-|---|---|
-| `whatsapp_click` | clique em qualquer link `wa.me` (por delegação — inclui o botão flutuante) |
-| `phone_click` | clique em qualquer link `tel:` |
-| `email_click` | clique em qualquer link `mailto:` |
-| `service_view` | um serviço fica ativo na seção de serviços (uma vez por serviço, nunca no carregamento) |
-| `form_submit_whatsapp` | formulário encaminhado ao WhatsApp (modo sem endpoint) |
-| `form_submit_success` | **somente** após resposta 2xx do endpoint do formulário |
-| `form_submit_error` | endpoint respondeu erro ou não respondeu |
+`js/tracking.js` é a camada central: `apoioTrack(nome, dados)` empilha `{ event, ...dados }`
+no `dataLayer`. Componentes só informam eventos de negócio; nenhum conhece IDs ou labels.
 
-Todo evento leva `page_path`, `page_title` e os parâmetros de campanha guardados
+| Evento | Quando | Parâmetros próprios |
+|---|---|---|
+| `whatsapp_click` | clique real em link `wa.me` (por delegação) | `placement`, `link_url` (sem a mensagem) |
+| `phone_click` | clique real em link `tel:` | `placement`, `phone` (número da empresa) |
+| `email_click` | clique real em link `mailto:` | `placement` |
+| `service_view` | um serviço fica ativo na seção de serviços (1× cada, nunca no carregamento) | `service_id`, `service_name`, `origem` |
+| `form_submit_whatsapp` | formulário encaminhado ao WhatsApp (sem endpoint) | `form_name` |
+| `form_submit_success` | **só após resposta 2xx do endpoint**, 1× por submissão | `form_name`, bloco `user_data` |
+| `form_submit_error` | endpoint respondeu erro | `form_name` |
+
+Todo evento leva `page_path`, `page_title` e a atribuição mais recente como chaves planas
 (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `gbraid`,
-`wbraid`). Eles são capturados da URL no primeiro acesso, guardados por 90 dias no
-`localStorage` (primeiro toque prevalece) e copiados para os campos ocultos do formulário.
+`wbraid`). `placement` vem do atributo `data-placement` do link ou de um ancestral
+(`hero`, `contact`, `floating_button`, `post_cta`), nunca do texto do botão.
 
-Para ligar o GTM depois: inserir o snippet oficial no `<head>` de `index.html` e no
-`head()` de `tools/gerar-blog.mjs` — nada mais muda.
+**Atribuição**: parâmetros de campanha da URL ficam no `localStorage` (`apoio_atribuicao`,
+90 dias) em dois blocos — `first` (primeira entrada, nunca sobrescrito) e `latest`
+(atualizado quando a URL trouxer parâmetro novo). Só campanha; nunca nome, e-mail ou
+mensagem. O formulário envia `latest` em campos ocultos individuais e `first` em
+`attribution_first` (JSON).
+
+**Enhanced Conversions**: no `form_submit_success` o evento leva um bloco isolado
+`user_data = { email, address: { first_name, last_name } }` (e-mail em minúsculas); o push
+seguinte zera `user_data` para nada ficar disponível a outros eventos. Não vai para GA4 como
+parâmetro comum, não vai para storage nem para o console. O GTM lê esse bloco na tag de
+conversão do formulário e faz o hashing.
+
+**Consent Mode v2**: o `consent default` está no `<head>` com tudo `granted` — não existe
+banner. Um banner futuro chama `window.apoioConsent({ ad_storage: 'granted', ... })` e o
+padrão passa a `denied`. Ver "Pendências".
+
+**Depuração**: em `localhost` ou com `localStorage.apoio_debug = "1"`, cada evento sai no
+console como `[Analytics] nome {...}`, sem o bloco `user_data`. Em produção, nada é logado.
 
 ## Formulário
 
@@ -96,7 +116,8 @@ Dois modos, decididos pelo atributo `data-endpoint` do `<form>`:
   e-mail, assunto, mensagem). Não é confirmação de envio, então `form_submit_success`
   não dispara — dispara `form_submit_whatsapp`.
 - **Com URL**: `POST` com `FormData` (campos + parâmetros de campanha). Sucesso só com
-  resposta 2xx; erro mostra mensagem com o WhatsApp como alternativa.
+  resposta 2xx; erro mostra mensagem com o WhatsApp como alternativa. Uma submissão por
+  vez (`data-enviando`): três cliques rápidos geram um envio e uma conversão.
 
 Já existem validação em português, `aria-invalid`, mensagens por campo e um campo
 honeypot anti-spam. Não há backend neste repositório: a escolha do serviço (formulário

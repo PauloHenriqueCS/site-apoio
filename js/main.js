@@ -340,7 +340,7 @@
           'Assunto: ' + form.elements.assunto.value.trim() +
           (form.elements.mensagem.value.trim() ? '\nMensagem: ' + form.elements.mensagem.value.trim() : '');
         var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
-        track('form_submit_whatsapp', { assunto: form.elements.assunto.value.trim().slice(0, 80) });
+        track('form_submit_whatsapp', { form_name: 'orcamento' });
         // sem a feature 'noopener' de propósito: com ela o navegador devolve null mesmo
         // quando abre a aba, e não dá para saber se o popup foi bloqueado.
         var aberto = window.open(url, '_blank');
@@ -352,20 +352,29 @@
         return;
       }
 
+      if (form.dataset.enviando === '1') return;          // uma submissão por vez: nunca duas conversões
+      form.dataset.enviando = '1';
       if (botao) { botao.disabled = true; botao.setAttribute('aria-busy', 'true'); }
+      // dados para Enhanced Conversions, lidos ANTES do reset e entregues à camada
+      // de medição em bloco isolado — nunca como parâmetro comum do evento
+      var nomeCompleto = form.elements.nome.value.trim().split(/\s+/);
+      var userData = {
+        email: form.elements.email.value.trim().toLowerCase(),
+        address: { first_name: nomeCompleto[0] || '', last_name: nomeCompleto.slice(1).join(' ') }
+      };
       fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
         .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r; })
         .then(function () {
-          track('form_submit_success', { assunto: form.elements.assunto.value.trim().slice(0, 80) });
+          track('form_submit_success', { form_name: 'orcamento' }, { user_data: userData });
           showStatus('ok', 'Solicitação recebida! Nossa equipe entra em contato em breve.');
           form.reset();
           Object.keys(rules).forEach(function (name) { var f = form.elements[name]; if (f) f.removeAttribute('aria-invalid'); });
         })
         .catch(function () {
-          track('form_submit_error', {});
+          track('form_submit_error', { form_name: 'orcamento' });
           showStatus('error', 'Não foi possível enviar agora. Tente de novo ou fale conosco pelo WhatsApp: (11) 99196-1322.');
         })
-        .finally(function () { if (botao) { botao.disabled = false; botao.removeAttribute('aria-busy'); } });
+        .finally(function () { form.dataset.enviando = ''; if (botao) { botao.disabled = false; botao.removeAttribute('aria-busy'); } });
     });
   }
 

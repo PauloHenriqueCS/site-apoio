@@ -69,7 +69,7 @@ const footer = () => `<footer class="footer rail">
   </div>
 </footer>
 
-<a class="wa-float" id="waFloat" href="https://wa.me/5511991961322?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento%20para%20portas%20corta-fogo." target="_blank" rel="noopener">
+<a class="wa-float" id="waFloat" data-placement="floating_button" aria-label="Solicitar orçamento pelo WhatsApp" href="https://wa.me/5511991961322?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento%20para%20portas%20corta-fogo." target="_blank" rel="noopener">
   ${WA}
   <span>Solicitar orçamento</span>
 </a>
@@ -82,6 +82,22 @@ const head = ({ titulo, descricao, url, tipo, jsonld, extra = '', robots }) => `
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Consent Mode v2: padrão antes do GTM. Sem banner hoje, tudo "granted";
+     um banner futuro chama window.apoioConsent({...}) para atualizar. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  'ad_storage': 'granted', 'ad_user_data': 'granted', 'ad_personalization': 'granted', 'analytics_storage': 'granted'
+});
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K8R63HL');</script>
+<!-- End Google Tag Manager -->
 <title>${esc(titulo)}</title>
 <meta name="description" content="${esc(descricao)}">
 <link rel="canonical" href="${url}">
@@ -113,6 +129,9 @@ ${JSON.stringify(jsonld, null, 1)}
 </script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8R63HL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <a class="skip-link" href="#main">Pular para o conteúdo</a>
 `;
 
@@ -219,7 +238,7 @@ ${corpo(a)}
         <p>Nossa equipe realiza avaliação técnica, manutenção e restauração.</p>
         <a class="btn btn--primary btn--sm" href="/#orcamento">Solicitar avaliação ${ARROW}</a>
       </div>
-      <a class="post-cta__phone" href="tel:+5511991961322">${PHONE} (11) 99196-1322</a>
+      <a class="post-cta__phone" data-placement="post_cta" href="tel:+5511991961322">${PHONE} (11) 99196-1322</a>
     </div>
   </section>
 </main>
