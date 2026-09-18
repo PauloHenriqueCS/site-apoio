@@ -52,6 +52,19 @@ const og = await sharp(src('01-hero-desktop.png'))
   .toFile(out('og-apoio-porta-corta-fogo.jpg'));
 log('og-apoio-porta-corta-fogo.jpg', og);
 
+console.log('\nHero C (scrollytelling)');
+/* Camadas separadas por tools/separar-hero-c.py em origem/hero-c/derivados/ (canvas 1024×1536).
+   1024 para desktop, 768 para celular; a porta recortada no próprio tamanho. */
+async function camada(input, name, widths) {
+  for (const w of widths) {
+    const info = await sharp(src(input)).resize({ width: w, withoutEnlargement: true }).webp({ quality: 84, alphaQuality: 80 }).toFile(out(`${name}${w === widths[0] ? '' : '@' + w}.webp`));
+    log(`${name}${w === widths[0] ? '' : '@' + w}.webp`, info);
+  }
+}
+await camada('hero-c/derivados/hero-bg.png',        'hero-c/fundo',    [1024, 768]);
+await camada('hero-c/derivados/hero-blueprint.png', 'hero-c/projeto',  [1024, 768]);
+await camada('hero-c/derivados/hero-door.png',      'hero-c/porta',    [687, 480]);
+
 console.log('\nDiagrama da porta');
 /* Camadas de origem/componentes-v2/: todas no MESMO canvas (1784×882), já na
    perspectiva e escala finais. Recortamos a moldura transparente de cada uma

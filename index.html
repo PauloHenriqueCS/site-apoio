@@ -58,12 +58,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/figtree-latin-500-normal.woff2" crossorigin>
 
 <link rel="stylesheet" href="/css/styles.css">
-<!-- imagesrcset/imagesizes iguais aos do <picture>: sem isso o preload escolhe
-     uma largura e o srcset outra, e o hero é baixado duas vezes. -->
-<link rel="preload" as="image" type="image/webp" media="(min-width:761px)" fetchpriority="high"
-      imagesrcset="/assets/img/hero-desktop@1200.webp 1200w, /assets/img/hero-desktop.webp 1672w" imagesizes="100vw">
-<link rel="preload" as="image" type="image/webp" media="(max-width:760px)" fetchpriority="high"
-      imagesrcset="/assets/img/hero-mobile@768.webp 768w, /assets/img/hero-mobile.webp 1024w" imagesizes="100vw">
+<!-- hero C: o fundo é a primeira camada visível; o projeto entra logo com o scroll -->
+<link rel="preload" as="image" type="image/webp" media="(min-width:761px)" fetchpriority="high" href="/assets/img/hero-c/fundo.webp">
+<link rel="preload" as="image" type="image/webp" media="(max-width:760px)" fetchpriority="high" href="/assets/img/hero-c/fundo@768.webp">
+<link rel="preload" as="image" type="image/webp" href="/assets/img/hero-c/projeto.webp">
 
 <script>document.documentElement.classList.remove('no-js');</script>
 
@@ -166,33 +164,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero rail" aria-labelledby="hero-title">
-    <div class="hero__media">
-      <picture>
-        <source media="(max-width:760px)" type="image/webp" srcset="/assets/img/hero-mobile@768.webp 768w, /assets/img/hero-mobile.webp 1024w" sizes="100vw">
-        <source media="(max-width:760px)" type="image/jpeg" srcset="/assets/img/hero-mobile@768.jpg 768w, /assets/img/hero-mobile.jpg 1024w" sizes="100vw">
-        <source type="image/webp" srcset="/assets/img/hero-desktop@1200.webp 1200w, /assets/img/hero-desktop.webp 1672w" sizes="100vw">
-        <img src="/assets/img/hero-desktop.jpg" srcset="/assets/img/hero-desktop@1200.jpg 1200w, /assets/img/hero-desktop.jpg 1672w" sizes="100vw"
-             alt="Técnico da Apoio ajustando a barra antipânico de uma porta corta-fogo em corredor corporativo"
-             width="1672" height="941" fetchpriority="high" decoding="async">
-      </picture>
-    </div>
-
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <p class="eyebrow eyebrow--light">Instalação, manutenção e restauração</p>
-        <h1 id="hero-title" class="h-display">Instalação e manutenção de <span class="accent">portas corta-fogo.</span></h1>
-        <p class="lead lead--light">Atendimento para condomínios, empresas, indústrias e estabelecimentos comerciais em São Paulo e região.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#orcamento">Solicitar avaliação <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <div class="hero__phones" data-placement="hero">
-            <a class="hero__phone" href="tel:+551149631153">(11) 4963-1153</a>
-            <a class="hero__phone" href="tel:+5511991961322">(11) 99196-1322</a>
+  <!-- ============ HERO (versão C: projeto técnico desenhado com o scroll → porta real) ============
+       Camadas em assets/img/hero-c/ (ver assets/img/LEIA-ME.md). A timeline vive em js/main.js (FASES_HERO).
+       Sem JS ou com prefers-reduced-motion, o CSS mostra o estado final (porta + projeto residual + chamadas). -->
+  <section class="hero hero--c" id="hero" aria-labelledby="hero-title">
+    <div class="hero__sticky rail">
+      <div class="hero__media" aria-hidden="true">
+        <div class="hero__floor"></div>
+        <div class="hero__scene">
+          <img class="hero__layer hero__bg" src="/assets/img/hero-c/fundo.webp" srcset="/assets/img/hero-c/fundo@768.webp 768w, /assets/img/hero-c/fundo.webp 1024w" sizes="(max-width:760px) 120vw, 80vh" width="1024" height="1536" alt="" fetchpriority="high" decoding="async">
+          <!-- projeto técnico: a mesma imagem 4 vezes, cada cópia recortada (clip-path) numa região e
+               "traçada" com um wipe na direção das linhas. Regiões em % do canvas 1024×1536. -->
+          <div class="hero__bp">
+            <img class="hero__layer" data-fase="cotas"       data-clip-from="inset(13% 62.9% 77.9% 37.1%)" data-clip-to="inset(13% 0% 77.9% 37.1%)"    src="/assets/img/hero-c/projeto.webp" width="1024" height="1536" alt="" decoding="async">
+            <img class="hero__layer" data-fase="estrutura"   data-clip-from="inset(22.1% 11.6% 77.9% 44.4%)" data-clip-to="inset(22.1% 11.6% 20.2% 44.4%)" src="/assets/img/hero-c/projeto.webp" width="1024" height="1536" alt="" decoding="async">
+            <img class="hero__layer" data-fase="secundarias" data-clip-from="inset(22.1% 55.6% 0% 44.4%)"   data-clip-to="inset(22.1% 55.6% 0% 0%)"      src="/assets/img/hero-c/projeto.webp" width="1024" height="1536" alt="" decoding="async">
+            <img class="hero__layer" data-fase="detalhe"     data-clip-from="inset(22.1% 0% 77.9% 88.4%)"   data-clip-to="inset(22.1% 0% 19.3% 88.4%)"   src="/assets/img/hero-c/projeto.webp" width="1024" height="1536" alt="" decoding="async">
+          </div>
+          <!-- porta real, encaixada na abertura do projeto (x 46%, y 24.3%, largura 40.9% do canvas) -->
+          <div class="hero__door">
+            <img src="/assets/img/hero-c/porta.webp" srcset="/assets/img/hero-c/porta@480.webp 480w, /assets/img/hero-c/porta.webp 687w" sizes="(max-width:760px) 50vw, 32vh" width="687" height="1379" alt="" decoding="async">
+          </div>
+          <!-- chamadas técnicas: pontos, linhas (traço animado) e rótulos, no mesmo sistema de coordenadas -->
+          <div class="hero__labels">
+            <svg class="hero__leaders" viewBox="0 0 1024 1536" preserveAspectRatio="none">
+              <polyline class="hero__leader" pathLength="1" points="620,387 584,335 574,335"/>
+              <polyline class="hero__leader" pathLength="1" points="511,735 470,684 430,684"/>
+              <polyline class="hero__leader" pathLength="1" points="541,857 485,912 430,912"/>
+              <g class="hero__fuga">
+                <path class="hero__fuga-arc" d="M770 1045 Q 665 1128 566 1058"/>
+                <path class="hero__fuga-tip" d="M556 1050 l24 -4 l-8 22 z"/>
+              </g>
+            </svg>
+            <span class="hero__dot" style="--x:60.6%;--y:25.2%"></span>
+            <span class="hero__dot" style="--x:49.9%;--y:47.9%"></span>
+            <span class="hero__dot" style="--x:52.8%;--y:55.8%"></span>
+            <span class="hero__label hero__label--l" style="--x:55.6%;--y:21.8%">Mola aérea</span>
+            <span class="hero__label hero__label--l" style="--x:41.4%;--y:44.5%">Folha P90</span>
+            <span class="hero__label hero__label--l" style="--x:41.4%;--y:59.4%">Barra antipânico</span>
+            <span class="hero__label hero__label--c hero__label--fuga" style="--x:65%;--y:75%">Sentido de fuga</span>
+            <span class="hero__detalhe" style="--x:63%;--y:16.4%">Detalhe construtivo<br>Porta corta-fogo</span>
           </div>
         </div>
       </div>
-      <p class="hero__scroll"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Role para conhecer</p>
+
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow eyebrow--light">Instalação, manutenção e restauração</p>
+          <h1 id="hero-title" class="h-display">Instalação e manutenção de <span class="accent">portas corta-fogo.</span></h1>
+          <p class="lead lead--light">Atendimento para condomínios, empresas, indústrias e estabelecimentos comerciais em São Paulo e região.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#orcamento">Solicitar avaliação <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11m0 0L9.5 4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <p class="hero__scroll"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Role para conhecer</p>
+      </div>
     </div>
   </section>
 

@@ -283,6 +283,84 @@
   }
 
   /* ---------------------------------------------------------
+     Hero C — scrollytelling ligado ao scroll (GSAP + ScrollTrigger, scrub).
+     A seção .hero--c é alta (CSS --hero-dur); o .hero__sticky gruda enquanto
+     ela passa e o progresso 0→1 desse trecho comanda uma timeline única.
+
+     FASES_HERO: [início, duração] em fração do scroll (0 = topo, 1 = fim).
+     Para acelerar/atrasar a animação toda, mude --hero-dur no CSS (mais telas
+     de scroll = mais lento). Para mexer numa etapa, mude os números abaixo.
+     As regiões do projeto (o que cada cópia "desenha") estão no HTML, em
+     data-clip-from/data-clip-to.
+     --------------------------------------------------------- */
+  var FASES_HERO = {
+    cotas:       [0.10, 0.08],   // cotas e linhas de referência do topo (esquerda → direita)
+    estrutura:   [0.14, 0.16],   // abertura da porta: linhas principais (cima → baixo)
+    secundarias: [0.24, 0.14],   // arco de giro, tracejados à esquerda (da porta para fora)
+    detalhe:     [0.28, 0.16],   // corte construtivo à direita (cima → baixo)
+                                 // 0.44–0.52: pausa com o projeto completo
+    porta:       [0.52, 0.26],   // porta real surge de baixo para cima
+    residual:    [0.60, 0.20],   // projeto cai para 35% de opacidade
+    pontos:      [0.90, 0.04],   // chamadas: pontos laranja
+    linhas:      [0.92, 0.05],   // ... linhas traçadas
+    textos:      [0.94, 0.05],   // ... rótulos
+    fuga:        [0.96, 0.04]    // ... "Sentido de fuga" por último
+  };
+  var heroC = $('.hero--c');
+  if (heroC) {
+    if (!hasGSAP || reduceMotion) {
+      heroC.classList.add('hero--static');          // estado final direto, sem scroll longo
+    } else {
+      heroC.classList.add('js-hero-c');
+      var bpImgs   = $$('.hero__bp img', heroC);
+      var bpWrap   = $('.hero__bp', heroC);
+      var porta    = $('.hero__door', heroC);
+      var pontos   = $$('.hero__dot', heroC);
+      var linhas   = $$('.hero__leader', heroC);
+      var rotulos  = $$('.hero__label:not(.hero__label--fuga), .hero__detalhe', heroC);
+      var fugaG    = $('.hero__fuga', heroC);
+      var fugaTxt  = $('.hero__label--fuga', heroC);
+      var F = FASES_HERO;
+
+      var tlHero = gsap.timeline({
+        defaults: { ease: 'none', immediateRender: true },
+        scrollTrigger: {
+          trigger: heroC,
+          start: function () { return 'top ' + headerH(); },
+          end: 'bottom bottom',
+          scrub: 0.4,
+          invalidateOnRefresh: true
+        }
+      });
+      // 1) projeto sendo traçado: cada cópia revela sua região na direção das linhas
+      bpImgs.forEach(function (img) {
+        var f = F[img.getAttribute('data-fase')] || [0.1, 0.1];
+        tlHero.fromTo(img,
+          { clipPath: img.getAttribute('data-clip-from'), opacity: 1 },
+          { clipPath: img.getAttribute('data-clip-to'), duration: f[1] }, f[0]);
+      });
+      // 2) porta real: de baixo para cima, ganhando opacidade e assentando
+      tlHero.fromTo(porta, { opacity: 0 }, { opacity: 1, duration: F.porta[1] * 0.55, ease: 'power1.out' }, F.porta[0]);
+      tlHero.fromTo(porta,
+        { clipPath: 'inset(100% 0% 0% 0%)', scale: 0.985, y: 12, transformOrigin: '50% 100%' },
+        { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, y: 0, duration: F.porta[1], ease: 'power1.inOut' }, F.porta[0]);
+      // 3) projeto vira referência residual (35%), mas continua ao redor
+      tlHero.fromTo(bpWrap, { opacity: 1 }, { opacity: 0.35, duration: F.residual[1], ease: 'power1.inOut' }, F.residual[0]);
+      // 4) chamadas: pontos → linhas traçadas → rótulos → sentido de fuga
+      tlHero.fromTo(pontos, { opacity: 0, scale: 0.4, transformOrigin: '50% 50%' },
+        { opacity: 1, scale: 1, duration: F.pontos[1], stagger: F.pontos[1] * 0.3, ease: 'back.out(2)' }, F.pontos[0]);
+      tlHero.fromTo(linhas, { opacity: 1, strokeDashoffset: 1 },
+        { strokeDashoffset: 0, duration: F.linhas[1], stagger: F.linhas[1] * 0.25 }, F.linhas[0]);
+      tlHero.fromTo(rotulos, { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: F.textos[1], stagger: F.textos[1] * 0.2, ease: 'power2.out' }, F.textos[0]);
+      tlHero.fromTo(fugaG, { opacity: 1, clipPath: 'inset(0% 0% 0% 100%)' },
+        { clipPath: 'inset(0% 0% 0% 0%)', duration: F.fuga[1] }, F.fuga[0]);
+      tlHero.fromTo(fugaTxt, { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: F.fuga[1] * 0.8, ease: 'power2.out' }, F.fuga[0] + F.fuga[1] * 0.3);
+    }
+  }
+
+  /* ---------------------------------------------------------
      Formulário — validação em português, sem dependências
      --------------------------------------------------------- */
   var form = $('#quoteForm');

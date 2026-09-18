@@ -52,6 +52,28 @@ Estão em 169×97, o tamanho publicado no site antigo; o processamento não ampl
 esticar esses arquivos só deixaria o resultado borrado. Se conseguir versões maiores ou
 vetoriais com os clientes, elas entram no lugar sem nenhuma mudança de código.
 
+## Hero C — `hero-c/` (scrollytelling)
+
+Camadas do hero animado com o scroll, todas no mesmo canvas de 1024×1536:
+
+| Arquivo | Origem | Uso |
+|---|---|---|
+| `fundo.webp` (+`@768`) | `origem/hero-c/derivados/hero-bg.png` | parede + piso, camada base |
+| `projeto.webp` | `origem/hero-c/derivados/hero-blueprint.png` | só as linhas do desenho técnico, com alpha; é "traçado" em 4 regiões |
+| `porta.webp` (+`@480`) | `origem/hero-c/derivados/hero-door.png` | porta real recortada no seu bbox, encaixada na abertura do projeto |
+
+Os três PNGs enviados (`origem/hero-c/01…03`) **não compartilham o mesmo referencial**: a
+porta ocupava 66% do canvas, a abertura desenhada 42%, e as chamadas apontavam para um
+terceiro lugar. Por isso `tools/separar-hero-c.py` separa as linhas do fundo, recorta a
+porta, e o HTML encaixa a porta na abertura (x 46%, y 24,3%, largura 40,9% do canvas). As
+chamadas (pontos, linhas e rótulos) foram refeitas em HTML/SVG no mesmo sistema de
+coordenadas, porque o PNG de chamadas veio com resíduo branco do projeto e sem o fundo dos
+rótulos. Se um dia vierem `hero-bg.png` e `hero-blueprint.png` já separados, basta
+colocá-los em `derivados/` e rodar `npm run imagens`.
+
+Os heros anteriores continuam disponíveis: A (foto) em `hero-desktop/mobile*` e B (desenho
+com chamadas) em `hero-b-*`.
+
 ## Diagrama da porta — `porta/`
 
 Seis peças em WebP transparente, vindas de `origem/componentes-v2/` (camadas no mesmo

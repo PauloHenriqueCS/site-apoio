@@ -561,3 +561,91 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   [data-reveal]{opacity:1!important;transform:none!important}
   .hero__content>*,.hero__scroll,.hero__media img{animation:none!important}
 }
+
+/* =========================================================
+   HERO C — scrollytelling (projeto técnico → porta real)
+   Estrutura: .hero--c (alta, define a duração do scroll) > .hero__sticky (100svh - cabeçalho,
+   gruda no topo) > .hero__media (cena) + .hero__inner (texto, inalterado).
+   Cena: caixa 2:3 (canvas 1024×1536) à direita no desktop, embaixo do texto no celular.
+   Estado final é o padrão do CSS; o JS aplica os estados iniciais e anima com o scroll.
+   ========================================================= */
+.hero--c{
+  --hero-dur:1.8;                /* quantas telas de scroll a animação ocupa (desktop) */
+  --scene-h:calc((100svh - var(--header-h)) * 1.18);   /* 18% mais alta que a tela: corta o vazio do topo do canvas */
+  height:calc((100svh - var(--header-h)) * (1 + var(--hero-dur)));
+  display:block;overflow:visible;background:#101318;
+}
+.hero--c .hero__sticky{
+  position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));
+  display:flex;overflow:hidden;isolation:isolate;
+}
+.hero--c .hero__sticky.rail::before{top:2rem;bottom:0}
+.hero--c .hero__media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.hero--c .hero__media::after{background:linear-gradient(95deg,rgba(14,18,22,.62) 0%,rgba(14,18,22,.38) 34%,rgba(14,18,22,.08) 58%,rgba(14,18,22,0) 100%)}
+/* piso contínuo atrás da cena (a foto só cobre a caixa da cena) */
+.hero__floor{
+  position:absolute;left:0;right:0;bottom:0;height:calc(var(--scene-h) * .209);
+  background:linear-gradient(180deg,#14171b 0%,#191c21 100%);
+}
+.hero__floor::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.05)}
+.hero__scene{
+  position:absolute;bottom:0;right:10.5%;height:var(--scene-h);aspect-ratio:1024/1536;   /* porta a ~74% da largura */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);mask-image:linear-gradient(90deg,transparent 0,#000 14%);
+}
+.hero__layer,.hero__bp,.hero__door,.hero__labels,.hero__leaders{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero__layer{object-fit:cover;object-position:center}
+.hero__bp{opacity:.35}                            /* estado final: projeto residual atrás da porta */
+.hero__bp img{will-change:clip-path}
+.hero__door{inset:auto;left:46%;top:24.28%;width:40.9%;height:auto;will-change:transform,opacity,clip-path}
+.hero__door img{display:block;width:100%;height:auto}
+.hero__leaders{overflow:visible}
+.hero__leader{fill:none;stroke:var(--brand);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:0}
+.hero__fuga-arc{fill:none;stroke:var(--brand);stroke-width:1.8;vector-effect:non-scaling-stroke;stroke-dasharray:12 9;stroke-linecap:round}
+.hero__fuga-tip{fill:var(--brand)}
+.hero__dot{
+  position:absolute;left:var(--x);top:var(--y);width:.6em;height:.6em;border-radius:50%;background:var(--brand);
+  transform:translate(-50%,-50%);box-shadow:0 0 0 .3em rgba(245,162,30,.18);font-size:clamp(.8rem,1.1vw,1rem);
+}
+.hero__label{
+  position:absolute;top:var(--y);transform:translateY(-50%);white-space:nowrap;
+  font-size:clamp(.72rem,1.02vw,.95rem);font-weight:500;line-height:1.2;color:#fff;
+  padding:.28em .65em;border-radius:.4em;background:rgba(52,58,66,.72);
+}
+.hero__label--r{left:var(--x)}
+.hero__label--l{right:calc(100% - var(--x))}
+.hero__label--c{left:var(--x);transform:translate(-50%,-50%)}
+.hero__detalhe{
+  position:absolute;left:var(--x);top:var(--y);white-space:nowrap;
+  font-size:clamp(.5rem,.66vw,.66rem);font-weight:500;letter-spacing:.08em;text-transform:uppercase;line-height:1.5;color:rgba(255,255,255,.72);
+}
+/* estados iniciais quando o JS vai animar (a classe hero--static desfaz tudo) */
+.js-hero-c .hero__bp{opacity:1}
+.js-hero-c .hero__bp img{opacity:0}
+.js-hero-c .hero__door{opacity:0}
+.js-hero-c .hero__dot,.js-hero-c .hero__label,.js-hero-c .hero__detalhe,.js-hero-c .hero__leader,.js-hero-c .hero__fuga{opacity:0}
+/* fallback: sem GSAP, sem JS ou prefers-reduced-motion → estado final, sem scroll longo */
+.hero--c.hero--static,.no-js .hero--c{height:auto}
+.hero--c.hero--static .hero__sticky,.no-js .hero--c .hero__sticky{position:relative;top:auto}
+.hero--c .hero__inner{position:relative;z-index:1;width:100%;height:100%;padding-block:2rem 4.5rem}
+.hero--c .hero__content{margin-left:1.5rem;max-width:560px}
+.hero--c .h-display{font-size:clamp(2.2rem,4.2vw,3.75rem)}
+@media (min-width:1600px){.hero--c .hero__scene{right:12%}}
+@media (max-width:760px){
+  /* 400px ≈ altura do bloco de texto; a cena ocupa o que sobra, com a porta logo abaixo do botão */
+  .hero--c{--hero-dur:1.4;--scene-h:clamp(440px,calc((100svh - var(--header-h) - 400px) / .61),900px)}
+  .hero--c .hero__sticky{height:max(calc(100svh - var(--header-h)),620px)}   /* telas baixas: o topo do texto sai no fim */
+  .hero--c .hero__media::after{background:linear-gradient(180deg,rgba(14,18,22,.6) 0%,rgba(14,18,22,.3) 34%,rgba(14,18,22,0) 50%)}
+  /* porta centralizada (o centro dela fica a 66.5% da largura do canvas); sobra do piso cortada embaixo */
+  .hero__scene{
+    right:auto;top:auto;left:calc(50% - var(--scene-h) / 1.5 * .665);bottom:calc(var(--scene-h) * -.149);
+    -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent);
+  }
+  .hero__floor{height:calc(var(--scene-h) * .06)}
+  .hero--c .hero__inner{justify-content:flex-start;padding-top:1.5rem;padding-bottom:0}
+  .hero--c .hero__content{margin-left:0;max-width:none}
+  .hero--c .hero__scroll{display:none}
+  .hero__label{font-size:.72rem}
+  .hero__detalhe{font-size:.5rem}
+  .hero__dot{font-size:.7rem}
+}

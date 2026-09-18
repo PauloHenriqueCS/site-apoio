@@ -16,6 +16,30 @@ npm run check      # verificação técnica: h1, title/description, canonical, O
 `npm run check` é o "lint" deste projeto estático — sai com erro se qualquer página
 pública falhar em um dos itens. Rode antes de publicar.
 
+## Hero (scrollytelling)
+
+O hero é uma seção alta (`.hero--c`) com um bloco `position: sticky` de `100svh - cabeçalho`.
+Enquanto ela passa, uma timeline única do GSAP/ScrollTrigger (`scrub`) desenha o projeto
+técnico, materializa a porta e revela as chamadas. Nada roda sozinho: o scroll avança e
+volta a animação.
+
+- **Velocidade**: `--hero-dur` em `css/styles.css` (`.hero--c`), em telas de scroll além da
+  primeira. Desktop 1,8 (seção ≈ 280vh), celular 1,4 (≈ 240vh). Maior = mais lento.
+- **Fases**: objeto `FASES_HERO` em `js/main.js`, cada uma `[início, duração]` em fração de
+  0 a 1 do scroll da seção (cotas, estrutura, secundárias, detalhe, porta, residual,
+  pontos, linhas, textos, fuga).
+- **Regiões do desenho**: `data-clip-from`/`data-clip-to` nas 4 cópias do projeto no
+  `index.html`, em % do canvas 1024×1536.
+- **Desktop**: cena 2:3 à direita, 18% mais alta que a tela (corta o vazio do topo),
+  porta a ~74% da largura; texto à esquerda, sem sobreposição com o CTA.
+- **Celular**: texto no topo, porta centralizada logo abaixo do botão, projeto nas
+  laterais; a cena é dimensionada pelo que sobra de `100svh` (mínimo 440px). Em telas
+  muito baixas (iPhone SE) o bloco gruda com 620px e o topo do texto sai no fim.
+- **Fallback**: sem GSAP, sem JS ou com `prefers-reduced-motion`, a classe `hero--static`
+  (ou `.no-js`) mostra o estado final direto, sem scroll longo.
+- **Performance**: só `transform`, `opacity` e `clip-path` animados; `will-change` apenas
+  nas camadas animadas; sem filtros; imagens WebP (fundo 34 kB, projeto 57 kB, porta 50 kB).
+
 ## Blog
 
 As páginas em `blog/` são **geradas** por `tools/gerar-blog.mjs` a partir de
