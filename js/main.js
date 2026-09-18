@@ -135,21 +135,23 @@
   var dots     = diagrama ? $$('.porta__dot', diagrama) : [];
 
   if (hasGSAP && diagrama && pecas.length && !reduceMotion) {
-    gsap.matchMedia().add('(min-width: 901px)', function () {
+    var montarCena = function (mobile) {
+      var fator = mobile ? 0.5 : 1;          // no celular as peças partem mais perto
       var largura = function () { return diagrama.offsetWidth || 1; };
       var altura  = function () { return diagrama.offsetHeight || 1; };
       var stage   = $('#explodedStage');
       var livre   = function () { return window.innerHeight - headerH(); };
       var cabeSecao    = function () { return stage.offsetHeight <= livre() - 8; };
       var cabeDiagrama = function () { return diagrama.offsetHeight <= livre() - 48; };
-      var alvo = cabeSecao() ? stage : diagrama;
-      var pin  = cabeSecao() || cabeDiagrama();
+      var alvo = !mobile && cabeSecao() ? stage : diagrama;
+      var pin  = !mobile && (cabeSecao() || cabeDiagrama());
 
       var tl = gsap.timeline({
         scrollTrigger: {
           trigger: alvo,
-          start: function () { return pin ? 'top ' + (headerH() + (alvo === stage ? 0 : 24)) : 'top 75%'; },
-          end: function () { return pin ? '+=900' : 'bottom 60%'; },
+          // celular: a cena roda enquanto o diagrama sobe da base da tela até o centro
+          start: function () { return pin ? 'top ' + (headerH() + (alvo === stage ? 0 : 24)) : (mobile ? 'top 92%' : 'top 75%'); },
+          end: function () { return pin ? '+=900' : (mobile ? 'center 45%' : 'bottom 60%'); },
           scrub: 0.8,
           pin: pin,
           pinSpacing: true,
@@ -163,8 +165,8 @@
         var dx = parseFloat(peca.getAttribute('data-dx')) || 0;
         var dy = parseFloat(peca.getAttribute('data-dy')) || 0;
         tl.fromTo(img,
-          { x: function () { return (dx / 100) * largura(); },
-            y: function () { return (dy / 100) * altura(); },
+          { x: function () { return (dx / 100) * largura() * fator; },
+            y: function () { return (dy / 100) * altura() * fator; },
             opacity: dx || dy ? 0.85 : 1 },
           { x: 0, y: 0, opacity: 1, ease: 'power2.inOut', duration: 1 },
           i * 0.04
@@ -176,7 +178,10 @@
         { opacity: 1, x: 0, ease: 'power2.out', duration: 0.45, stagger: 0.07 }, 0.85);
       tl.fromTo(leaders, { opacity: 0 }, { opacity: 1, duration: 0.35, stagger: 0.07 }, 0.95);
       tl.fromTo(dots, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, stagger: 0.07, ease: 'back.out(2)' }, 1.0);
-    });
+    };
+    var mmCena = gsap.matchMedia();
+    mmCena.add('(min-width: 901px)', function () { montarCena(false); });
+    mmCena.add('(max-width: 900px)', function () { montarCena(true); });
   }
 
   /* Reveal on scroll */
