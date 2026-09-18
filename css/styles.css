@@ -563,20 +563,19 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 }
 
 /* =========================================================
-   HERO C — scrollytelling (projeto técnico → porta real)
-   Estrutura: .hero--c (alta, define a duração do scroll) > .hero__sticky (100svh - cabeçalho,
-   gruda no topo) > .hero__media (cena) + .hero__inner (texto, inalterado).
+   HERO C — projeto técnico desenhado → porta real (animação automática, 1 s após o carregamento)
+   Estrutura: .hero--c (100svh - cabeçalho) > .hero__sticky (bloco da cena; o nome ficou da
+   versão presa ao scroll) > .hero__media (cena) + .hero__inner (texto, inalterado).
    Cena: caixa 2:3 (canvas 1024×1536) à direita no desktop, embaixo do texto no celular.
-   Estado final é o padrão do CSS; o JS aplica os estados iniciais e anima com o scroll.
+   Estado final é o padrão do CSS; o JS aplica os estados iniciais e anima no tempo.
    ========================================================= */
 .hero--c{
-  --hero-dur:1.3;                /* quantas telas de scroll a animação ocupa (desktop) */
   --scene-h:calc((100svh - var(--header-h)) * 1.18);   /* 18% mais alta que a tela: corta o vazio do topo do canvas */
-  height:calc((100svh - var(--header-h)) * (1 + var(--hero-dur)));
-  display:block;overflow:visible;background:#101318;
+  height:calc(100svh - var(--header-h));
+  display:block;overflow:hidden;background:#101318;
 }
 .hero--c .hero__sticky{
-  position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));
+  position:relative;height:100%;
   display:flex;overflow:hidden;isolation:isolate;
 }
 .hero--c .hero__sticky.rail::before{top:2rem;bottom:0}
@@ -624,17 +623,15 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .js-hero-c .hero__bp img{opacity:0}
 .js-hero-c .hero__door{opacity:0}
 .js-hero-c .hero__dot,.js-hero-c .hero__label,.js-hero-c .hero__detalhe,.js-hero-c .hero__leader,.js-hero-c .hero__fuga{opacity:0}
-/* fallback: sem GSAP, sem JS ou prefers-reduced-motion → estado final, sem scroll longo */
-.hero--c.hero--static,.no-js .hero--c{height:auto}
-.hero--c.hero--static .hero__sticky,.no-js .hero--c .hero__sticky{position:relative;top:auto}
+/* fallback: sem GSAP, sem JS ou prefers-reduced-motion → o CSS acima já mostra o estado final */
 .hero--c .hero__inner{position:relative;z-index:1;width:100%;height:100%;padding-block:2rem 4.5rem}
 .hero--c .hero__content{margin-left:1.5rem;max-width:560px}
 .hero--c .h-display{font-size:clamp(2.2rem,4.2vw,3.75rem)}
 @media (min-width:1600px){.hero--c .hero__scene{right:12%}}
 @media (max-width:760px){
   /* 425px ≈ bloco de texto + respiro; a cena ocupa o que sobra, com a porta abaixo do botão */
-  .hero--c{--hero-dur:.9;--scene-h:clamp(440px,calc((100svh - var(--header-h) - 425px) / .61),900px)}
-  .hero--c .hero__sticky{height:max(calc(100svh - var(--header-h)),700px)}   /* telas baixas (iPhone SE): bloco maior que a tela; o topo do texto sai no fim */
+  .hero--c{--scene-h:clamp(440px,calc((100svh - var(--header-h) - 425px) / .61),900px)}
+  .hero--c{height:max(calc(100svh - var(--header-h)),700px)}   /* telas baixas (iPhone SE): hero maior que a tela */
   .hero--c .hero__media::after{background:linear-gradient(180deg,rgba(14,18,22,.6) 0%,rgba(14,18,22,.3) 34%,rgba(14,18,22,0) 50%)}
   /* porta centralizada (o centro dela fica a 66.5% da largura do canvas); sobra do piso cortada embaixo */
   .hero__scene{

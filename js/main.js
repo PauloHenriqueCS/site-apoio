@@ -283,16 +283,17 @@
   }
 
   /* ---------------------------------------------------------
-     Hero C — scrollytelling ligado ao scroll (GSAP + ScrollTrigger, scrub).
-     A seção .hero--c é alta (CSS --hero-dur); o .hero__sticky gruda enquanto
-     ela passa e o progresso 0→1 desse trecho comanda uma timeline única.
+     Hero C — projeto técnico desenhado → porta real (GSAP, timeline única).
+     Roda sozinha, ATRASO_HERO segundos depois de a página carregar, e dura
+     DURACAO_HERO segundos no total. Não depende do scroll.
 
-     FASES_HERO: [início, duração] em fração do scroll (0 = topo, 1 = fim).
-     Para acelerar/atrasar a animação toda, mude --hero-dur no CSS (mais telas
-     de scroll = mais lento). Para mexer numa etapa, mude os números abaixo.
-     As regiões do projeto (o que cada cópia "desenha") estão no HTML, em
-     data-clip-from/data-clip-to.
+     FASES_HERO: [início, duração] em fração da duração total (0 → 1).
+     Para deixar tudo mais lento ou rápido, mude DURACAO_HERO. Para mexer numa
+     etapa, mude os números abaixo. As regiões do projeto (o que cada cópia
+     "desenha") estão no HTML, em data-clip-from/data-clip-to.
      --------------------------------------------------------- */
+  var DURACAO_HERO = 10;        // segundos da animação inteira
+  var ATRASO_HERO  = 1;         // segundos depois do carregamento
   var FASES_HERO = {
     cotas:       [0.10, 0.08],   // cotas e linhas de referência do topo (esquerda → direita)
     estrutura:   [0.14, 0.16],   // abertura da porta: linhas principais (cima → baixo)
@@ -324,24 +325,19 @@
       var rotulos  = $$('.hero__label:not(.hero__label--fuga), .hero__detalhe', heroC);
       var fugaG    = $('.hero__fuga', heroC);
       var fugaTxt  = $('.hero__label--fuga', heroC);
-      var F = FASES_HERO;
+      // as frações viram segundos
+      var F = {};
+      Object.keys(FASES_HERO).forEach(function (k) { F[k] = [FASES_HERO[k][0] * DURACAO_HERO, FASES_HERO[k][1] * DURACAO_HERO]; });
 
-      var tlHero = gsap.timeline({
-        defaults: { ease: 'none', immediateRender: true },
-        scrollTrigger: {
-          trigger: heroC,
-          start: function () { return 'top ' + headerH(); },
-          end: 'bottom bottom',
-          scrub: 0.4,
-          invalidateOnRefresh: true
-        }
-      });
+      var tlHero = gsap.timeline({ paused: true, defaults: { ease: 'none', immediateRender: true } });
+      var iniciarHero = function () { gsap.delayedCall(ATRASO_HERO, function () { tlHero.play(); }); };
+      if (document.readyState === 'complete') iniciarHero(); else window.addEventListener('load', iniciarHero, { once: true });
       // 1) projeto sendo traçado: cada cópia revela sua região na direção das linhas
       bpImgs.forEach(function (img) {
         var f = F[img.getAttribute('data-fase')] || [0.1, 0.1];
         tlHero.fromTo(img,
           { clipPath: img.getAttribute('data-clip-from'), opacity: 1 },
-          { clipPath: img.getAttribute('data-clip-to'), duration: f[1] }, f[0]);
+          { clipPath: img.getAttribute('data-clip-to'), duration: f[1], ease: 'power1.inOut' }, f[0]);
       });
       // 2) porta real: de baixo para cima, ganhando opacidade e assentando
       tlHero.fromTo(porta, { opacity: 0 }, { opacity: 1, duration: F.porta[1] * 0.55, ease: 'power1.out' }, F.porta[0]);

@@ -58,7 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/figtree-latin-500-normal.woff2" crossorigin>
 
 <link rel="stylesheet" href="/css/styles.css">
-<!-- hero C: o fundo é a primeira camada visível; o projeto entra logo com o scroll -->
+<!-- hero C: o fundo é a primeira camada visível; o projeto começa a ser traçado 1 s depois do carregamento -->
 <link rel="preload" as="image" type="image/webp" media="(min-width:761px)" fetchpriority="high" href="/assets/img/hero-c/fundo.webp">
 <link rel="preload" as="image" type="image/webp" media="(max-width:760px)" fetchpriority="high" href="/assets/img/hero-c/fundo@768.webp">
 <link rel="preload" as="image" type="image/webp" href="/assets/img/hero-c/projeto.webp">
@@ -164,7 +164,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <main id="main">
 
-  <!-- ============ HERO (versão C: projeto técnico desenhado com o scroll → porta real) ============
+  <!-- ============ HERO (versão C: projeto técnico desenhado → porta real, animação automática) ============
        Camadas em assets/img/hero-c/ (ver assets/img/LEIA-ME.md). A timeline vive em js/main.js (FASES_HERO).
        Sem JS ou com prefers-reduced-motion, o CSS mostra o estado final (porta + projeto residual + chamadas). -->
   <section class="hero hero--c" id="hero" aria-labelledby="hero-title">
