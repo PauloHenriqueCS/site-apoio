@@ -312,6 +312,10 @@
       heroC.classList.add('hero--static');          // estado final direto, sem scroll longo
     } else {
       heroC.classList.add('js-hero-c');
+      // no celular as linhas-guia da esquerda encurtam (rótulos mais perto da porta)
+      if (window.matchMedia('(max-width: 760px)').matches) {
+        $$('.hero__leader[data-points-mobile]', heroC).forEach(function (l) { l.setAttribute('points', l.getAttribute('data-points-mobile')); });
+      }
       var bpImgs   = $$('.hero__bp img', heroC);
       var bpWrap   = $('.hero__bp', heroC);
       var porta    = $('.hero__door', heroC);

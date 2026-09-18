@@ -570,7 +570,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
    Estado final é o padrão do CSS; o JS aplica os estados iniciais e anima com o scroll.
    ========================================================= */
 .hero--c{
-  --hero-dur:1.8;                /* quantas telas de scroll a animação ocupa (desktop) */
+  --hero-dur:1.3;                /* quantas telas de scroll a animação ocupa (desktop) */
   --scene-h:calc((100svh - var(--header-h)) * 1.18);   /* 18% mais alta que a tela: corta o vazio do topo do canvas */
   height:calc((100svh - var(--header-h)) * (1 + var(--hero-dur)));
   display:block;overflow:visible;background:#101318;
@@ -632,20 +632,22 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .hero--c .h-display{font-size:clamp(2.2rem,4.2vw,3.75rem)}
 @media (min-width:1600px){.hero--c .hero__scene{right:12%}}
 @media (max-width:760px){
-  /* 400px ≈ altura do bloco de texto; a cena ocupa o que sobra, com a porta logo abaixo do botão */
-  .hero--c{--hero-dur:1.4;--scene-h:clamp(440px,calc((100svh - var(--header-h) - 400px) / .61),900px)}
-  .hero--c .hero__sticky{height:max(calc(100svh - var(--header-h)),620px)}   /* telas baixas: o topo do texto sai no fim */
+  /* 425px ≈ bloco de texto + respiro; a cena ocupa o que sobra, com a porta abaixo do botão */
+  .hero--c{--hero-dur:.9;--scene-h:clamp(440px,calc((100svh - var(--header-h) - 425px) / .61),900px)}
+  .hero--c .hero__sticky{height:max(calc(100svh - var(--header-h)),700px)}   /* telas baixas (iPhone SE): bloco maior que a tela; o topo do texto sai no fim */
   .hero--c .hero__media::after{background:linear-gradient(180deg,rgba(14,18,22,.6) 0%,rgba(14,18,22,.3) 34%,rgba(14,18,22,0) 50%)}
   /* porta centralizada (o centro dela fica a 66.5% da largura do canvas); sobra do piso cortada embaixo */
   .hero__scene{
     right:auto;top:auto;left:calc(50% - var(--scene-h) / 1.5 * .665);bottom:calc(var(--scene-h) * -.149);
-    -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,#000 96%,transparent);mask-image:linear-gradient(90deg,#000 96%,transparent);   /* corte construtivo à direita inteiro */
   }
   .hero__floor{height:calc(var(--scene-h) * .06)}
   .hero--c .hero__inner{justify-content:flex-start;padding-top:1.5rem;padding-bottom:0}
-  .hero--c .hero__content{margin-left:0;max-width:none}
+  .hero--c .hero__content{max-width:none}          /* mantém a margem em relação ao trilho */
   .hero--c .hero__scroll{display:none}
   .hero__label{font-size:.72rem}
-  .hero__detalhe{font-size:.5rem}
+  /* rótulos da esquerda mais perto da porta e em até duas linhas, para não sair da tela */
+  .hero__label--l{right:calc(100% - var(--xm,var(--x)));white-space:normal;max-width:6.6em;text-align:right}
+  .hero__detalhe{display:none}                       /* ficaria escondido atrás do botão */
   .hero__dot{font-size:.7rem}
 }
