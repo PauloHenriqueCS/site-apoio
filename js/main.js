@@ -116,14 +116,17 @@
 
   /* ---------------------------------------------------------
      PORTA EXPLODIDA — scrollytelling
-     As peças nascem agrupadas sobre a porta montada e se afastam
-     com o scroll; depois entram as chamadas, as linhas e os pontos.
+     As peças nascem um pouco AFASTADAS da composição e se aproximam com
+     o scroll até parar exatamente no arranjo final; então entram as
+     chamadas, as linhas e os pontos.
 
-     data-dx/data-dy: deslocamento DE PARTIDA da peça, a partir da
-     posição final, apontando para a porta montada. dx em % da largura
-     do container, dy em % da ALTURA (a cena é ~2× mais larga que alta).
-     Animamos a <img> interna: o wrapper carrega o translate(-50%,-50%)
-     do CSS, que o GSAP sobrescreveria.
+     data-dx/data-dy: deslocamento DE PARTIDA da peça a partir da posição
+     final (para fora da porta). dx em % da largura do container, dy em %
+     da ALTURA (a cena é ~2× mais larga que alta). Animamos a <img>
+     interna: o wrapper carrega o translate(-50%,-50%) do CSS.
+
+     Fixação: a seção inteira, quando cabe abaixo do cabeçalho; senão só o
+     diagrama — assim a cena nunca "rola solta" em telas baixas.
      --------------------------------------------------------- */
   var diagrama = $('#portaDiagrama');
   var pecas    = diagrama ? $$('.porta__peca', diagrama) : [];
@@ -136,16 +139,19 @@
       var largura = function () { return diagrama.offsetWidth || 1; };
       var altura  = function () { return diagrama.offsetHeight || 1; };
       var stage   = $('#explodedStage');
-      // só fixa a cena quando ela cabe inteira abaixo do cabeçalho
-      var cabe = function () { return stage.offsetHeight <= window.innerHeight - headerH() - 8; };
+      var livre   = function () { return window.innerHeight - headerH(); };
+      var cabeSecao    = function () { return stage.offsetHeight <= livre() - 8; };
+      var cabeDiagrama = function () { return diagrama.offsetHeight <= livre() - 48; };
+      var alvo = cabeSecao() ? stage : diagrama;
+      var pin  = cabeSecao() || cabeDiagrama();
 
       var tl = gsap.timeline({
         scrollTrigger: {
-          trigger: stage,
-          start: function () { return cabe() ? 'top ' + headerH() : 'top 70%'; },
-          end: function () { return cabe() ? '+=1200' : 'bottom 55%'; },
+          trigger: alvo,
+          start: function () { return pin ? 'top ' + (headerH() + (alvo === stage ? 0 : 24)) : 'top 75%'; },
+          end: function () { return pin ? '+=900' : 'bottom 60%'; },
           scrub: 0.8,
-          pin: cabe(),
+          pin: pin,
           pinSpacing: true,
           anticipatePin: 1,
           invalidateOnRefresh: true
@@ -156,22 +162,20 @@
         var img = $('img', peca);
         var dx = parseFloat(peca.getAttribute('data-dx')) || 0;
         var dy = parseFloat(peca.getAttribute('data-dy')) || 0;
-        var ancora = dx === 0 && dy === 0;
         tl.fromTo(img,
           { x: function () { return (dx / 100) * largura(); },
             y: function () { return (dy / 100) * altura(); },
-            opacity: ancora ? 1 : 0.35, scale: ancora ? 1 : 0.94 },
-          { x: 0, y: 0, opacity: 1, scale: 1, ease: 'power2.out', duration: 1 },
-          i * 0.06
+            opacity: dx || dy ? 0.85 : 1 },
+          { x: 0, y: 0, opacity: 1, ease: 'power2.inOut', duration: 1 },
+          i * 0.04
         );
       });
 
-      // chamadas, linhas e pontos chegam quando as peças já assentaram
       tl.fromTo(chamadas,
-        { opacity: 0, x: function (i, el) { return el.classList.contains('porta__label--esq') ? 16 : -16; } },
-        { opacity: 1, x: 0, ease: 'power2.out', duration: 0.5, stagger: 0.08 }, 0.7);
-      tl.fromTo(leaders, { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.08 }, 0.8);
-      tl.fromTo(dots, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, stagger: 0.08, ease: 'back.out(2)' }, 0.85);
+        { opacity: 0, x: function (i, el) { return el.classList.contains('porta__label--esq') ? 14 : -14; } },
+        { opacity: 1, x: 0, ease: 'power2.out', duration: 0.45, stagger: 0.07 }, 0.85);
+      tl.fromTo(leaders, { opacity: 0 }, { opacity: 1, duration: 0.35, stagger: 0.07 }, 0.95);
+      tl.fromTo(dots, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, stagger: 0.07, ease: 'back.out(2)' }, 1.0);
     });
   }
 
