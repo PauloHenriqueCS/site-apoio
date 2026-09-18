@@ -31,6 +31,7 @@ Opcional: `apple-touch-icon.png` (180×180) para o atalho no iOS.
 |---|---|---|
 | Hero (desktop) | `01-hero-desktop.png` | `hero-desktop.webp` + `@1200` |
 | Hero (celular) | `02-hero-mobile.png` | `hero-mobile.webp` + `@768` |
+| Hero variante B (teste, não usada no site) | `09-hero-b-desktop.png`, `10-hero-b-mobile.png` | `hero-b-desktop.webp` + `@1200`, `hero-b-mobile.webp` + `@768` |
 | Serviço 01 — Instalação | `06-servico-instalacao.png` | `servico-01-instalacao.webp` |
 | Serviço 02 — Manutenção (provisório) | `03-porta-instalada.png` | `servico-02-manutencao.webp` |
 | Serviço 03 — Restauração | `07-servico-restauracao.png` | `servico-03-restauracao.webp` |

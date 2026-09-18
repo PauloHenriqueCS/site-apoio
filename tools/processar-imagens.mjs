@@ -41,6 +41,11 @@ await photo(src('01-hero-desktop.png'), 'hero-desktop', 1672, { quality: 76 });
 await photo(src('01-hero-desktop.png'), 'hero-desktop@1200', 1200, { quality: 76 });
 await photo(src('02-hero-mobile.png'), 'hero-mobile', 1024, { quality: 76 });
 await photo(src('02-hero-mobile.png'), 'hero-mobile@768', 768, { quality: 76 });
+/* Hero variante B (teste): desenho técnico com chamadas. Mesmas larguras da A. */
+await photo(src('09-hero-b-desktop.png'), 'hero-b-desktop', 1672, { quality: 76 });
+await photo(src('09-hero-b-desktop.png'), 'hero-b-desktop@1200', 1200, { quality: 76 });
+await photo(src('10-hero-b-mobile.png'), 'hero-b-mobile', 1024, { quality: 76 });
+await photo(src('10-hero-b-mobile.png'), 'hero-b-mobile@768', 768, { quality: 76 });
 
 /* Serviços: retrato 4:5, recortado das fotos horizontais (position = onde está o assunto). */
 await photo(src('06-servico-instalacao.png'),      'servico-01-instalacao', 720, { height: 900, fit: 'cover', position: 'centre' });
