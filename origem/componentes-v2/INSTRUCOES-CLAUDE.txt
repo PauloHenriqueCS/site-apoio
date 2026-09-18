@@ -1,0 +1,18 @@
+CAMADAS CORRIGIDAS — PORTA CORTA-FOGO
+
+Todos os arquivos possuem canvas idêntico de 1784 × 882 px e fundo transparente.
+Não recortar individualmente: sobrepor todos com top: 0, left: 0 e inset: 0.
+
+Camadas:
+1. 01-porta-com-dois-batentes.png — porta e os dois batentes próximos.
+2. 02-barra-vertical-separada.png — barra vertical externa, agora em camada própria.
+3. 03-mola-aerea.png
+4. 04-dobradica.png
+5. 05-fechadura.png
+6. 06-barra-antipanico.png
+
+00-composicao-final.png mostra o encaixe final correto.
+
+Todas as peças foram extraídas da mesma composição-mãe. Portanto, perspectiva,
+escala, iluminação e posição final coincidem exatamente quando as camadas são
+sobrepostas sem redimensionamento individual.

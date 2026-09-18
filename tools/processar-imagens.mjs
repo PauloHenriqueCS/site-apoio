@@ -24,17 +24,6 @@ async function photo(input, name, width, { height, fit = 'cover', position = 'ce
   log(name + '.jpg', await base.clone().jpeg({ quality: quality + 4, mozjpeg: true }).toFile(out(name + '.jpg')));
 }
 
-/* Peça transparente: recorta a moldura vazia e exporta WebP com alpha. */
-async function part(input, name, width) {
-  const trimmed = await sharp(input).trim({ threshold: 6 }).toBuffer();
-  const info = await sharp(trimmed)
-    .resize({ width, withoutEnlargement: true })
-    .webp({ quality: 86, alphaQuality: 100 })
-    .toFile(out(name + '.webp'));
-  log(name + '.webp', info);
-  return info;
-}
-
 console.log('\nFotos');
 /* Hero: duas fotos diferentes, uma por orientação de tela. */
 await photo(src('01-hero-desktop.png'), 'hero-desktop', 1672, { quality: 76 });
@@ -64,24 +53,29 @@ const og = await sharp(src('01-hero-desktop.png'))
 log('og-apoio-porta-corta-fogo.jpg', og);
 
 console.log('\nDiagrama da porta');
+/* Camadas de origem/componentes-v2/: todas no MESMO canvas (1784×882), já na
+   perspectiva e escala finais. Recortamos a moldura transparente de cada uma
+   e guardamos o deslocamento, para o HTML posicionar as peças em % do canvas. */
+const CANVAS = { w: 1784, h: 882 };
 const PECAS = [
-  ['componentes/01-folha-da-porta.png',   'porta/folha',    620],
-  ['componentes/02-batente.png',          'porta/batente',  620],
-  ['componentes/03-mola-aerea.png',       'porta/mola',     520],
-  ['componentes/04-dobradica.png',        'porta/dobradica', 360],
-  ['componentes/05-fechadura.png',        'porta/fechadura', 300],
-  ['componentes/06-barra-antipanico.png', 'porta/barra',    560],
-  // as duas tiras verticais que o mockup chama de "Batente": não vieram como
-  // PNG próprio, foram extraídas da composição completa (05-porta-explodida-completa)
-  ['componentes/07-batente-lateral.png',  'porta/lateral',  160],
+  ['componentes-v2/01-porta-com-dois-batentes.png', 'porta/folha'],
+  ['componentes-v2/02-barra-vertical-separada.png', 'porta/batente'],
+  ['componentes-v2/03-mola-aerea.png',              'porta/mola'],
+  ['componentes-v2/04-dobradica.png',               'porta/dobradica'],
+  ['componentes-v2/05-fechadura.png',               'porta/fechadura'],
+  ['componentes-v2/06-barra-antipanico.png',        'porta/barra'],
 ];
-const medidas = {};
-for (const [file, name, w] of PECAS) {
-  const info = await part(src(file), name, w);
-  medidas[name.split('/')[1]] = { w: info.width, h: info.height };
+const medidas = { canvas: CANVAS };
+for (const [file, name] of PECAS) {
+  const trimmed = await sharp(src(file)).trim({ threshold: 24 }).toBuffer({ resolveWithObject: true });
+  const info = await sharp(trimmed.data).webp({ quality: 86, alphaQuality: 100 }).toFile(out(name + '.webp'));
+  log(name + '.webp', info);
+  medidas[name.split('/')[1]] = {
+    x: -trimmed.info.trimOffsetLeft, y: -trimmed.info.trimOffsetTop, w: info.width, h: info.height,
+  };
 }
 writeFileSync(out('porta/medidas.json'), JSON.stringify(medidas, null, 2) + '\n');
-console.log('  ✓ porta/medidas.json (proporção real de cada peça, já recortada)');
+console.log('  ✓ porta/medidas.json (posição e tamanho de cada peça dentro do canvas)');
 
 console.log('\nLogotipo');
 /* Variante clara: o logo é preto com detalhe laranja e some sobre o hero escuro.

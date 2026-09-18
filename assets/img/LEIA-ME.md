@@ -54,10 +54,13 @@ vetoriais com os clientes, elas entram no lugar sem nenhuma mudança de código.
 
 ## Diagrama da porta — `porta/`
 
-Sete peças em WebP transparente, recortadas dos PNGs de `origem/componentes/`
-(o processamento apara a moldura vazia de cada uma). A sétima, `lateral.webp`, são as
-duas tiras verticais que o mockup chama de "Batente": não vieram como PNG próprio, foram
-extraídas da composição completa (`origem/componentes/07-batente-lateral.png`).
+Seis peças em WebP transparente, vindas de `origem/componentes-v2/` (camadas no mesmo
+canvas de 1784×882, já na perspectiva e escala finais — ver `INSTRUCOES-CLAUDE.txt`).
+O processamento apara a moldura transparente de cada camada e grava em `medidas.json`
+onde ela estava no canvas (`x`, `y`, `w`, `h`). As posições no HTML foram calculadas a
+partir desses números com uma escala única, então as peças mantêm o encaixe da
+composição-mãe (`00-composicao-final.png`). `origem/componentes/` guarda a versão
+anterior das peças, que não é mais usada.
 
 O posicionamento vive no HTML, em variáveis CSS por peça:
 
