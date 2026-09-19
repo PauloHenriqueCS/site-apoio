@@ -205,6 +205,29 @@
   }
 
   /* ---------------------------------------------------------
+     Menu "Produtos" — rolar até a cena montada, não ao topo da seção.
+     A âncora nativa pararia no topo, antes de o scrollytelling revelar
+     os nomes das peças. Aqui rolamos até o diagrama ficar centralizado
+     na tela: nesse ponto a animação já terminou e as chamadas, linhas e
+     pontos estão visíveis. Sem GSAP ou com "reduzir movimento" os rótulos
+     já aparecem por padrão, então deixamos a âncora nativa cuidar do scroll.
+     --------------------------------------------------------- */
+  var alvoProdutos = $('#portaDiagrama');
+  if (alvoProdutos && hasGSAP && !reduceMotion) {
+    $$('a[href="#produtos"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var rect = alvoProdutos.getBoundingClientRect();
+        var destino = window.scrollY + rect.top + rect.height / 2 - window.innerHeight / 2;
+        var limite = Math.max(0, (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight);
+        destino = Math.max(0, Math.min(destino, limite));
+        window.scrollTo({ top: destino, behavior: 'smooth' });
+        if (window.history && history.replaceState) history.replaceState(null, '', '#produtos');
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------
      Revelação ao rolar — sem depender do GSAP, para valer também no blog.
      Irmãos marcados no mesmo pai entram em cascata (--d).
      --------------------------------------------------------- */
