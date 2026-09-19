@@ -50,9 +50,9 @@ const header = () => `<header class="header rail" id="header">
     </a>
     <nav class="nav" id="nav" aria-label="Navegação principal">
       ${NAV('nav__link')}
-      <a class="btn btn--primary btn--sm" href="/#orcamento">Solicitar avaliação ${ARROW_NE}</a>
+      <a class="btn btn--primary btn--sm" href="/#orcamento">Solicitar orçamento ${ARROW_NE}</a>
     </nav>
-    <a class="btn btn--primary btn--sm header__cta" href="/#orcamento">Solicitar avaliação ${ARROW_NE}</a>
+    <a class="btn btn--primary btn--sm header__cta" href="/#orcamento">Solicitar orçamento ${ARROW_NE}</a>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu"><span></span></button>
   </div>
 </header>`;
@@ -236,7 +236,7 @@ ${corpo(a)}
       <div>
         <h2 id="cta-title">Sua porta está fechando como deveria?</h2>
         <p>Nossa equipe realiza avaliação técnica, manutenção e restauração.</p>
-        <a class="btn btn--primary btn--sm" href="/#orcamento">Solicitar avaliação ${ARROW}</a>
+        <a class="btn btn--primary btn--sm" href="/#orcamento">Solicitar orçamento ${ARROW}</a>
       </div>
       <a class="post-cta__phone" data-placement="post_cta" href="tel:+5511991961322">${PHONE} (11) 99196-1322</a>
     </div>
