@@ -6,4 +6,6 @@ dist/
 .idea/
 api/config.php
 api/config.local.php
+/config.php
 apoio-config/
+_tmp-*.mjs

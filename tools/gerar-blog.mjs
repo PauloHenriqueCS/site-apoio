@@ -41,7 +41,8 @@ const NAV = (cls) => `<a class="${cls}" href="/#servicos">Serviços</a>
       <a class="${cls}" href="/#produtos">Produtos</a>
       <a class="${cls}" href="/#empresa">A empresa</a>
       <a class="${cls}" href="/#clientes">Clientes</a>
-      <a class="${cls}" href="/blog/" aria-current="true">Blog</a>`;
+      <a class="${cls}" href="/blog/" aria-current="true">Blog</a>
+      <a class="${cls}" href="/#contato">Contato</a>`;
 
 const header = () => `<header class="header rail" id="header">
   <div class="container header__inner">
@@ -62,10 +63,43 @@ const footer = () => `<footer class="footer rail">
     <a class="logo" href="/" aria-label="${MARCA} — página inicial">
       ${LOGO(true)}
     </a>
-    <nav class="footer__nav" aria-label="Navegação do rodapé">
-      ${NAV('')}
+    <nav class="footer__cols" aria-label="Rodapé">
+      <div class="footer__col">
+        <p class="footer__title">Serviços</p>
+        <ul>
+          <li><a href="/instalacao-de-porta-corta-fogo/">Instalação</a></li>
+          <li><a href="/manutencao-de-porta-corta-fogo/">Manutenção</a></li>
+          <li><a href="/restauracao-de-porta-corta-fogo/">Restauração</a></li>
+          <li><a href="/barra-antipanico/">Barra antipânico</a></li>
+          <li><a href="/produtos/">Produtos</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__title">Atendimento</p>
+        <ul>
+          <li><a href="/manutencao-porta-corta-fogo-centro-sp/">Centro</a></li>
+          <li><a href="/manutencao-porta-corta-fogo-zona-sul-sp/">Zona Sul</a></li>
+          <li><a href="/manutencao-porta-corta-fogo-zona-oeste-sp/">Zona Oeste</a></li>
+          <li><a href="/manutencao-porta-corta-fogo-zona-norte-sp/">Zona Norte</a></li>
+          <li><a href="/manutencao-porta-corta-fogo-zona-leste-sp/">Zona Leste</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__title">Empresa</p>
+        <ul>
+          <li><a href="/a-empresa/">A empresa</a></li>
+          <li><a href="/clientes/">Clientes</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contato/">Contato</a></li>
+        </ul>
+      </div>
     </nav>
-    <p class="footer__legal">© <span id="year">2026</span> ${MARCA}.<br>Todos os direitos reservados.</p>
+    <div class="footer__contato">
+      <a class="footer__contato-item" href="https://wa.me/5511991961322?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento%20para%20portas%20corta-fogo." target="_blank" rel="noopener">${WA} (11) 99196-1322</a>
+      <a class="footer__contato-item" href="tel:+551149631153">(11) 4963-1153</a>
+      <a class="footer__contato-item" href="mailto:contato@apoiocortafogo.com">contato@apoiocortafogo.com</a>
+    </div>
+    <p class="footer__legal">CNPJ 19.648.928/0001-05 · © <span id="year">2026</span> ${MARCA}. Todos os direitos reservados.</p>
   </div>
 </footer>
 

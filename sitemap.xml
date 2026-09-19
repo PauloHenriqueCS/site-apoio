@@ -7,80 +7,398 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://apoiocortafogo.com/blog/</loc>
+    <loc>https://apoiocortafogo.com/produtos/</loc>
     <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/servicos/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/a-empresa/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-o-que-e-como-funciona/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <loc>https://apoiocortafogo.com/adequacao-porta-corta-fogo-avcb/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://apoiocortafogo.com/blog/manutencao-porta-corta-fogo-quando-fazer/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <loc>https://apoiocortafogo.com/barra-antipanico-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://apoiocortafogo.com/blog/sinais-porta-corta-fogo-precisa-manutencao/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <loc>https://apoiocortafogo.com/barra-antipanico/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-nao-fecha-sozinha/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <loc>https://apoiocortafogo.com/batente-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-p90-p120-diferenca/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <loc>https://apoiocortafogo.com/clientes/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/contato/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/dobradica-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/empresa-de-porta-corta-fogo-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/fechadura-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/instalacao-de-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-de-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-abc/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-alphaville/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-centro-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-guarulhos/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-itaim-bibi/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-moema/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-osasco/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-pinheiros/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-santana/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-santo-amaro/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-tatuape/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-vila-mariana/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-zona-leste-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-zona-norte-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-zona-oeste-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/manutencao-porta-corta-fogo-zona-sul-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/mola-aerea-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-condenada/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-condominio-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-dupla/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-edificio-comercial-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-hospital-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-hotel-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-industria-galpao/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-nao-fecha/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-p120/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-p90/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/porta-corta-fogo-shopping-sp/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/restauracao-de-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/selecionador-de-folhas-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/trinco-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/visita-tecnica/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/vistoria-porta-corta-fogo-avcb/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://apoiocortafogo.com/blog/barra-antipanico-funcionamento-manutencao/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-condominio-checklist-sindico/</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-avcb-problemas-vistoria/</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://apoiocortafogo.com/blog/restaurar-manter-ou-trocar-porta-corta-fogo/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <loc>https://apoiocortafogo.com/blog/comprar-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://apoiocortafogo.com/blog/empresa-porta-corta-fogo-sao-paulo/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/laudo-porta-corta-fogo-avcb/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/manutencao-porta-corta-fogo-quando-fazer/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/porta-anti-chama-diferenca/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-avcb-problemas-vistoria/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-condominio-checklist-sindico/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-nao-fecha-sozinha/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-normas-leis-bombeiros/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-o-que-e-como-funciona/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-p90-p120-diferenca/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/porta-corta-fogo-sob-medida/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://apoiocortafogo.com/blog/responsabilidade-sindico-manutencao-porta-corta-fogo/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/restaurar-manter-ou-trocar-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/restaurar-ou-trocar-custo/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/sinais-porta-corta-fogo-precisa-manutencao/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://apoiocortafogo.com/blog/vistoria-bombeiros-porta-corta-fogo/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -16,7 +16,7 @@ import { globSync } from 'node:fs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://apoiocortafogo.com';
-const paginas = ['index.html', '404.html', ...globSync('blog/**/index.html', { cwd: ROOT })].filter(p => existsSync(join(ROOT, p)));
+const paginas = [...new Set(['index.html', '404.html', ...globSync('*/index.html', { cwd: ROOT }), ...globSync('blog/**/index.html', { cwd: ROOT })].map(p => p.split('\\').join('/')))].filter(p => existsSync(join(ROOT, p)));
 
 const problemas = [];
 const erro = (pag, msg) => problemas.push(`${pag}: ${msg}`);

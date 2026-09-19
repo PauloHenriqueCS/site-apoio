@@ -64,15 +64,21 @@
   /* Botão flutuante do WhatsApp */
   var waFloat = $('#waFloat');
   if (waFloat) {
-    // aparece assim que a faixa "Mais de 15 anos de experiência" entra na tela
-    // (nas páginas sem ela, depois de 600px de rolagem)
-    var faixaStats = $('.stats');
-    var toggleWa = function () {
-      var mostrar = faixaStats ? faixaStats.getBoundingClientRect().top < window.innerHeight - 40 : window.scrollY > 600;
-      waFloat.classList.toggle('is-visible', mostrar);
-    };
-    toggleWa();
-    window.addEventListener('scroll', toggleWa, { passive: true });
+    var ehHome = location.pathname === '/' || location.pathname === '/index.html';
+    if (!ehHome) {
+      // páginas internas: fixo desde o topo, sempre visível
+      waFloat.classList.add('is-visible');
+    } else {
+      // home: aparece assim que a faixa "Mais de 15 anos de experiência" entra na tela
+      // (nas páginas sem ela, depois de 600px de rolagem)
+      var faixaStats = $('.stats');
+      var toggleWa = function () {
+        var mostrar = faixaStats ? faixaStats.getBoundingClientRect().top < window.innerHeight - 40 : window.scrollY > 600;
+        waFloat.classList.toggle('is-visible', mostrar);
+      };
+      toggleWa();
+      window.addEventListener('scroll', toggleWa, { passive: true });
+    }
   }
 
   /* ---------------------------------------------------------
@@ -224,6 +230,24 @@
         window.scrollTo({ top: destino, behavior: 'smooth' });
         if (window.history && history.replaceState) history.replaceState(null, '', '#produtos');
       });
+    });
+  }
+
+  /* ---------------------------------------------------------
+     Catálogo de produtos (/produtos/) — filtros por categoria
+     --------------------------------------------------------- */
+  var prodFiltros = $('#prodFiltros');
+  var prodGrid = $('#prodGrid');
+  if (prodFiltros && prodGrid) {
+    var prodCards = $$('.prod-card', prodGrid);
+    var prodBotoes = $$('.prod-filtro', prodFiltros);
+    prodFiltros.addEventListener('click', function (e) {
+      var b = e.target.closest('.prod-filtro');
+      if (!b) return;
+      var cat = b.getAttribute('data-filtro');
+      prodBotoes.forEach(function (x) { var on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-pressed', String(on)); });
+      prodCards.forEach(function (c) { c.hidden = !(cat === 'todos' || c.getAttribute('data-cat') === cat); });
+      if (window.apoioTrack) window.apoioTrack('product_filter', { filtro: cat });
     });
   }
 
@@ -527,5 +551,19 @@
     });
   }
 
-  if (hasGSAP) window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+  if (hasGSAP) window.addEventListener('load', function () {
+    ScrollTrigger.refresh();
+    // Chegou por link com âncora (ex.: /#orcamento vindo de outra página)?
+    // O "pin" dos serviços muda as alturas depois do load, então o pulo inicial
+    // do navegador para no lugar errado — recalculamos o destino aqui.
+    var id = location.hash.slice(1);
+    var alvo = id && document.getElementById(id);
+    if (alvo) {
+      setTimeout(function () {
+        ScrollTrigger.refresh();
+        var y = alvo.getBoundingClientRect().top + window.scrollY - headerH() - 12;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
+      }, 60);
+    }
+  });
 })();

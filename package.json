@@ -10,6 +10,8 @@
     "vendor": "node tools/atualizar-gsap.mjs",
     "imagens": "node tools/processar-imagens.mjs",
     "blog": "node tools/gerar-blog.mjs",
+    "paginas": "node tools/gerar-paginas.mjs",
+    "build": "node tools/gerar-blog.mjs && node tools/gerar-paginas.mjs",
     "check": "node tools/verificar.mjs"
   },
   "devDependencies": {

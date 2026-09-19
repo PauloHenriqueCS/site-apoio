@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1",
+    "url": "/manutencao-de-porta-corta-fogo/",
+    "arquivo": "paginas/manutencao-de-porta-corta-fogo.md",
+    "prioridade": "P0",
+    "layout": "servico",
+    "status": "Recriar URL histórica",
+    "bloqueio": "nenhum",
+    "palavras": 581
+  },
+  {
+    "id": "2",
+    "url": "/instalacao-de-porta-corta-fogo/",
+    "arquivo": "paginas/instalacao-de-porta-corta-fogo.md",
+    "prioridade": "P0",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 425
+  },
+  {
+    "id": "3",
+    "url": "/restauracao-de-porta-corta-fogo/",
+    "arquivo": "paginas/restauracao-de-porta-corta-fogo.md",
+    "prioridade": "P0",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 451
+  },
+  {
+    "id": "4",
+    "url": "/empresa-de-porta-corta-fogo-sp/",
+    "arquivo": "paginas/empresa-de-porta-corta-fogo-sp.md",
+    "prioridade": "P1",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 371
+  },
+  {
+    "id": "6",
+    "url": "/barra-antipanico/",
+    "arquivo": "paginas/barra-antipanico.md",
+    "prioridade": "P0",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 423
+  },
+  {
+    "id": "7",
+    "url": "/vistoria-porta-corta-fogo-avcb/",
+    "arquivo": "paginas/vistoria-porta-corta-fogo-avcb.md",
+    "prioridade": "P1",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "RT/ART: a Apoio tem responsável técnico com CREA? Se SIM, trocar 'relatório técnico' por 'laudo técnico com ART' no title, H1 e corpo. Se NÃO, publicar como está.",
+    "palavras": 377
+  },
+  {
+    "id": "8",
+    "url": "/servicos/",
+    "arquivo": "paginas/servicos.md",
+    "prioridade": "P0",
+    "layout": "hub",
+    "status": "Recriar URL histórica",
+    "bloqueio": "nenhum",
+    "palavras": 191
+  },
+  {
+    "id": "9",
+    "url": "/manutencao-porta-corta-fogo-centro-sp/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-centro-sp.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 455
+  },
+  {
+    "id": "10",
+    "url": "/manutencao-porta-corta-fogo-zona-sul-sp/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-zona-sul-sp.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 375
+  },
+  {
+    "id": "11",
+    "url": "/manutencao-porta-corta-fogo-zona-oeste-sp/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-zona-oeste-sp.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 365
+  },
+  {
+    "id": "12",
+    "url": "/manutencao-porta-corta-fogo-zona-norte-sp/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-zona-norte-sp.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 375
+  },
+  {
+    "id": "13",
+    "url": "/manutencao-porta-corta-fogo-zona-leste-sp/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-zona-leste-sp.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 354
+  },
+  {
+    "id": "14",
+    "url": "/manutencao-porta-corta-fogo-santo-amaro/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-santo-amaro.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 368
+  },
+  {
+    "id": "15",
+    "url": "/manutencao-porta-corta-fogo-moema/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-moema.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 366
+  },
+  {
+    "id": "16",
+    "url": "/manutencao-porta-corta-fogo-vila-mariana/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-vila-mariana.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 385
+  },
+  {
+    "id": "17",
+    "url": "/manutencao-porta-corta-fogo-pinheiros/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-pinheiros.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 354
+  },
+  {
+    "id": "18",
+    "url": "/manutencao-porta-corta-fogo-tatuape/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-tatuape.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 359
+  },
+  {
+    "id": "19",
+    "url": "/manutencao-porta-corta-fogo-santana/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-santana.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 336
+  },
+  {
+    "id": "23",
+    "url": "/manutencao-porta-corta-fogo-itaim-bibi/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-itaim-bibi.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 337
+  },
+  {
+    "id": "27",
+    "url": "/manutencao-porta-corta-fogo-guarulhos/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-guarulhos.md",
+    "prioridade": "P1",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "Confirmar que a Apoio atende Guarulhos. Se não atende, não publicar.",
+    "palavras": 330
+  },
+  {
+    "id": "28",
+    "url": "/manutencao-porta-corta-fogo-osasco/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-osasco.md",
+    "prioridade": "P2",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "Confirmar que a Apoio atende Osasco. Se não atende, não publicar.",
+    "palavras": 297
+  },
+  {
+    "id": "29b",
+    "url": "/manutencao-porta-corta-fogo-abc/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-abc.md",
+    "prioridade": "P2",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "Confirmar que a Apoio atende o ABC. Se não atende, não publicar.",
+    "palavras": 280
+  },
+  {
+    "id": "N9",
+    "url": "/manutencao-porta-corta-fogo-alphaville/",
+    "arquivo": "paginas/manutencao-porta-corta-fogo-alphaville.md",
+    "prioridade": "P2",
+    "layout": "servico-local",
+    "status": "Criar",
+    "bloqueio": "Confirmar que a Apoio atende Alphaville/Barueri. Se não atende, não publicar.",
+    "palavras": 282
+  },
+  {
+    "id": "39",
+    "url": "/porta-corta-fogo-p90/",
+    "arquivo": "paginas/porta-corta-fogo-p90.md",
+    "prioridade": "P1",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 359
+  },
+  {
+    "id": "40",
+    "url": "/porta-corta-fogo-p120/",
+    "arquivo": "paginas/porta-corta-fogo-p120.md",
+    "prioridade": "P1",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 321
+  },
+  {
+    "id": "42",
+    "url": "/porta-corta-fogo-dupla/",
+    "arquivo": "paginas/porta-corta-fogo-dupla.md",
+    "prioridade": "P2",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 321
+  },
+  {
+    "id": "43",
+    "url": "/porta-corta-fogo-com-visor/",
+    "arquivo": "paginas/porta-corta-fogo-com-visor.md",
+    "prioridade": "P2",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "Confirmar que a Apoio fornece porta com visor. Se não fornece, não publicar.",
+    "palavras": 291
+  },
+  {
+    "id": "44",
+    "url": "/porta-corta-fogo-de-correr/",
+    "arquivo": "paginas/porta-corta-fogo-de-correr.md",
+    "prioridade": "P2",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "Confirmar que a Apoio atende portas de correr industriais (NBR 11711) e tem fornecedor. Se não, não publicar.",
+    "palavras": 309
+  },
+  {
+    "id": "46",
+    "url": "/mola-aerea-porta-corta-fogo/",
+    "arquivo": "paginas/mola-aerea-porta-corta-fogo.md",
+    "prioridade": "P1",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 384
+  },
+  {
+    "id": "47",
+    "url": "/dobradica-porta-corta-fogo/",
+    "arquivo": "paginas/dobradica-porta-corta-fogo.md",
+    "prioridade": "P2",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 362
+  },
+  {
+    "id": "48",
+    "url": "/fechadura-porta-corta-fogo/",
+    "arquivo": "paginas/fechadura-porta-corta-fogo.md",
+    "prioridade": "P2",
+    "layout": "produto",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 375
+  },
+  {
+    "id": "51",
+    "url": "/porta-corta-fogo-condominio-sp/",
+    "arquivo": "paginas/porta-corta-fogo-condominio-sp.md",
+    "prioridade": "P1",
+    "layout": "segmento",
+    "status": "Criar",
+    "bloqueio": "Não inventar obra, unidade, data ou escopo. Cliente citado só como já aparece na home (logo). Se houver autorização para case com foto, adicionar depois.",
+    "palavras": 415
+  },
+  {
+    "id": "52",
+    "url": "/porta-corta-fogo-hospital-sp/",
+    "arquivo": "paginas/porta-corta-fogo-hospital-sp.md",
+    "prioridade": "P2",
+    "layout": "segmento",
+    "status": "Criar",
+    "bloqueio": "Não inventar obra, unidade, data ou escopo. Cliente citado só como já aparece na home (logo). Se houver autorização para case com foto, adicionar depois.",
+    "palavras": 309
+  },
+  {
+    "id": "53",
+    "url": "/porta-corta-fogo-edificio-comercial-sp/",
+    "arquivo": "paginas/porta-corta-fogo-edificio-comercial-sp.md",
+    "prioridade": "P2",
+    "layout": "segmento",
+    "status": "Criar",
+    "bloqueio": "Não inventar obra, unidade, data ou escopo. Cliente citado só como já aparece na home (logo). Se houver autorização para case com foto, adicionar depois.",
+    "palavras": 319
+  },
+  {
+    "id": "54",
+    "url": "/porta-corta-fogo-hotel-sp/",
+    "arquivo": "paginas/porta-corta-fogo-hotel-sp.md",
+    "prioridade": "P2",
+    "layout": "segmento",
+    "status": "Criar",
+    "bloqueio": "Não inventar obra, unidade, data ou escopo. Cliente citado só como já aparece na home (logo). Se houver autorização para case com foto, adicionar depois.",
+    "palavras": 325
+  },
+  {
+    "id": "55",
+    "url": "/porta-corta-fogo-industria-galpao/",
+    "arquivo": "paginas/porta-corta-fogo-industria-galpao.md",
+    "prioridade": "P2",
+    "layout": "segmento",
+    "status": "Criar",
+    "bloqueio": "Confirmar que a Apoio atende indústria e galpão (e porta de correr). Não inventar obra, unidade, data ou escopo. Cliente citado só como já aparece na home (logo). Se houver autorização para case com foto, adicionar depois.",
+    "palavras": 335
+  },
+  {
+    "id": "56",
+    "url": "/porta-corta-fogo-shopping-sp/",
+    "arquivo": "paginas/porta-corta-fogo-shopping-sp.md",
+    "prioridade": "P2",
+    "layout": "segmento",
+    "status": "Criar",
+    "bloqueio": "Não inventar obra, unidade, data ou escopo. Cliente citado só como já aparece na home (logo). Se houver autorização para case com foto, adicionar depois.",
+    "palavras": 303
+  },
+  {
+    "id": "61",
+    "url": "/produtos/",
+    "arquivo": "paginas/produtos.md",
+    "prioridade": "P0",
+    "layout": "hub",
+    "status": "Recriar URL histórica",
+    "bloqueio": "nenhum",
+    "palavras": 202
+  },
+  {
+    "id": "62",
+    "url": "/contato/",
+    "arquivo": "paginas/contato.md",
+    "prioridade": "P0",
+    "layout": "contato",
+    "status": "Recriar URL histórica",
+    "bloqueio": "NAP: endereço, CEP, horário e CNPJ entram só quando o Paulo confirmar. Até lá, a seção 'Endereço e horário' fica oculta (não publicar texto genérico no lugar).",
+    "palavras": 120
+  },
+  {
+    "id": "N1",
+    "url": "/a-empresa/",
+    "arquivo": "paginas/a-empresa.md",
+    "prioridade": "P0",
+    "layout": "institucional",
+    "status": "Criar",
+    "bloqueio": "Razão social, CNPJ, endereço e fotos reais da equipe entram só com dados confirmados. Sem eles, publicar sem a seção 'Dados da empresa'.",
+    "palavras": 220
+  },
+  {
+    "id": "N2",
+    "url": "/clientes/",
+    "arquivo": "paginas/clientes.md",
+    "prioridade": "P1",
+    "layout": "institucional",
+    "status": "Criar",
+    "bloqueio": "Publicar só com os 8 logos já usados na home. Cases com foto, escopo e data entram apenas com autorização escrita de cada cliente. Nada além do nome/logo sem isso.",
+    "palavras": 112
+  },
+  {
+    "id": "N3",
+    "url": "/porta-corta-fogo-nao-fecha/",
+    "arquivo": "paginas/porta-corta-fogo-nao-fecha.md",
+    "prioridade": "P1",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 435
+  },
+  {
+    "id": "N4",
+    "url": "/adequacao-porta-corta-fogo-avcb/",
+    "arquivo": "paginas/adequacao-porta-corta-fogo-avcb.md",
+    "prioridade": "P1",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 397
+  },
+  {
+    "id": "N5",
+    "url": "/porta-corta-fogo-condenada/",
+    "arquivo": "paginas/porta-corta-fogo-condenada.md",
+    "prioridade": "P2",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 343
+  },
+  {
+    "id": "N6",
+    "url": "/visita-tecnica/",
+    "arquivo": "paginas/visita-tecnica.md",
+    "prioridade": "P2",
+    "layout": "servico",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 258
+  },
+  {
+    "id": "57",
+    "url": "/blog/comprar-porta-corta-fogo/",
+    "arquivo": "paginas/blog__comprar-porta-corta-fogo.md",
+    "prioridade": "P2",
+    "layout": "blog",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 369
+  },
+  {
+    "id": "58",
+    "url": "/blog/porta-corta-fogo-sob-medida/",
+    "arquivo": "paginas/blog__porta-corta-fogo-sob-medida.md",
+    "prioridade": "P2",
+    "layout": "blog",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 318
+  },
+  {
+    "id": "59",
+    "url": "/blog/porta-anti-chama-diferenca/",
+    "arquivo": "paginas/blog__porta-anti-chama-diferenca.md",
+    "prioridade": "P2",
+    "layout": "blog",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 378
+  },
+  {
+    "id": "60",
+    "url": "/blog/laudo-porta-corta-fogo-avcb/",
+    "arquivo": "paginas/blog__laudo-porta-corta-fogo-avcb.md",
+    "prioridade": "P2",
+    "layout": "blog",
+    "status": "Criar",
+    "bloqueio": "RT/ART: se a Apoio tiver responsável técnico, a última seção pode afirmar que a Apoio emite laudo com ART. Sem RT, manter como está.",
+    "palavras": 446
+  },
+  {
+    "id": "N7",
+    "url": "/blog/vistoria-bombeiros-porta-corta-fogo/",
+    "arquivo": "paginas/blog__vistoria-bombeiros-porta-corta-fogo.md",
+    "prioridade": "P2",
+    "layout": "blog",
+    "status": "Criar",
+    "bloqueio": "nenhum",
+    "palavras": 433
+  },
+  {
+    "id": "N8",
+    "url": "/blog/restaurar-ou-trocar-custo/",
+    "arquivo": "paginas/blog__restaurar-ou-trocar-custo.md",
+    "prioridade": "P2",
+    "layout": "blog",
+    "status": "Criar",
+    "bloqueio": "Este artigo não cita valores em reais. Se a Apoio quiser publicar faixas, inserir só com valores reais de proposta e revisar a cada 6 meses.",
+    "palavras": 436
+  }
+]

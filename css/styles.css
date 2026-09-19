@@ -251,7 +251,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .services__title-item{opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
 .services__title-item.is-active{opacity:1;visibility:visible}
 .services__title-geral{display:none}
-.services__panels{position:relative;min-height:5.2em}
+.services__panels{position:relative;min-height:9.5em}
 .services__panel{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
 .services__panel.is-active{opacity:1;visibility:visible;position:relative}
 .services__panel-title{font-size:1.2rem;font-weight:500;margin-bottom:.6rem}
@@ -264,7 +264,8 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .services__next:hover::before{width:clamp(140px,12vw,210px)}
 .services__next svg{transition:transform var(--t-fast)}
 .services__next:hover svg{transform:translateX(4px)}
-.services__all{display:none}
+.services__panel-link{margin-top:1.1rem}
+.services__all{display:inline-flex;align-self:flex-start;margin-top:1.5rem}
 
 .services__media{position:relative;overflow:hidden;background:var(--paper-2)}
 .services__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .55s ease}
@@ -353,6 +354,15 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 }
 .porta__label--esq{left:0}
 .porta__label--dir{left:84.5%;width:15.5%}
+.porta__label a{color:inherit;text-decoration:none;transition:color var(--t-fast)}
+.porta__label a:hover{color:var(--brand)}
+.porta__peca{cursor:pointer}
+.porta__peca img{transition:filter var(--t-fast)}
+.porta__peca:hover img{filter:drop-shadow(0 18px 26px rgba(20,30,40,.28)) brightness(1.05)}
+.exploded__cta{display:inline-flex;align-items:center;gap:.55rem;margin-top:1.5rem;color:var(--ink);font-weight:500;font-size:.95rem}
+.exploded__cta svg{color:var(--brand);transition:transform var(--t-fast)}
+.exploded__cta:hover{color:var(--brand)}
+.exploded__cta:hover svg{transform:translateX(4px)}
 
 .exploded__hint{display:flex;align-items:center;justify-content:center;gap:.65rem;margin-top:1rem;color:var(--muted);font-size:.82rem;letter-spacing:.05em}
 .exploded__hint svg{animation:nudge 2.2s ease-in-out infinite}
@@ -512,24 +522,30 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 /* =========================================================
    Rodapé — trecho final do trilho ao lado do logo
    ========================================================= */
-.footer{position:relative;background:var(--paper);border-top:1px solid var(--line);padding-block:2rem}
-.footer.rail::before{top:50%;transform:translateY(-50%);height:52px}
-.footer__inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.footer{position:relative;background:var(--paper);border-top:1px solid var(--line);padding-block:clamp(2.5rem,5vw,3.5rem)}
+.footer.rail::before{top:clamp(2.5rem,5vw,3.5rem);height:48px}
+.footer__inner{display:flex;flex-wrap:wrap;align-items:flex-start;gap:2rem clamp(2rem,5vw,4rem)}
+.footer .logo{flex:0 0 auto}
 .footer .logo img{height:48px}
-.footer__nav{display:flex;gap:clamp(1.5rem,3.5vw,3.5rem);flex-wrap:wrap}
-.footer__nav a{font-size:.95rem;color:var(--text);transition:color var(--t-fast)}
-.footer__nav a:hover{color:var(--brand-600)}
-.footer__legal{font-size:.9rem;color:var(--muted);text-align:right;line-height:1.6}
-@media (max-width:900px){
-  .footer{padding-block:2rem 2.5rem}
-  /* o trecho do trilho acompanha o logo (no topo), não o meio do rodapé */
-  .footer.rail::before{top:2rem;transform:none;height:48px}
-  .footer .logo{margin-left:1.25rem}
-  .footer__inner{flex-direction:column;align-items:center;gap:1.75rem}
-  .footer__inner .logo{align-self:flex-start}
-  .footer__nav{justify-content:center;gap:1.25rem 1.5rem}
-  .footer__legal{text-align:center}
+.footer__cols{display:flex;flex-wrap:wrap;gap:2rem clamp(2rem,5vw,4rem);flex:1 1 320px}
+.footer__col{min-width:130px}
+.footer__title{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:.9rem}
+.footer__col ul{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.footer__col a{font-size:.92rem;color:var(--text);transition:color var(--t-fast)}
+.footer__col a:hover{color:var(--brand-600)}
+.footer__contato{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.75rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.footer__contato-item{display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem;color:var(--text);font-weight:500;transition:color var(--t-fast)}
+.footer__contato-item:hover{color:var(--brand-600)}
+.footer__contato-item svg{flex:none}
+.footer__contato-item:first-child svg{color:#25D366}
+.footer__legal{flex-basis:100%;font-size:.85rem;color:var(--muted);line-height:1.6}
+.footer__legal a{color:var(--text);transition:color var(--t-fast)}
+.footer__legal a:hover{color:var(--brand-600)}
+@media (max-width:640px){
+  .footer__cols{gap:1.5rem 2.5rem}
+  .footer__col{min-width:42%}
 }
+@media (max-width:400px){.footer__col{min-width:100%}}
 
 /* Botão flutuante do WhatsApp */
 .wa-float{
