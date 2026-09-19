@@ -431,7 +431,11 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
    ========================================================= */
 .clients{background:var(--panel);color:#fff;padding-block:clamp(1.75rem,3vw,2.5rem)}
 .clients__head{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-bottom:1.25rem}
-.clients__title{font-size:.78rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.clients__head{align-items:flex-end;margin-bottom:1.75rem}
+.clients__eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem}
+.clients__eyebrow::before{content:"";width:2.75rem;height:2px;background:var(--brand)}
+.clients__title{font-size:clamp(1.6rem,2.7vw,2.4rem);font-weight:600;line-height:1.15;letter-spacing:-.01em;color:#fff;text-wrap:balance}
+.clients__lead{margin-top:.7rem;max-width:62ch;font-size:1.05rem;line-height:1.5;color:rgba(255,255,255,.72)}
 .clients__nav{display:flex;align-items:center;gap:1.25rem}
 .clients__btn{width:36px;height:36px;display:grid;place-items:center;color:#fff;transition:color var(--t-fast),transform var(--t-fast)}
 .clients__btn:hover:not(:disabled){color:var(--brand);transform:translateX(2px)}
@@ -446,7 +450,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .clients__logo img{max-width:min(100%,169px);max-height:100%;width:auto;height:auto;object-fit:contain}
 
 @media (max-width:1100px){.clients__viewport{--per-view:4}}
-@media (max-width:760px){.clients__viewport{--per-view:3}.clients__count{display:inline}.clients__title{font-size:.7rem;letter-spacing:.14em}.clients__nav{gap:.75rem;flex:none}}
+@media (max-width:760px){.clients__viewport{--per-view:3}.clients__count{display:inline}.clients__head{align-items:flex-start;flex-direction:column}.clients__title{font-size:1.5rem}.clients__lead{font-size:.95rem}.clients__nav{gap:.75rem;flex:none}}
 @media (max-width:520px){.clients__viewport{--per-view:2}.clients__logo{height:120px;padding:1.25rem 1.5rem}}
 
 /* =========================================================
