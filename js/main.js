@@ -13,7 +13,7 @@
 
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
-  var headerH = function () { return ($('#header') || {}).offsetHeight || 84; };
+  var headerH = function () { return ($('#header') || {}).offsetHeight || 72; };
 
   var year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
