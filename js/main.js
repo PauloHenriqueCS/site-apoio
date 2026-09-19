@@ -82,6 +82,7 @@
      --------------------------------------------------------- */
   var servicesItems  = $$('.services__index-item');
   var servicesPanels = $$('.services__panel');
+  var servicesTitles = $$('.services__title-item');
   var servicesImgs   = $$('#servicesMedia img');
   var servicesCurrent = 0;
 
@@ -95,6 +96,7 @@
     servicesCurrent = index;
     servicesItems.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
     servicesPanels.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
+    servicesTitles.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
     servicesImgs.forEach(function (el, i) { el.classList.toggle('is-active', i === index); });
   }
 

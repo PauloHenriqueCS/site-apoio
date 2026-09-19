@@ -246,6 +246,11 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 
 .services__copy{display:flex;flex-direction:column;justify-content:center;padding-block:3rem;max-width:420px}
 .services__copy h2{margin-bottom:1.25rem}
+.services__title{display:grid}
+.services__title-item,.services__title-geral{grid-area:1/1}
+.services__title-item{opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
+.services__title-item.is-active{opacity:1;visibility:visible}
+.services__title-geral{display:none}
 .services__panels{position:relative;min-height:5.2em}
 .services__panel{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
 .services__panel.is-active{opacity:1;visibility:visible;position:relative}
@@ -270,6 +275,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   .services__body{display:flex;flex-direction:column;padding-right:var(--rail-x)}
   .services__copy{order:1}.services__index{order:2}.services__all{order:3}
   .services__copy{max-width:none;padding-block:0 2rem;margin-left:1.5rem}
+  .services__title-item{display:none}.services__title-geral{display:block}   /* lista estática: título geral */
   .services__panels,.services__next,.services__media{display:none}
   /* mockup mobile: ponto no trilho, número em coluna, título ao lado, descrição sob o título, divisórias */
   .services__copy .eyebrow{display:flex;align-items:center;gap:.6rem}

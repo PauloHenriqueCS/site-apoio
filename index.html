@@ -273,7 +273,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <div class="services__copy" data-reveal="left">
         <p class="eyebrow">Nossos serviços</p>
-        <h2 id="servicos-title" class="h-section">Soluções completas para portas corta-fogo.</h2>
+        <!-- título grande acompanha o serviço ativo (mesma transição dos painéis); os quatro ficam
+             empilhados na mesma célula para a altura não mudar na troca. No celular, título geral. -->
+        <h2 id="servicos-title" class="h-section services__title">
+          <span class="services__title-item is-active" data-index="0">Portas corta-fogo instaladas com segurança e precisão.</span>
+          <span class="services__title-item" data-index="1">Manutenção que preserva segurança e funcionamento.</span>
+          <span class="services__title-item" data-index="2">Recupere sua porta corta-fogo sem substituir tudo.</span>
+          <span class="services__title-item" data-index="3">Abertura rápida e segura quando mais importa.</span>
+          <span class="services__title-geral">Soluções completas para portas corta-fogo.</span>
+        </h2>
         <div class="services__panels">
             <article class="services__panel is-active" id="panel-0" data-index="0">
               <h3 class="services__panel-title">Instalação de portas corta-fogo</h3>
