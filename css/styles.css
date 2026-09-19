@@ -630,6 +630,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 /* fallback: sem GSAP, sem JS ou prefers-reduced-motion → o CSS acima já mostra o estado final */
 .hero--c .hero__inner{position:relative;z-index:1;width:100%;height:100%;padding-block:2rem 4.5rem}
 .hero--c .hero__content{margin-left:1.5rem;max-width:560px}
+.hero--c .hero__actions .btn--wa svg{flex:none}
 .hero--c .h-display{font-size:clamp(2.2rem,4.2vw,3.75rem)}
 @media (min-width:1600px){.hero--c .hero__scene{right:12%}}
 @media (max-width:760px){
@@ -647,6 +648,9 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   .hero__floor{height:calc(var(--scene-h) * .06)}
   .hero--c .hero__inner{justify-content:flex-start;padding-top:1.5rem;padding-bottom:0}
   .hero--c .hero__content{max-width:none}          /* mantém a margem em relação ao trilho */
+  /* teste: "Solicitar orçamento" e "WhatsApp" lado a lado, dividindo a linha */
+  .hero--c .hero__actions{flex-direction:row;flex-wrap:nowrap;gap:.6rem}
+  .hero--c .hero__actions .btn{flex:1 1 0;min-width:0;width:auto;padding:.9rem .6rem;font-size:.92rem;white-space:nowrap;gap:.4rem}
   .hero--c .hero__scroll{display:none}
   .hero__label{font-size:.72rem}
   /* rótulos da esquerda mais perto da porta e em até duas linhas, para não sair da tela */
@@ -654,3 +658,4 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
   .hero__detalhe{display:none}                       /* ficaria escondido atrás do botão */
   .hero__dot{font-size:.7rem}
 }
+@media (max-width:380px){.hero--c .hero__actions .btn{font-size:.84rem;padding:.85rem .45rem}.hero--c .hero__actions .btn svg{width:14px;height:14px}}
