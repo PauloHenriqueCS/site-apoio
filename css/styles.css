@@ -642,6 +642,8 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
     right:auto;top:auto;left:calc(50% - var(--scene-h) / 1.5 * .665);bottom:calc(var(--scene-h) * -.149);
   }
   .hero__bg{-webkit-mask-image:linear-gradient(90deg,#000 78%,transparent);mask-image:linear-gradient(90deg,#000 78%,transparent)}
+  /* o topo da cena fica logo abaixo do texto: esmaece para não aparecer a borda da imagem */
+  .hero__scene{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%);mask-image:linear-gradient(180deg,transparent 0,#000 14%)}
   .hero__floor{height:calc(var(--scene-h) * .06)}
   .hero--c .hero__inner{justify-content:flex-start;padding-top:1.5rem;padding-bottom:0}
   .hero--c .hero__content{max-width:none}          /* mantém a margem em relação ao trilho */
