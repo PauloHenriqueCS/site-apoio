@@ -307,6 +307,19 @@
   };
   var heroC = $('.hero--c');
   if (heroC) {
+    // celular: a cena é dimensionada pelo que sobra abaixo do texto; mede a altura real do bloco
+    // (varia com largura, zoom e fonte) e entrega ao CSS em --hero-texto
+    var heroConteudo = $('.hero__content', heroC);
+    var medirTextoHero = function () {
+      if (!heroConteudo) return;
+      var inner = heroConteudo.parentNode;
+      var topo = parseFloat(getComputedStyle(inner).paddingTop) || 0;
+      heroC.style.setProperty('--hero-texto', Math.round(topo + heroConteudo.offsetHeight + 45) + 'px');
+    };
+    medirTextoHero();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirTextoHero);
+    window.addEventListener('load', medirTextoHero, { once: true });
+    var tHero; window.addEventListener('resize', function () { clearTimeout(tHero); tHero = setTimeout(medirTextoHero, 120); });
     if (!hasGSAP || reduceMotion) {
       heroC.classList.add('hero--static');          // estado final direto, sem scroll longo
     } else {

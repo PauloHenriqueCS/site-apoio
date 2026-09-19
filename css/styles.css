@@ -210,7 +210,8 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .stats__label{font-size:1rem;color:var(--muted)}
 @media (max-width:700px){
   .stats__grid{grid-template-columns:1fr}
-  .stats__item{display:flex;align-items:baseline;justify-content:center;gap:.5rem;padding:1.1rem 1rem}
+  .stats__item{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:.15rem .5rem;padding:1.1rem 1rem}
+  .stats__value{white-space:nowrap}
   .stats__item+.stats__item::before{left:var(--rail-x);right:var(--rail-x);top:0;transform:none;width:auto;height:1px}
 }
 
@@ -633,9 +634,10 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .hero--c .h-display{font-size:clamp(2.2rem,4.2vw,3.75rem)}
 @media (min-width:1600px){.hero--c .hero__scene{right:12%}}
 @media (max-width:760px){
-  /* 425px ≈ bloco de texto + respiro; a cena ocupa o que sobra, com a porta abaixo do botão */
-  .hero--c{--scene-h:clamp(440px,calc((100svh - var(--header-h) - 425px) / .61),900px)}
-  .hero--c{height:max(calc(100svh - var(--header-h)),700px)}   /* telas baixas (iPhone SE): hero maior que a tela */
+  /* --hero-texto = altura real do bloco de texto (medida pelo JS; 425px até medir). A cena ocupa o
+     que sobra da tela, com a porta logo abaixo do botão; se não couber, o hero cresce. */
+  .hero--c{--scene-h:clamp(440px,calc((100svh - var(--header-h) - var(--hero-texto,425px)) / .61),900px)}
+  .hero--c{height:max(calc(100svh - var(--header-h)),calc(var(--hero-texto,425px) + 285px))}
   .hero--c .hero__media::after{background:linear-gradient(180deg,rgba(14,18,22,.6) 0%,rgba(14,18,22,.3) 34%,rgba(14,18,22,0) 50%)}
   /* porta centralizada (o centro dela fica a 66.5% da largura do canvas); sobra do piso cortada embaixo */
   .hero__scene{
