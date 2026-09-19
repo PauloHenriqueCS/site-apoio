@@ -64,7 +64,13 @@
   /* Botão flutuante do WhatsApp */
   var waFloat = $('#waFloat');
   if (waFloat) {
-    var toggleWa = function () { waFloat.classList.toggle('is-visible', window.scrollY > 600); };
+    // aparece assim que a faixa "Mais de 15 anos de experiência" entra na tela
+    // (nas páginas sem ela, depois de 600px de rolagem)
+    var faixaStats = $('.stats');
+    var toggleWa = function () {
+      var mostrar = faixaStats ? faixaStats.getBoundingClientRect().top < window.innerHeight - 40 : window.scrollY > 600;
+      waFloat.classList.toggle('is-visible', mostrar);
+    };
     toggleWa();
     window.addEventListener('scroll', toggleWa, { passive: true });
   }
