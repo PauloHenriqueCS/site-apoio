@@ -161,6 +161,8 @@ ${extra}<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 ${JSON.stringify(jsonld, null, 1)}
 </script>
+<!-- FirstOnAI Analytics -->
+<script async src="https://app-hmg.firstonai.com.br/v1/analytics.js?key=foa_pk_eee39e200e5074d67421af41da327ccc"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

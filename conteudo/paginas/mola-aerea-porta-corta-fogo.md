@@ -5,7 +5,7 @@ canonical: "https://apoiocortafogo.com/mola-aerea-porta-corta-fogo/"
 prioridade: P1
 status: "Criar"
 layout: produto
-title: "Mola Aérea para Porta Corta-Fogo: Venda, Regulagem e Troca | Apoio"
+title: "Mola Aérea para Porta Corta-Fogo: Regulagem e Troca | Apoio"
 description: "Mola aérea (hidráulica) para porta corta-fogo: fornecimento, regulagem e troca em São Paulo. Mola vazando, fraca ou lenta? Resolvemos no local."
 h1: "Mola Aérea para Porta Corta-Fogo: venda, regulagem e troca"
 keyword_principal: "mola aérea porta corta fogo"

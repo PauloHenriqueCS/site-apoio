@@ -20,7 +20,9 @@ const SITE = 'https://apoiocortafogo.com';
 const MARCA = 'Apoio Corta Fogo';
 const OG_SITE = `${SITE}/assets/img/og-apoio-porta-corta-fogo.jpg`;
 const OG_BLOG = `${SITE}/assets/img/blog/og-blog.jpg`;
-const HOJE = new Date().toISOString().slice(0, 10);
+// DATA_SITE=AAAA-MM-DD fixa a data usada em publicação/lastmod, para regerar sem
+// mudar a data de páginas que não foram alteradas.
+const HOJE = process.env.DATA_SITE || new Date().toISOString().slice(0, 10);
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const stripTags = (s) => s.replace(/<[^>]+>/g, '');
@@ -173,6 +175,8 @@ ${cssExtra}<script>document.documentElement.classList.remove('no-js');</script>
 <script type="application/ld+json">
 ${JSON.stringify(jsonld, null, 1)}
 </script>
+<!-- FirstOnAI Analytics -->
+<script async src="https://app-hmg.firstonai.com.br/v1/analytics.js?key=foa_pk_eee39e200e5074d67421af41da327ccc"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

@@ -5,7 +5,7 @@ canonical: "https://apoiocortafogo.com/blog/comprar-porta-corta-fogo/"
 prioridade: P2
 status: "Criar"
 layout: blog
-title: "Comprar Porta Corta-Fogo: O que Avaliar Antes do Orçamento | Apoio"
+title: "Comprar Porta Corta-Fogo: O que Avaliar no Orçamento | Apoio"
 description: "Vai comprar porta corta-fogo? Veja o que conferir antes de pedir orçamento: classe, medidas, ferragens, certificação e instalação. Guia da Apoio Corta Fogo."
 h1: "Comprar porta corta-fogo: o que avaliar antes de pedir orçamento"
 keyword_principal: "comprar porta corta fogo"

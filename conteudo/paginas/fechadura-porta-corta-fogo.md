@@ -5,7 +5,7 @@ canonical: "https://apoiocortafogo.com/fechadura-porta-corta-fogo/"
 prioridade: P2
 status: "Criar"
 layout: produto
-title: "Fechadura para Porta Corta-Fogo: Sobrepor, Embutir, Trinco | Apoio"
+title: "Fechadura para Porta Corta-Fogo: Sobrepor e Embutir | Apoio"
 description: "Fechadura de sobrepor, de embutir e trinco para porta corta-fogo, com ou sem chave. Fornecimento, instalação e troca em São Paulo. Visita técnica gratuita."
 h1: "Fechadura para Porta Corta-Fogo: sobrepor, embutir e trinco"
 keyword_principal: "fechadura porta corta fogo"

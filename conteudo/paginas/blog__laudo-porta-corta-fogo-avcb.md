@@ -5,7 +5,7 @@ canonical: "https://apoiocortafogo.com/blog/laudo-porta-corta-fogo-avcb/"
 prioridade: P2
 status: "Criar"
 layout: blog
-title: "Laudo de Porta Corta-Fogo para AVCB: O que Precisa Constar | Apoio"
+title: "Laudo de Porta Corta-Fogo para AVCB: O que Constar | Apoio"
 description: "O que um laudo ou relatório técnico de portas corta-fogo precisa conter para servir ao AVCB: itens verificados, critérios, fotos, ART e responsabilidade."
 h1: "Laudo de porta corta-fogo para o AVCB: o que precisa constar"
 keyword_principal: "laudo porta corta fogo avcb"
