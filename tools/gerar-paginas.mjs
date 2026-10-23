@@ -176,7 +176,7 @@ ${cssExtra}<script>document.documentElement.classList.remove('no-js');</script>
 ${JSON.stringify(jsonld, null, 1)}
 </script>
 <!-- FirstOnAI Analytics -->
-<script async src="https://app-hmg.firstonai.com.br/v1/analytics.js?key=foa_pk_eee39e200e5074d67421af41da327ccc"></script>
+<script async src="https://app.firstonai.com.br/v1/analytics.js?key=foa_pk_b417c5e592ca63f5faf6e5d593136d2c"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
