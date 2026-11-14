@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { globSync } from 'node:fs';
+import { SERVICOS, servicosItemList } from './servicos.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://apoiocortafogo.com';
@@ -758,18 +759,7 @@ const ICON_SERV = {
   visita: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 43v-6c0-6 5-10 11-10h4c4 0 7 2 9 5M12 14a8 8 0 0 1 16 0v5a8 8 0 0 1-16 0v-5Z"/><path d="M10 14h20M15 6v8M25 6v8"/><rect x="29" y="27" width="14" height="17" rx="1"/><path d="M33 32h6M33 36h6M33 40h4"/></svg>',
   empresa: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 43h38M10 43V22h10v21M20 43V7h18v36"/><path d="M25 13h3M32 13h2M25 19h3M32 19h2M25 25h3M32 25h2M25 31h3M32 31h2M14 28h2M14 34h2"/><path d="M27 43v-6h5v6"/></svg>',
 };
-const SERVICOS = [
-  { n: '01', icon: 'instalacao',  t: 'Instalação de porta corta-fogo',            d: 'Equipe técnica especializada para uma instalação segura e conforme as normas.',       u: '/instalacao-de-porta-corta-fogo/' },
-  { n: '02', icon: 'manutencao',  t: 'Manutenção de porta corta-fogo',            d: 'Manutenção preventiva e corretiva para garantir o pleno funcionamento.',              u: '/manutencao-de-porta-corta-fogo/' },
-  { n: '03', icon: 'restauracao', t: 'Restauração de porta corta-fogo',           d: 'Recuperação de portas danificadas, prolongando sua vida útil e segurança.',           u: '/restauracao-de-porta-corta-fogo/' },
-  { n: '04', icon: 'barra',       t: 'Barra antipânico',                          d: 'Instalação, ajuste e manutenção do dispositivo de saída de emergência.',              u: '/barra-antipanico/' },
-  { n: '05', icon: 'vistoria',    t: 'Vistoria de porta corta-fogo para AVCB',    d: 'Inspeção técnica completa com laudo e orientações para o seu AVCB.',                   u: '/vistoria-porta-corta-fogo-avcb/' },
-  { n: '06', icon: 'adequacao',   t: 'Adequação de porta corta-fogo para AVCB',   d: 'Ajustes e adequações para atendimento aos requisitos do Corpo de Bombeiros.',         u: '/adequacao-porta-corta-fogo-avcb/' },
-  { n: '07', icon: 'naofecha',    t: 'Porta corta-fogo não fecha',                d: 'Diagnosticamos a causa e realizamos o reparo adequado.',                              u: '/porta-corta-fogo-nao-fecha/' },
-  { n: '08', icon: 'condenada',   t: 'Porta corta-fogo condenada',                d: 'Avaliação técnica e orientações para substituição segura e conforme a norma.',        u: '/porta-corta-fogo-condenada/' },
-  { n: '09', icon: 'visita',      t: 'Visita técnica',                            d: 'Atendimento no local com análise especializada e orientações objetivas.',             u: '/visita-tecnica/' },
-  { n: '10', icon: 'empresa',     t: 'Empresa de porta corta-fogo em SP',         d: 'Mais de 15 anos de experiência em São Paulo e região.',                               u: '/empresa-de-porta-corta-fogo-sp/' },
-];
+// SERVICOS (cards e JSON-LD) vem de tools/servicos.mjs, fonte única.
 
 // Seção "Escolha com segurança" — variante para serviços
 function orientacaoServicos() {
@@ -793,7 +783,7 @@ function orientacaoServicos() {
 
 function paginaServicosHub(fm) {
   const url = fm.canonical || `${SITE}${fm.url}`;
-  const jsonld = { '@context': 'https://schema.org', '@graph': [breadcrumb(fm, url)] };
+  const jsonld = { '@context': 'https://schema.org', '@graph': [breadcrumb(fm, url), servicosItemList(SITE)] };
   const cards = SERVICOS.map(s => `        <a class="serv-item" href="${s.u}">
           <span class="serv-item__num">${s.n}</span>
           <span class="serv-item__icon">${ICON_SERV[s.icon]}</span>
