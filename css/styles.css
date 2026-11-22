@@ -541,6 +541,7 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:500
 .footer__legal{flex-basis:100%;font-size:.85rem;color:var(--muted);line-height:1.6}
 .footer__legal a{color:var(--text);transition:color var(--t-fast)}
 .footer__legal a:hover{color:var(--brand-600)}
+.footer__versao{opacity:.6;font-size:.8em}
 @media (max-width:640px){
   .footer__cols{gap:1.5rem 2.5rem}
   .footer__col{min-width:42%}

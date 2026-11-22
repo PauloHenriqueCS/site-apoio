@@ -18,6 +18,24 @@
   var year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
 
+  /* Versão no rodapé: lê /VERSION (vai no upload FTP). Sem o arquivo = "dev".
+     Fora do domínio de produção (HMG/preview/local) prefixa "HMG · ". */
+  var legal = $('.footer__legal');
+  if (legal && window.fetch) {
+    var prod = /(^|\.)apoiocortafogo\.com$/.test(location.hostname);
+    var mostrar = function (v) {
+      var el = document.createElement('span');
+      el.className = 'footer__versao';
+      el.textContent = (prod || v === 'dev' ? '' : 'HMG · ') + (v === 'dev' ? 'dev' : (prod ? 'v' + v : v));
+      legal.appendChild(document.createTextNode(' · '));
+      legal.appendChild(el);
+    };
+    fetch('/VERSION', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.text() : 'dev'; })
+      .then(function (t) { t = String(t).trim(); mostrar(/^[\w.+-]{1,40}$/.test(t) ? t : 'dev'); })
+      .catch(function () { mostrar('dev'); });
+  }
+
   /* ---------------------------------------------------------
      Cabeçalho — sombra ao rolar
      --------------------------------------------------------- */

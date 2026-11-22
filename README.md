@@ -80,7 +80,7 @@ robots.txt, sitemap.xml, site.webmanifest
 
 ## Deploy
 
-Publique a raiz do repositório (**incluindo `api/` e `api/.htaccess`**) **exceto** `origem/`,
+Publique a raiz do repositório (**incluindo `api/`, `api/.htaccess` e o arquivo `VERSION`**, que o rodapé exibe) **exceto** `origem/`,
 `conteudo/`, `tools/`, `node_modules/` e os arquivos de projeto (`package*.json`, `README.md`).
 O formulário precisa de PHP 7.4+ e do arquivo de credenciais fora de `public_html` (ver
 `api/LEIA-ME.md`). O `robots.txt` já bloqueia essas
